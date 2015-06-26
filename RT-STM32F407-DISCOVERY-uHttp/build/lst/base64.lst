@@ -1,0 +1,3623 @@
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"base64.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.base64_encode,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.global	base64_encode
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	base64_encode, %function
+  25              	base64_encode:
+  26              	.LFB0:
+  27              		.file 1 "../../../os/ext/PolarSSL/library/base64.c"
+  28              		.loc 1 72 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33              		.loc 1 77 0
+  34 0000 002B     		cmp	r3, #0
+  35 0002 6ED0     		beq	.L12
+  36              		.loc 1 72 0
+  37 0004 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  38              		.cfi_def_cfa_offset 36
+  39              		.cfi_offset 4, -36
+  40              		.cfi_offset 5, -32
+  41              		.cfi_offset 6, -28
+  42              		.cfi_offset 7, -24
+  43              		.cfi_offset 8, -20
+  44              		.cfi_offset 9, -16
+  45              		.cfi_offset 10, -12
+  46              		.cfi_offset 11, -8
+  47              		.cfi_offset 14, -4
+  48              		.loc 1 80 0
+  49 0008 454C     		ldr	r4, .L20
+  50 000a DD00     		lsls	r5, r3, #3
+  51 000c A4FB0564 		umull	r6, r4, r4, r5
+  52 0010 A408     		lsrs	r4, r4, #2
+  53              	.LVL1:
+  54              		.loc 1 82 0
+  55 0012 04EB4406 		add	r6, r4, r4, lsl #1
+  56 0016 A5EB4605 		sub	r5, r5, r6, lsl #1
+  57 001a 022D     		cmp	r5, #2
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 2
+
+
+  58 001c 5FD0     		beq	.L4
+  59 001e 042D     		cmp	r5, #4
+  60 0020 00D1     		bne	.L3
+  61              		.loc 1 85 0
+  62 0022 0234     		adds	r4, r4, #2
+  63              	.LVL2:
+  64              	.L3:
+  65              		.loc 1 89 0
+  66 0024 0D68     		ldr	r5, [r1]
+  67 0026 0134     		adds	r4, r4, #1
+  68              	.LVL3:
+  69 0028 A542     		cmp	r5, r4
+  70 002a 74D3     		bcc	.L18
+  71              	.LVL4:
+  72              	.LBB4:
+  73              	.LBB5:
+  74              		.loc 1 95 0
+  75 002c 3C4C     		ldr	r4, .L20
+  76              	.LVL5:
+  77 002e A4FB034A 		umull	r4, r10, r4, r3
+  78 0032 4FEA5A0A 		lsr	r10, r10, #1
+  79              	.LVL6:
+  80              		.loc 1 97 0
+  81 0036 1AEB4A0A 		adds	r10, r10, r10, lsl #1
+  82              	.LVL7:
+  83 003a 69D0     		beq	.L13
+  84 003c DFF8E4E0 		ldr	lr, .L20+4
+  85 0040 D51C     		adds	r5, r2, #3
+  86 0042 041D     		adds	r4, r0, #4
+  87 0044 4FF00009 		mov	r9, #0
+  88              	.LVL8:
+  89              	.L8:
+  90              		.loc 1 99 0
+  91 0048 15F8037C 		ldrb	r7, [r5, #-3]	@ zero_extendqisi2
+  92              	.LVL9:
+  93              		.loc 1 100 0
+  94 004c 15F8026C 		ldrb	r6, [r5, #-2]	@ zero_extendqisi2
+  95              	.LVL10:
+  96              		.loc 1 101 0
+  97 0050 15F8012C 		ldrb	r2, [r5, #-1]	@ zero_extendqisi2
+  98              	.LVL11:
+  99              		.loc 1 104 0
+ 100 0054 07F00308 		and	r8, r7, #3
+ 101              		.loc 1 105 0
+ 102 0058 06F00F0C 		and	ip, r6, #15
+ 103 005c 4FEAA21B 		asr	fp, r2, #6
+ 104              		.loc 1 104 0
+ 105 0060 0EEB0818 		add	r8, lr, r8, lsl #4
+ 106              		.loc 1 103 0
+ 107 0064 BF10     		asrs	r7, r7, #2
+ 108              	.LVL12:
+ 109              		.loc 1 104 0
+ 110 0066 3611     		asrs	r6, r6, #4
+ 111              	.LVL13:
+ 112              		.loc 1 105 0
+ 113 0068 0EEB8C0C 		add	ip, lr, ip, lsl #2
+ 114              		.loc 1 106 0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 3
+
+
+ 115 006c 02F03F02 		and	r2, r2, #63
+ 116              	.LVL14:
+ 117              		.loc 1 97 0
+ 118 0070 09F10309 		add	r9, r9, #3
+ 119              	.LVL15:
+ 120              		.loc 1 104 0
+ 121 0074 18F80660 		ldrb	r6, [r8, r6]	@ zero_extendqisi2
+ 122              		.loc 1 106 0
+ 123 0078 1EF80220 		ldrb	r2, [lr, r2]	@ zero_extendqisi2
+ 124              		.loc 1 103 0
+ 125 007c 1EF80770 		ldrb	r7, [lr, r7]	@ zero_extendqisi2
+ 126              		.loc 1 105 0
+ 127 0080 1CF80BC0 		ldrb	ip, [ip, fp]	@ zero_extendqisi2
+ 128              		.loc 1 104 0
+ 129 0084 04F8036C 		strb	r6, [r4, #-3]
+ 130              	.LVL16:
+ 131              		.loc 1 97 0
+ 132 0088 CA45     		cmp	r10, r9
+ 133              		.loc 1 106 0
+ 134 008a 04F8012C 		strb	r2, [r4, #-1]
+ 135              		.loc 1 103 0
+ 136 008e 04F8047C 		strb	r7, [r4, #-4]
+ 137              	.LVL17:
+ 138              		.loc 1 105 0
+ 139 0092 04F802CC 		strb	ip, [r4, #-2]
+ 140              	.LVL18:
+ 141 0096 2A46     		mov	r2, r5
+ 142 0098 2646     		mov	r6, r4
+ 143 009a 05F10305 		add	r5, r5, #3
+ 144              	.LVL19:
+ 145 009e 04F10404 		add	r4, r4, #4
+ 146              	.LVL20:
+ 147              		.loc 1 97 0
+ 148 00a2 D1D8     		bhi	.L8
+ 149              	.LVL21:
+ 150              	.L7:
+ 151              		.loc 1 109 0
+ 152 00a4 4B45     		cmp	r3, r9
+ 153 00a6 13D9     		bls	.L9
+ 154              	.LVL22:
+ 155              		.loc 1 112 0
+ 156 00a8 09F10104 		add	r4, r9, #1
+ 157 00ac A342     		cmp	r3, r4
+ 158              		.loc 1 111 0
+ 159 00ae 1578     		ldrb	r5, [r2]	@ zero_extendqisi2
+ 160              	.LVL23:
+ 161              		.loc 1 112 0
+ 162 00b0 19D8     		bhi	.L19
+ 163              	.LVL24:
+ 164              		.loc 1 115 0
+ 165 00b2 05F00303 		and	r3, r5, #3
+ 166              	.LVL25:
+ 167 00b6 1B01     		lsls	r3, r3, #4
+ 168              		.loc 1 114 0
+ 169 00b8 1A4A     		ldr	r2, .L20+4
+ 170              	.LVL26:
+ 171 00ba AD10     		asrs	r5, r5, #2
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 4
+
+
+ 172              	.LVL27:
+ 173              		.loc 1 115 0
+ 174 00bc D75C     		ldrb	r7, [r2, r3]	@ zero_extendqisi2
+ 175              		.loc 1 114 0
+ 176 00be 535D     		ldrb	r3, [r2, r5]	@ zero_extendqisi2
+ 177              		.loc 1 115 0
+ 178 00c0 7770     		strb	r7, [r6, #1]
+ 179              		.loc 1 119 0
+ 180 00c2 3D24     		movs	r4, #61
+ 181              		.loc 1 114 0
+ 182 00c4 3370     		strb	r3, [r6]
+ 183              	.LVL28:
+ 184              		.loc 1 119 0
+ 185 00c6 B470     		strb	r4, [r6, #2]
+ 186 00c8 0336     		adds	r6, r6, #3
+ 187              	.LVL29:
+ 188              	.L11:
+ 189              		.loc 1 121 0
+ 190 00ca 3D23     		movs	r3, #61
+ 191 00cc 3370     		strb	r3, [r6]
+ 192 00ce 0136     		adds	r6, r6, #1
+ 193              	.LVL30:
+ 194              	.L9:
+ 195              		.loc 1 124 0
+ 196 00d0 301A     		subs	r0, r6, r0
+ 197              	.LVL31:
+ 198              		.loc 1 125 0
+ 199 00d2 0023     		movs	r3, #0
+ 200              		.loc 1 124 0
+ 201 00d4 0860     		str	r0, [r1]
+ 202              		.loc 1 125 0
+ 203 00d6 3370     		strb	r3, [r6]
+ 204 00d8 1846     		mov	r0, r3
+ 205 00da BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 206              	.LVL32:
+ 207              	.L4:
+ 208              	.LBE5:
+ 209              	.LBE4:
+ 210              		.loc 1 84 0
+ 211 00de 0334     		adds	r4, r4, #3
+ 212              	.LVL33:
+ 213 00e0 A0E7     		b	.L3
+ 214              	.LVL34:
+ 215              	.L12:
+ 216              		.cfi_def_cfa_offset 0
+ 217              		.cfi_restore 4
+ 218              		.cfi_restore 5
+ 219              		.cfi_restore 6
+ 220              		.cfi_restore 7
+ 221              		.cfi_restore 8
+ 222              		.cfi_restore 9
+ 223              		.cfi_restore 10
+ 224              		.cfi_restore 11
+ 225              		.cfi_restore 14
+ 226              		.loc 1 78 0
+ 227 00e2 1846     		mov	r0, r3
+ 228              	.LVL35:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 5
+
+
+ 229              		.loc 1 128 0
+ 230 00e4 7047     		bx	lr
+ 231              	.LVL36:
+ 232              	.L19:
+ 233              		.cfi_def_cfa_offset 36
+ 234              		.cfi_offset 4, -36
+ 235              		.cfi_offset 5, -32
+ 236              		.cfi_offset 6, -28
+ 237              		.cfi_offset 7, -24
+ 238              		.cfi_offset 8, -20
+ 239              		.cfi_offset 9, -16
+ 240              		.cfi_offset 10, -12
+ 241              		.cfi_offset 11, -8
+ 242              		.cfi_offset 14, -4
+ 243              	.LBB7:
+ 244              	.LBB6:
+ 245              		.loc 1 112 0
+ 246 00e6 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 247              	.LVL37:
+ 248              		.loc 1 114 0
+ 249 00e8 0E4A     		ldr	r2, .L20+4
+ 250              	.LVL38:
+ 251              		.loc 1 115 0
+ 252 00ea 05F00304 		and	r4, r5, #3
+ 253 00ee 4FEA231E 		asr	lr, r3, #4
+ 254 00f2 02EB0414 		add	r4, r2, r4, lsl #4
+ 255              		.loc 1 118 0
+ 256 00f6 03F00F03 		and	r3, r3, #15
+ 257              	.LVL39:
+ 258              		.loc 1 114 0
+ 259 00fa AD10     		asrs	r5, r5, #2
+ 260              	.LVL40:
+ 261              		.loc 1 118 0
+ 262 00fc 12F82370 		ldrb	r7, [r2, r3, lsl #2]	@ zero_extendqisi2
+ 263              		.loc 1 115 0
+ 264 0100 14F80E40 		ldrb	r4, [r4, lr]	@ zero_extendqisi2
+ 265              		.loc 1 114 0
+ 266 0104 535D     		ldrb	r3, [r2, r5]	@ zero_extendqisi2
+ 267              		.loc 1 118 0
+ 268 0106 B770     		strb	r7, [r6, #2]
+ 269              		.loc 1 115 0
+ 270 0108 7470     		strb	r4, [r6, #1]
+ 271              		.loc 1 114 0
+ 272 010a 3370     		strb	r3, [r6]
+ 273              	.LVL41:
+ 274              		.loc 1 118 0
+ 275 010c 0336     		adds	r6, r6, #3
+ 276              	.LVL42:
+ 277 010e DCE7     		b	.L11
+ 278              	.LVL43:
+ 279              	.L13:
+ 280              		.loc 1 97 0
+ 281 0110 D146     		mov	r9, r10
+ 282 0112 0646     		mov	r6, r0
+ 283 0114 C6E7     		b	.L7
+ 284              	.LVL44:
+ 285              	.L18:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 6
+
+
+ 286              	.LBE6:
+ 287              	.LBE7:
+ 288              		.loc 1 91 0
+ 289 0116 0C60     		str	r4, [r1]
+ 290              		.loc 1 92 0
+ 291 0118 6FF02900 		mvn	r0, #41
+ 292              	.LVL45:
+ 293 011c BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 294              	.LVL46:
+ 295              	.L21:
+ 296              		.align	2
+ 297              	.L20:
+ 298 0120 ABAAAAAA 		.word	-1431655765
+ 299 0124 00000000 		.word	.LANCHOR0
+ 300              		.cfi_endproc
+ 301              	.LFE0:
+ 302              		.size	base64_encode, .-base64_encode
+ 303 0128 AFF30080 		.section	.text.base64_decode,"ax",%progbits
+ 303      AFF30080 
+ 304              		.align	2
+ 305              		.p2align 4,,15
+ 306              		.global	base64_decode
+ 307              		.thumb
+ 308              		.thumb_func
+ 309              		.type	base64_decode, %function
+ 310              	base64_decode:
+ 311              	.LFB1:
+ 312              		.loc 1 135 0
+ 313              		.cfi_startproc
+ 314              		@ args = 0, pretend = 0, frame = 0
+ 315              		@ frame_needed = 0, uses_anonymous_args = 0
+ 316              	.LVL47:
+ 317              		.loc 1 140 0
+ 318 0000 002B     		cmp	r3, #0
+ 319 0002 00F08B80 		beq	.L40
+ 320              		.loc 1 135 0
+ 321 0006 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 322              		.cfi_def_cfa_offset 32
+ 323              		.cfi_offset 4, -32
+ 324              		.cfi_offset 5, -28
+ 325              		.cfi_offset 6, -24
+ 326              		.cfi_offset 7, -20
+ 327              		.cfi_offset 8, -16
+ 328              		.cfi_offset 9, -12
+ 329              		.cfi_offset 10, -8
+ 330              		.cfi_offset 14, -4
+ 331 000a 9046     		mov	r8, r2
+ 332              		.loc 1 140 0
+ 333 000c 0125     		movs	r5, #1
+ 334 000e 0022     		movs	r2, #0
+ 335              	.LVL48:
+ 336              		.loc 1 152 0
+ 337 0010 DFF81C91 		ldr	r9, .L73
+ 338              		.loc 1 140 0
+ 339 0014 1746     		mov	r7, r2
+ 340 0016 C446     		mov	ip, r8
+ 341 0018 4646     		mov	r6, r8
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 7
+
+
+ 342 001a 03EB050E 		add	lr, r3, r5
+ 343 001e 15E0     		b	.L31
+ 344              	.LVL49:
+ 345              	.L66:
+ 346              		.loc 1 149 0
+ 347 0020 3D2C     		cmp	r4, #61
+ 348 0022 5BD0     		beq	.L63
+ 349              		.loc 1 152 0
+ 350 0024 14F0800F 		tst	r4, #128
+ 351 0028 54D1     		bne	.L46
+ 352              	.L27:
+ 353              		.loc 1 152 0 is_stmt 0 discriminator 1
+ 354 002a 19F80440 		ldrb	r4, [r9, r4]	@ zero_extendqisi2
+ 355 002e 7F2C     		cmp	r4, #127
+ 356 0030 50D0     		beq	.L46
+ 357              	.L70:
+ 358              		.loc 1 155 0 is_stmt 1
+ 359 0032 3F2C     		cmp	r4, #63
+ 360 0034 01D8     		bhi	.L30
+ 361              		.loc 1 155 0 is_stmt 0 discriminator 1
+ 362 0036 002A     		cmp	r2, #0
+ 363 0038 4CD1     		bne	.L46
+ 364              	.L30:
+ 365              		.loc 1 158 0 is_stmt 1
+ 366 003a 2C46     		mov	r4, r5
+ 367              		.loc 1 140 0
+ 368 003c A342     		cmp	r3, r4
+ 369              		.loc 1 158 0
+ 370 003e 07F10107 		add	r7, r7, #1
+ 371              	.LVL50:
+ 372 0042 05F10105 		add	r5, r5, #1
+ 373 0046 06F10106 		add	r6, r6, #1
+ 374              		.loc 1 140 0
+ 375 004a 0FD9     		bls	.L64
+ 376              	.LVL51:
+ 377              	.L31:
+ 378 004c C5EB0E04 		rsb	r4, r5, lr
+ 379              		.loc 1 142 0
+ 380 0050 012C     		cmp	r4, #1
+ 381              		.loc 1 143 0
+ 382 0052 3478     		ldrb	r4, [r6]	@ zero_extendqisi2
+ 383              		.loc 1 142 0
+ 384 0054 01D9     		bls	.L25
+ 385              		.loc 1 142 0 is_stmt 0 discriminator 1
+ 386 0056 0D2C     		cmp	r4, #13
+ 387 0058 33D0     		beq	.L65
+ 388              	.L25:
+ 389              		.loc 1 146 0 is_stmt 1
+ 390 005a 0A2C     		cmp	r4, #10
+ 391 005c E0D1     		bne	.L66
+ 392              	.L42:
+ 393 005e 2C46     		mov	r4, r5
+ 394              	.LVL52:
+ 395              		.loc 1 140 0
+ 396 0060 A342     		cmp	r3, r4
+ 397 0062 05F10105 		add	r5, r5, #1
+ 398 0066 06F10106 		add	r6, r6, #1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 8
+
+
+ 399 006a EFD8     		bhi	.L31
+ 400              	.L64:
+ 401              		.loc 1 161 0
+ 402 006c 002F     		cmp	r7, #0
+ 403 006e 3CD0     		beq	.L61
+ 404              		.loc 1 164 0
+ 405 0070 07EB4703 		add	r3, r7, r7, lsl #1
+ 406              	.LVL53:
+ 407 0074 5B00     		lsls	r3, r3, #1
+ 408 0076 0733     		adds	r3, r3, #7
+ 409              		.loc 1 166 0
+ 410 0078 0A68     		ldr	r2, [r1]
+ 411              	.LVL54:
+ 412              		.loc 1 164 0
+ 413 007a DB08     		lsrs	r3, r3, #3
+ 414              	.LVL55:
+ 415              		.loc 1 166 0
+ 416 007c 9342     		cmp	r3, r2
+ 417 007e 4FD8     		bhi	.L32
+ 418              	.LVL56:
+ 419              		.loc 1 172 0 discriminator 1
+ 420 0080 002C     		cmp	r4, #0
+ 421 0082 49D0     		beq	.L67
+ 422              		.loc 1 172 0 is_stmt 0
+ 423 0084 0025     		movs	r5, #0
+ 424              		.loc 1 177 0 is_stmt 1
+ 425 0086 DFF8A890 		ldr	r9, .L73
+ 426 008a 4444     		add	r4, r4, r8
+ 427              	.LVL57:
+ 428              		.loc 1 172 0
+ 429 008c 2A46     		mov	r2, r5
+ 430 008e 8646     		mov	lr, r0
+ 431              	.LVL58:
+ 432 0090 0326     		movs	r6, #3
+ 433 0092 01E0     		b	.L39
+ 434              	.LVL59:
+ 435              	.L35:
+ 436              		.loc 1 172 0 is_stmt 0 discriminator 2
+ 437 0094 A445     		cmp	ip, r4
+ 438 0096 25D0     		beq	.L68
+ 439              	.LVL60:
+ 440              	.L39:
+ 441              		.loc 1 174 0 is_stmt 1
+ 442 0098 1CF8013B 		ldrb	r3, [ip], #1	@ zero_extendqisi2
+ 443              	.LVL61:
+ 444 009c 0D2B     		cmp	r3, #13
+ 445 009e F9D0     		beq	.L35
+ 446              		.loc 1 174 0 is_stmt 0 discriminator 1
+ 447 00a0 0A2B     		cmp	r3, #10
+ 448 00a2 F7D0     		beq	.L35
+ 449              		.loc 1 177 0 is_stmt 1
+ 450 00a4 19F80330 		ldrb	r3, [r9, r3]	@ zero_extendqisi2
+ 451              		.loc 1 180 0
+ 452 00a8 0132     		adds	r2, r2, #1
+ 453              	.LVL62:
+ 454              		.loc 1 178 0
+ 455 00aa 03F03F07 		and	r7, r3, #63
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 9
+
+
+ 456              		.loc 1 177 0
+ 457 00ae 402B     		cmp	r3, #64
+ 458 00b0 08BF     		it	eq
+ 459 00b2 013E     		subeq	r6, r6, #1
+ 460              	.LVL63:
+ 461              		.loc 1 180 0
+ 462 00b4 042A     		cmp	r2, #4
+ 463              		.loc 1 178 0
+ 464 00b6 47EA8515 		orr	r5, r7, r5, lsl #6
+ 465              	.LVL64:
+ 466              		.loc 1 180 0
+ 467 00ba EBD1     		bne	.L35
+ 468              	.LVL65:
+ 469              		.loc 1 183 0
+ 470 00bc C6B9     		cbnz	r6, .L69
+ 471              	.LVL66:
+ 472              	.L36:
+ 473              		.loc 1 182 0
+ 474 00be 0022     		movs	r2, #0
+ 475 00c0 E8E7     		b	.L35
+ 476              	.LVL67:
+ 477              	.L65:
+ 478              		.loc 1 143 0
+ 479 00c2 96F801A0 		ldrb	r10, [r6, #1]	@ zero_extendqisi2
+ 480 00c6 BAF10A0F 		cmp	r10, #10
+ 481 00ca C8D0     		beq	.L42
+ 482              		.loc 1 152 0
+ 483 00cc 19F80440 		ldrb	r4, [r9, r4]	@ zero_extendqisi2
+ 484 00d0 7F2C     		cmp	r4, #127
+ 485 00d2 AED1     		bne	.L70
+ 486              	.L46:
+ 487              		.loc 1 150 0
+ 488 00d4 6FF02B00 		mvn	r0, #43
+ 489              	.LVL68:
+ 490 00d8 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 491              	.LVL69:
+ 492              	.L63:
+ 493              		.loc 1 149 0 discriminator 1
+ 494 00dc 0132     		adds	r2, r2, #1
+ 495              	.LVL70:
+ 496 00de 022A     		cmp	r2, #2
+ 497 00e0 A3D9     		bls	.L27
+ 498 00e2 F7E7     		b	.L46
+ 499              	.LVL71:
+ 500              	.L68:
+ 501 00e4 C0EB0E00 		rsb	r0, r0, lr
+ 502              	.LVL72:
+ 503              	.L34:
+ 504              		.loc 1 189 0
+ 505 00e8 0860     		str	r0, [r1]
+ 506              	.L61:
+ 507              		.loc 1 191 0
+ 508 00ea 0020     		movs	r0, #0
+ 509 00ec BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 510              	.LVL73:
+ 511              	.L69:
+ 512              		.loc 1 183 0 discriminator 1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 10
+
+
+ 513 00f0 2B0C     		lsrs	r3, r5, #16
+ 514              		.loc 1 184 0 discriminator 1
+ 515 00f2 012E     		cmp	r6, #1
+ 516              		.loc 1 183 0 discriminator 1
+ 517 00f4 8EF80030 		strb	r3, [lr]
+ 518              		.loc 1 184 0 discriminator 1
+ 519 00f8 17D0     		beq	.L71
+ 520              	.LVL74:
+ 521 00fa 2B0A     		lsrs	r3, r5, #8
+ 522              		.loc 1 185 0 discriminator 1
+ 523 00fc 022E     		cmp	r6, #2
+ 524              		.loc 1 184 0 discriminator 1
+ 525 00fe 8EF80130 		strb	r3, [lr, #1]
+ 526              		.loc 1 185 0 discriminator 1
+ 527 0102 05D0     		beq	.L72
+ 528              	.LVL75:
+ 529 0104 8EF80250 		strb	r5, [lr, #2]
+ 530              		.loc 1 182 0 discriminator 1
+ 531 0108 0022     		movs	r2, #0
+ 532              		.loc 1 185 0 discriminator 1
+ 533 010a 0EF1030E 		add	lr, lr, #3
+ 534              	.LVL76:
+ 535 010e C1E7     		b	.L35
+ 536              	.LVL77:
+ 537              	.L72:
+ 538              		.loc 1 184 0
+ 539 0110 0EF1020E 		add	lr, lr, #2
+ 540              	.LVL78:
+ 541              		.loc 1 182 0
+ 542 0114 0022     		movs	r2, #0
+ 543 0116 BDE7     		b	.L35
+ 544              	.LVL79:
+ 545              	.L67:
+ 546              		.loc 1 172 0
+ 547 0118 2046     		mov	r0, r4
+ 548              	.LVL80:
+ 549 011a E5E7     		b	.L34
+ 550              	.LVL81:
+ 551              	.L40:
+ 552              		.cfi_def_cfa_offset 0
+ 553              		.cfi_restore 4
+ 554              		.cfi_restore 5
+ 555              		.cfi_restore 6
+ 556              		.cfi_restore 7
+ 557              		.cfi_restore 8
+ 558              		.cfi_restore 9
+ 559              		.cfi_restore 10
+ 560              		.cfi_restore 14
+ 561              		.loc 1 162 0
+ 562 011c 1846     		mov	r0, r3
+ 563              	.LVL82:
+ 564              		.loc 1 192 0
+ 565 011e 7047     		bx	lr
+ 566              	.LVL83:
+ 567              	.L32:
+ 568              		.cfi_def_cfa_offset 32
+ 569              		.cfi_offset 4, -32
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 11
+
+
+ 570              		.cfi_offset 5, -28
+ 571              		.cfi_offset 6, -24
+ 572              		.cfi_offset 7, -20
+ 573              		.cfi_offset 8, -16
+ 574              		.cfi_offset 9, -12
+ 575              		.cfi_offset 10, -8
+ 576              		.cfi_offset 14, -4
+ 577              		.loc 1 168 0
+ 578 0120 0B60     		str	r3, [r1]
+ 579              		.loc 1 169 0
+ 580 0122 6FF02900 		mvn	r0, #41
+ 581              	.LVL84:
+ 582 0126 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 583              	.LVL85:
+ 584              	.L71:
+ 585              		.loc 1 183 0
+ 586 012a 0EF1010E 		add	lr, lr, #1
+ 587              	.LVL86:
+ 588 012e C6E7     		b	.L36
+ 589              	.L74:
+ 590              		.align	2
+ 591              	.L73:
+ 592 0130 00000000 		.word	.LANCHOR1
+ 593              		.cfi_endproc
+ 594              	.LFE1:
+ 595              		.size	base64_decode, .-base64_decode
+ 596 0134 AFF30080 		.section	.text.base64_self_test,"ax",%progbits
+ 596      AFF30080 
+ 596      AFF30080 
+ 597              		.align	2
+ 598              		.p2align 4,,15
+ 599              		.global	base64_self_test
+ 600              		.thumb
+ 601              		.thumb_func
+ 602              		.type	base64_self_test, %function
+ 603              	base64_self_test:
+ 604              	.LFB2:
+ 605              		.loc 1 219 0
+ 606              		.cfi_startproc
+ 607              		@ args = 0, pretend = 0, frame = 136
+ 608              		@ frame_needed = 0, uses_anonymous_args = 0
+ 609              	.LVL87:
+ 610 0000 10B5     		push	{r4, lr}
+ 611              		.cfi_def_cfa_offset 8
+ 612              		.cfi_offset 4, -8
+ 613              		.cfi_offset 14, -4
+ 614 0002 A2B0     		sub	sp, sp, #136
+ 615              		.cfi_def_cfa_offset 144
+ 616              		.loc 1 224 0
+ 617 0004 28BB     		cbnz	r0, .L98
+ 618              		.loc 1 227 0
+ 619 0006 8024     		movs	r4, #128
+ 620              		.loc 1 230 0
+ 621 0008 02A8     		add	r0, sp, #8
+ 622              	.LVL88:
+ 623 000a 01A9     		add	r1, sp, #4
+ 624 000c 284A     		ldr	r2, .L100
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 12
+
+
+ 625              		.loc 1 227 0
+ 626 000e 0194     		str	r4, [sp, #4]
+ 627              	.LVL89:
+ 628              		.loc 1 230 0
+ 629 0010 4023     		movs	r3, #64
+ 630 0012 FFF7FEFF 		bl	base64_encode
+ 631              	.LVL90:
+ 632 0016 18B1     		cbz	r0, .L99
+ 633              	.LVL91:
+ 634              	.L79:
+ 635              		.loc 1 236 0
+ 636 0018 0124     		movs	r4, #1
+ 637              	.L86:
+ 638              		.loc 1 258 0
+ 639 001a 2046     		mov	r0, r4
+ 640 001c 22B0     		add	sp, sp, #136
+ 641              		.cfi_remember_state
+ 642              		.cfi_def_cfa_offset 8
+ 643              		@ sp needed
+ 644 001e 10BD     		pop	{r4, pc}
+ 645              	.LVL92:
+ 646              	.L99:
+ 647              		.cfi_restore_state
+ 648              		.loc 1 231 0
+ 649 0020 2448     		ldr	r0, .L100+4
+ 650 0022 02A9     		add	r1, sp, #8
+ 651 0024 5822     		movs	r2, #88
+ 652 0026 FFF7FEFF 		bl	memcmp
+ 653              	.LVL93:
+ 654              		.loc 1 230 0
+ 655 002a 0028     		cmp	r0, #0
+ 656 002c F4D1     		bne	.L79
+ 657              		.loc 1 245 0
+ 658 002e 01A9     		add	r1, sp, #4
+ 659 0030 02A8     		add	r0, sp, #8
+ 660 0032 204A     		ldr	r2, .L100+4
+ 661              		.loc 1 242 0
+ 662 0034 0194     		str	r4, [sp, #4]
+ 663              	.LVL94:
+ 664              		.loc 1 245 0
+ 665 0036 5823     		movs	r3, #88
+ 666 0038 FFF7FEFF 		bl	base64_decode
+ 667              	.LVL95:
+ 668 003c 0028     		cmp	r0, #0
+ 669 003e EBD1     		bne	.L79
+ 670              		.loc 1 246 0
+ 671 0040 02A9     		add	r1, sp, #8
+ 672 0042 1B48     		ldr	r0, .L100
+ 673 0044 4022     		movs	r2, #64
+ 674 0046 FFF7FEFF 		bl	memcmp
+ 675              	.LVL96:
+ 676              		.loc 1 245 0
+ 677 004a 0446     		mov	r4, r0
+ 678 004c 0028     		cmp	r0, #0
+ 679 004e E3D1     		bne	.L79
+ 680 0050 E3E7     		b	.L86
+ 681              	.LVL97:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 13
+
+
+ 682              	.L98:
+ 683              		.loc 1 225 0
+ 684 0052 1948     		ldr	r0, .L100+8
+ 685              	.LVL98:
+ 686 0054 FFF7FEFF 		bl	printf
+ 687              	.LVL99:
+ 688              		.loc 1 227 0
+ 689 0058 8024     		movs	r4, #128
+ 690              		.loc 1 230 0
+ 691 005a 02A8     		add	r0, sp, #8
+ 692 005c 01A9     		add	r1, sp, #4
+ 693 005e 144A     		ldr	r2, .L100
+ 694              		.loc 1 227 0
+ 695 0060 0194     		str	r4, [sp, #4]
+ 696              	.LVL100:
+ 697              		.loc 1 230 0
+ 698 0062 4023     		movs	r3, #64
+ 699 0064 FFF7FEFF 		bl	base64_encode
+ 700              	.LVL101:
+ 701 0068 D8B9     		cbnz	r0, .L81
+ 702              		.loc 1 231 0
+ 703 006a 1248     		ldr	r0, .L100+4
+ 704 006c 02A9     		add	r1, sp, #8
+ 705 006e 5822     		movs	r2, #88
+ 706 0070 FFF7FEFF 		bl	memcmp
+ 707              	.LVL102:
+ 708              		.loc 1 230 0
+ 709 0074 A8B9     		cbnz	r0, .L81
+ 710              		.loc 1 240 0
+ 711 0076 1148     		ldr	r0, .L100+12
+ 712 0078 FFF7FEFF 		bl	printf
+ 713              	.LVL103:
+ 714              		.loc 1 245 0
+ 715 007c 01A9     		add	r1, sp, #4
+ 716 007e 02A8     		add	r0, sp, #8
+ 717 0080 0C4A     		ldr	r2, .L100+4
+ 718              		.loc 1 242 0
+ 719 0082 0194     		str	r4, [sp, #4]
+ 720              	.LVL104:
+ 721              		.loc 1 245 0
+ 722 0084 5823     		movs	r3, #88
+ 723 0086 FFF7FEFF 		bl	base64_decode
+ 724              	.LVL105:
+ 725 008a 50B9     		cbnz	r0, .L81
+ 726              		.loc 1 246 0
+ 727 008c 02A9     		add	r1, sp, #8
+ 728 008e 0848     		ldr	r0, .L100
+ 729 0090 4022     		movs	r2, #64
+ 730 0092 FFF7FEFF 		bl	memcmp
+ 731              	.LVL106:
+ 732              		.loc 1 245 0
+ 733 0096 0446     		mov	r4, r0
+ 734 0098 18B9     		cbnz	r0, .L81
+ 735              		.loc 1 255 0
+ 736 009a 0948     		ldr	r0, .L100+16
+ 737 009c FFF7FEFF 		bl	puts
+ 738              	.LVL107:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 14
+
+
+ 739 00a0 BBE7     		b	.L86
+ 740              	.LVL108:
+ 741              	.L81:
+ 742              		.loc 1 234 0
+ 743 00a2 0848     		ldr	r0, .L100+20
+ 744 00a4 FFF7FEFF 		bl	puts
+ 745              	.LVL109:
+ 746              		.loc 1 236 0
+ 747 00a8 0124     		movs	r4, #1
+ 748              		.loc 1 258 0
+ 749 00aa 2046     		mov	r0, r4
+ 750 00ac 22B0     		add	sp, sp, #136
+ 751              		.cfi_def_cfa_offset 8
+ 752              		@ sp needed
+ 753 00ae 10BD     		pop	{r4, pc}
+ 754              	.L101:
+ 755              		.align	2
+ 756              	.L100:
+ 757 00b0 00000000 		.word	.LANCHOR2
+ 758 00b4 00000000 		.word	.LANCHOR3
+ 759 00b8 00000000 		.word	.LC0
+ 760 00bc 24000000 		.word	.LC2
+ 761 00c0 44000000 		.word	.LC3
+ 762 00c4 1C000000 		.word	.LC1
+ 763              		.cfi_endproc
+ 764              	.LFE2:
+ 765              		.size	base64_self_test, .-base64_self_test
+ 766 00c8 AFF30080 		.section	.rodata.base64_enc_map,"a",%progbits
+ 766      AFF30080 
+ 767              		.align	2
+ 768              		.set	.LANCHOR0,. + 0
+ 769              		.type	base64_enc_map, %object
+ 770              		.size	base64_enc_map, 64
+ 771              	base64_enc_map:
+ 772 0000 41       		.byte	65
+ 773 0001 42       		.byte	66
+ 774 0002 43       		.byte	67
+ 775 0003 44       		.byte	68
+ 776 0004 45       		.byte	69
+ 777 0005 46       		.byte	70
+ 778 0006 47       		.byte	71
+ 779 0007 48       		.byte	72
+ 780 0008 49       		.byte	73
+ 781 0009 4A       		.byte	74
+ 782 000a 4B       		.byte	75
+ 783 000b 4C       		.byte	76
+ 784 000c 4D       		.byte	77
+ 785 000d 4E       		.byte	78
+ 786 000e 4F       		.byte	79
+ 787 000f 50       		.byte	80
+ 788 0010 51       		.byte	81
+ 789 0011 52       		.byte	82
+ 790 0012 53       		.byte	83
+ 791 0013 54       		.byte	84
+ 792 0014 55       		.byte	85
+ 793 0015 56       		.byte	86
+ 794 0016 57       		.byte	87
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 15
+
+
+ 795 0017 58       		.byte	88
+ 796 0018 59       		.byte	89
+ 797 0019 5A       		.byte	90
+ 798 001a 61       		.byte	97
+ 799 001b 62       		.byte	98
+ 800 001c 63       		.byte	99
+ 801 001d 64       		.byte	100
+ 802 001e 65       		.byte	101
+ 803 001f 66       		.byte	102
+ 804 0020 67       		.byte	103
+ 805 0021 68       		.byte	104
+ 806 0022 69       		.byte	105
+ 807 0023 6A       		.byte	106
+ 808 0024 6B       		.byte	107
+ 809 0025 6C       		.byte	108
+ 810 0026 6D       		.byte	109
+ 811 0027 6E       		.byte	110
+ 812 0028 6F       		.byte	111
+ 813 0029 70       		.byte	112
+ 814 002a 71       		.byte	113
+ 815 002b 72       		.byte	114
+ 816 002c 73       		.byte	115
+ 817 002d 74       		.byte	116
+ 818 002e 75       		.byte	117
+ 819 002f 76       		.byte	118
+ 820 0030 77       		.byte	119
+ 821 0031 78       		.byte	120
+ 822 0032 79       		.byte	121
+ 823 0033 7A       		.byte	122
+ 824 0034 30       		.byte	48
+ 825 0035 31       		.byte	49
+ 826 0036 32       		.byte	50
+ 827 0037 33       		.byte	51
+ 828 0038 34       		.byte	52
+ 829 0039 35       		.byte	53
+ 830 003a 36       		.byte	54
+ 831 003b 37       		.byte	55
+ 832 003c 38       		.byte	56
+ 833 003d 39       		.byte	57
+ 834 003e 2B       		.byte	43
+ 835 003f 2F       		.byte	47
+ 836              		.section	.rodata.base64_test_dec,"a",%progbits
+ 837              		.align	2
+ 838              		.set	.LANCHOR2,. + 0
+ 839              		.type	base64_test_dec, %object
+ 840              		.size	base64_test_dec, 64
+ 841              	base64_test_dec:
+ 842 0000 24       		.byte	36
+ 843 0001 48       		.byte	72
+ 844 0002 6E       		.byte	110
+ 845 0003 56       		.byte	86
+ 846 0004 87       		.byte	-121
+ 847 0005 62       		.byte	98
+ 848 0006 5A       		.byte	90
+ 849 0007 BD       		.byte	-67
+ 850 0008 BF       		.byte	-65
+ 851 0009 17       		.byte	23
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 16
+
+
+ 852 000a D9       		.byte	-39
+ 853 000b A2       		.byte	-94
+ 854 000c C4       		.byte	-60
+ 855 000d 17       		.byte	23
+ 856 000e 1A       		.byte	26
+ 857 000f 01       		.byte	1
+ 858 0010 94       		.byte	-108
+ 859 0011 ED       		.byte	-19
+ 860 0012 8F       		.byte	-113
+ 861 0013 1E       		.byte	30
+ 862 0014 11       		.byte	17
+ 863 0015 B3       		.byte	-77
+ 864 0016 D7       		.byte	-41
+ 865 0017 09       		.byte	9
+ 866 0018 0C       		.byte	12
+ 867 0019 B6       		.byte	-74
+ 868 001a E9       		.byte	-23
+ 869 001b 10       		.byte	16
+ 870 001c 6F       		.byte	111
+ 871 001d 22       		.byte	34
+ 872 001e EE       		.byte	-18
+ 873 001f 13       		.byte	19
+ 874 0020 CA       		.byte	-54
+ 875 0021 B3       		.byte	-77
+ 876 0022 07       		.byte	7
+ 877 0023 05       		.byte	5
+ 878 0024 76       		.byte	118
+ 879 0025 C9       		.byte	-55
+ 880 0026 FA       		.byte	-6
+ 881 0027 31       		.byte	49
+ 882 0028 6C       		.byte	108
+ 883 0029 08       		.byte	8
+ 884 002a 34       		.byte	52
+ 885 002b FF       		.byte	-1
+ 886 002c 8D       		.byte	-115
+ 887 002d C2       		.byte	-62
+ 888 002e 6C       		.byte	108
+ 889 002f 38       		.byte	56
+ 890 0030 00       		.byte	0
+ 891 0031 43       		.byte	67
+ 892 0032 E9       		.byte	-23
+ 893 0033 54       		.byte	84
+ 894 0034 97       		.byte	-105
+ 895 0035 AF       		.byte	-81
+ 896 0036 50       		.byte	80
+ 897 0037 4B       		.byte	75
+ 898 0038 D1       		.byte	-47
+ 899 0039 41       		.byte	65
+ 900 003a BA       		.byte	-70
+ 901 003b 95       		.byte	-107
+ 902 003c 31       		.byte	49
+ 903 003d 5A       		.byte	90
+ 904 003e 0B       		.byte	11
+ 905 003f 97       		.byte	-105
+ 906              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 907              		.align	2
+ 908              	.LC0:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 17
+
+
+ 909 0000 20204261 		.ascii	"  Base64 encoding test: \000"
+ 909      73653634 
+ 909      20656E63 
+ 909      6F64696E 
+ 909      67207465 
+ 910 0019 000000   		.space	3
+ 911              	.LC1:
+ 912 001c 6661696C 		.ascii	"failed\000"
+ 912      656400
+ 913 0023 00       		.space	1
+ 914              	.LC2:
+ 915 0024 70617373 		.ascii	"passed\012  Base64 decoding test: \000"
+ 915      65640A20 
+ 915      20426173 
+ 915      65363420 
+ 915      6465636F 
+ 916              	.LC3:
+ 917 0044 70617373 		.ascii	"passed\012\000"
+ 917      65640A00 
+ 918              		.section	.rodata.base64_test_enc,"a",%progbits
+ 919              		.align	2
+ 920              		.set	.LANCHOR3,. + 0
+ 921              		.type	base64_test_enc, %object
+ 922              		.size	base64_test_enc, 89
+ 923              	base64_test_enc:
+ 924 0000 4A456875 		.ascii	"JEhuVodiWr2/F9mixBcaAZTtjx4Rs9cJDLbpEG8i7hPKswcFdsn"
+ 924      566F6469 
+ 924      5772322F 
+ 924      46396D69 
+ 924      78426361 
+ 925 0033 364D5777 		.ascii	"6MWwINP+Nwmw4AEPpVJevUEvRQbqVMVoLlw==\000"
+ 925      494E502B 
+ 925      4E776D77 
+ 925      34414550 
+ 925      70564A65 
+ 926 0059 000000   		.section	.rodata.base64_dec_map,"a",%progbits
+ 927              		.align	2
+ 928              		.set	.LANCHOR1,. + 0
+ 929              		.type	base64_dec_map, %object
+ 930              		.size	base64_dec_map, 128
+ 931              	base64_dec_map:
+ 932 0000 7F       		.byte	127
+ 933 0001 7F       		.byte	127
+ 934 0002 7F       		.byte	127
+ 935 0003 7F       		.byte	127
+ 936 0004 7F       		.byte	127
+ 937 0005 7F       		.byte	127
+ 938 0006 7F       		.byte	127
+ 939 0007 7F       		.byte	127
+ 940 0008 7F       		.byte	127
+ 941 0009 7F       		.byte	127
+ 942 000a 7F       		.byte	127
+ 943 000b 7F       		.byte	127
+ 944 000c 7F       		.byte	127
+ 945 000d 7F       		.byte	127
+ 946 000e 7F       		.byte	127
+ 947 000f 7F       		.byte	127
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 18
+
+
+ 948 0010 7F       		.byte	127
+ 949 0011 7F       		.byte	127
+ 950 0012 7F       		.byte	127
+ 951 0013 7F       		.byte	127
+ 952 0014 7F       		.byte	127
+ 953 0015 7F       		.byte	127
+ 954 0016 7F       		.byte	127
+ 955 0017 7F       		.byte	127
+ 956 0018 7F       		.byte	127
+ 957 0019 7F       		.byte	127
+ 958 001a 7F       		.byte	127
+ 959 001b 7F       		.byte	127
+ 960 001c 7F       		.byte	127
+ 961 001d 7F       		.byte	127
+ 962 001e 7F       		.byte	127
+ 963 001f 7F       		.byte	127
+ 964 0020 7F       		.byte	127
+ 965 0021 7F       		.byte	127
+ 966 0022 7F       		.byte	127
+ 967 0023 7F       		.byte	127
+ 968 0024 7F       		.byte	127
+ 969 0025 7F       		.byte	127
+ 970 0026 7F       		.byte	127
+ 971 0027 7F       		.byte	127
+ 972 0028 7F       		.byte	127
+ 973 0029 7F       		.byte	127
+ 974 002a 7F       		.byte	127
+ 975 002b 3E       		.byte	62
+ 976 002c 7F       		.byte	127
+ 977 002d 7F       		.byte	127
+ 978 002e 7F       		.byte	127
+ 979 002f 3F       		.byte	63
+ 980 0030 34       		.byte	52
+ 981 0031 35       		.byte	53
+ 982 0032 36       		.byte	54
+ 983 0033 37       		.byte	55
+ 984 0034 38       		.byte	56
+ 985 0035 39       		.byte	57
+ 986 0036 3A       		.byte	58
+ 987 0037 3B       		.byte	59
+ 988 0038 3C       		.byte	60
+ 989 0039 3D       		.byte	61
+ 990 003a 7F       		.byte	127
+ 991 003b 7F       		.byte	127
+ 992 003c 7F       		.byte	127
+ 993 003d 40       		.byte	64
+ 994 003e 7F       		.byte	127
+ 995 003f 7F       		.byte	127
+ 996 0040 7F       		.byte	127
+ 997 0041 00       		.byte	0
+ 998 0042 01       		.byte	1
+ 999 0043 02       		.byte	2
+ 1000 0044 03       		.byte	3
+ 1001 0045 04       		.byte	4
+ 1002 0046 05       		.byte	5
+ 1003 0047 06       		.byte	6
+ 1004 0048 07       		.byte	7
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 19
+
+
+ 1005 0049 08       		.byte	8
+ 1006 004a 09       		.byte	9
+ 1007 004b 0A       		.byte	10
+ 1008 004c 0B       		.byte	11
+ 1009 004d 0C       		.byte	12
+ 1010 004e 0D       		.byte	13
+ 1011 004f 0E       		.byte	14
+ 1012 0050 0F       		.byte	15
+ 1013 0051 10       		.byte	16
+ 1014 0052 11       		.byte	17
+ 1015 0053 12       		.byte	18
+ 1016 0054 13       		.byte	19
+ 1017 0055 14       		.byte	20
+ 1018 0056 15       		.byte	21
+ 1019 0057 16       		.byte	22
+ 1020 0058 17       		.byte	23
+ 1021 0059 18       		.byte	24
+ 1022 005a 19       		.byte	25
+ 1023 005b 7F       		.byte	127
+ 1024 005c 7F       		.byte	127
+ 1025 005d 7F       		.byte	127
+ 1026 005e 7F       		.byte	127
+ 1027 005f 7F       		.byte	127
+ 1028 0060 7F       		.byte	127
+ 1029 0061 1A       		.byte	26
+ 1030 0062 1B       		.byte	27
+ 1031 0063 1C       		.byte	28
+ 1032 0064 1D       		.byte	29
+ 1033 0065 1E       		.byte	30
+ 1034 0066 1F       		.byte	31
+ 1035 0067 20       		.byte	32
+ 1036 0068 21       		.byte	33
+ 1037 0069 22       		.byte	34
+ 1038 006a 23       		.byte	35
+ 1039 006b 24       		.byte	36
+ 1040 006c 25       		.byte	37
+ 1041 006d 26       		.byte	38
+ 1042 006e 27       		.byte	39
+ 1043 006f 28       		.byte	40
+ 1044 0070 29       		.byte	41
+ 1045 0071 2A       		.byte	42
+ 1046 0072 2B       		.byte	43
+ 1047 0073 2C       		.byte	44
+ 1048 0074 2D       		.byte	45
+ 1049 0075 2E       		.byte	46
+ 1050 0076 2F       		.byte	47
+ 1051 0077 30       		.byte	48
+ 1052 0078 31       		.byte	49
+ 1053 0079 32       		.byte	50
+ 1054 007a 33       		.byte	51
+ 1055 007b 7F       		.byte	127
+ 1056 007c 7F       		.byte	127
+ 1057 007d 7F       		.byte	127
+ 1058 007e 7F       		.byte	127
+ 1059 007f 7F       		.byte	127
+ 1060              		.text
+ 1061              	.Letext0:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 20
+
+
+ 1062              		.file 2 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\lib\\gcc\\arm-none-eabi\\4.9.3\\in
+ 1063              		.file 3 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\machine\\_
+ 1064              		.file 4 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\stdint.h"
+ 1065              		.file 5 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\string.h"
+ 1066              		.file 6 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\stdio.h"
+ 1067              		.file 7 "<built-in>"
+ 1068              		.section	.debug_info,"",%progbits
+ 1069              	.Ldebug_info0:
+ 1070 0000 A2050000 		.4byte	0x5a2
+ 1071 0004 0400     		.2byte	0x4
+ 1072 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 1073 000a 04       		.byte	0x4
+ 1074 000b 01       		.uleb128 0x1
+ 1075 000c F6000000 		.4byte	.LASF28
+ 1076 0010 01       		.byte	0x1
+ 1077 0011 0D020000 		.4byte	.LASF29
+ 1078 0015 00000000 		.4byte	.LASF30
+ 1079 0019 18000000 		.4byte	.Ldebug_ranges0+0x18
+ 1080 001d 00000000 		.4byte	0
+ 1081 0021 00000000 		.4byte	.Ldebug_line0
+ 1082 0025 02       		.uleb128 0x2
+ 1083 0026 04       		.byte	0x4
+ 1084 0027 05       		.byte	0x5
+ 1085 0028 696E7400 		.ascii	"int\000"
+ 1086 002c 03       		.uleb128 0x3
+ 1087 002d D7000000 		.4byte	.LASF6
+ 1088 0031 02       		.byte	0x2
+ 1089 0032 D4       		.byte	0xd4
+ 1090 0033 37000000 		.4byte	0x37
+ 1091 0037 04       		.uleb128 0x4
+ 1092 0038 04       		.byte	0x4
+ 1093 0039 07       		.byte	0x7
+ 1094 003a E9000000 		.4byte	.LASF0
+ 1095 003e 04       		.uleb128 0x4
+ 1096 003f 01       		.byte	0x1
+ 1097 0040 06       		.byte	0x6
+ 1098 0041 99020000 		.4byte	.LASF1
+ 1099 0045 04       		.uleb128 0x4
+ 1100 0046 01       		.byte	0x1
+ 1101 0047 08       		.byte	0x8
+ 1102 0048 9F000000 		.4byte	.LASF2
+ 1103 004c 04       		.uleb128 0x4
+ 1104 004d 02       		.byte	0x2
+ 1105 004e 05       		.byte	0x5
+ 1106 004f 5E020000 		.4byte	.LASF3
+ 1107 0053 04       		.uleb128 0x4
+ 1108 0054 02       		.byte	0x2
+ 1109 0055 07       		.byte	0x7
+ 1110 0056 C4000000 		.4byte	.LASF4
+ 1111 005a 04       		.uleb128 0x4
+ 1112 005b 04       		.byte	0x4
+ 1113 005c 05       		.byte	0x5
+ 1114 005d 86020000 		.4byte	.LASF5
+ 1115 0061 03       		.uleb128 0x3
+ 1116 0062 DE000000 		.4byte	.LASF7
+ 1117 0066 03       		.byte	0x3
+ 1118 0067 41       		.byte	0x41
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 21
+
+
+ 1119 0068 6C000000 		.4byte	0x6c
+ 1120 006c 04       		.uleb128 0x4
+ 1121 006d 04       		.byte	0x4
+ 1122 006e 07       		.byte	0x7
+ 1123 006f B2000000 		.4byte	.LASF8
+ 1124 0073 04       		.uleb128 0x4
+ 1125 0074 08       		.byte	0x8
+ 1126 0075 05       		.byte	0x5
+ 1127 0076 FF010000 		.4byte	.LASF9
+ 1128 007a 04       		.uleb128 0x4
+ 1129 007b 08       		.byte	0x8
+ 1130 007c 07       		.byte	0x7
+ 1131 007d D0010000 		.4byte	.LASF10
+ 1132 0081 04       		.uleb128 0x4
+ 1133 0082 04       		.byte	0x4
+ 1134 0083 07       		.byte	0x7
+ 1135 0084 F6010000 		.4byte	.LASF11
+ 1136 0088 05       		.uleb128 0x5
+ 1137 0089 04       		.byte	0x4
+ 1138 008a 45000000 		.4byte	0x45
+ 1139 008e 04       		.uleb128 0x4
+ 1140 008f 01       		.byte	0x1
+ 1141 0090 08       		.byte	0x8
+ 1142 0091 8F020000 		.4byte	.LASF12
+ 1143 0095 05       		.uleb128 0x5
+ 1144 0096 04       		.byte	0x4
+ 1145 0097 9B000000 		.4byte	0x9b
+ 1146 009b 06       		.uleb128 0x6
+ 1147 009c 8E000000 		.4byte	0x8e
+ 1148 00a0 03       		.uleb128 0x3
+ 1149 00a1 7D020000 		.4byte	.LASF13
+ 1150 00a5 04       		.byte	0x4
+ 1151 00a6 2D       		.byte	0x2d
+ 1152 00a7 61000000 		.4byte	0x61
+ 1153 00ab 07       		.uleb128 0x7
+ 1154 00ac 6F020000 		.4byte	.LASF24
+ 1155 00b0 01       		.byte	0x1
+ 1156 00b1 46       		.byte	0x46
+ 1157 00b2 25000000 		.4byte	0x25
+ 1158 00b6 01       		.byte	0x1
+ 1159 00b7 21010000 		.4byte	0x121
+ 1160 00bb 08       		.uleb128 0x8
+ 1161 00bc 64737400 		.ascii	"dst\000"
+ 1162 00c0 01       		.byte	0x1
+ 1163 00c1 46       		.byte	0x46
+ 1164 00c2 88000000 		.4byte	0x88
+ 1165 00c6 09       		.uleb128 0x9
+ 1166 00c7 7D000000 		.4byte	.LASF14
+ 1167 00cb 01       		.byte	0x1
+ 1168 00cc 46       		.byte	0x46
+ 1169 00cd 21010000 		.4byte	0x121
+ 1170 00d1 08       		.uleb128 0x8
+ 1171 00d2 73726300 		.ascii	"src\000"
+ 1172 00d6 01       		.byte	0x1
+ 1173 00d7 47       		.byte	0x47
+ 1174 00d8 27010000 		.4byte	0x127
+ 1175 00dc 09       		.uleb128 0x9
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 22
+
+
+ 1176 00dd AD000000 		.4byte	.LASF15
+ 1177 00e1 01       		.byte	0x1
+ 1178 00e2 47       		.byte	0x47
+ 1179 00e3 2C000000 		.4byte	0x2c
+ 1180 00e7 0A       		.uleb128 0xa
+ 1181 00e8 6900     		.ascii	"i\000"
+ 1182 00ea 01       		.byte	0x1
+ 1183 00eb 49       		.byte	0x49
+ 1184 00ec 2C000000 		.4byte	0x2c
+ 1185 00f0 0A       		.uleb128 0xa
+ 1186 00f1 6E00     		.ascii	"n\000"
+ 1187 00f3 01       		.byte	0x1
+ 1188 00f4 49       		.byte	0x49
+ 1189 00f5 2C000000 		.4byte	0x2c
+ 1190 00f9 0A       		.uleb128 0xa
+ 1191 00fa 433100   		.ascii	"C1\000"
+ 1192 00fd 01       		.byte	0x1
+ 1193 00fe 4A       		.byte	0x4a
+ 1194 00ff 25000000 		.4byte	0x25
+ 1195 0103 0A       		.uleb128 0xa
+ 1196 0104 433200   		.ascii	"C2\000"
+ 1197 0107 01       		.byte	0x1
+ 1198 0108 4A       		.byte	0x4a
+ 1199 0109 25000000 		.4byte	0x25
+ 1200 010d 0A       		.uleb128 0xa
+ 1201 010e 433300   		.ascii	"C3\000"
+ 1202 0111 01       		.byte	0x1
+ 1203 0112 4A       		.byte	0x4a
+ 1204 0113 25000000 		.4byte	0x25
+ 1205 0117 0A       		.uleb128 0xa
+ 1206 0118 7000     		.ascii	"p\000"
+ 1207 011a 01       		.byte	0x1
+ 1208 011b 4B       		.byte	0x4b
+ 1209 011c 88000000 		.4byte	0x88
+ 1210 0120 00       		.byte	0
+ 1211 0121 05       		.uleb128 0x5
+ 1212 0122 04       		.byte	0x4
+ 1213 0123 2C000000 		.4byte	0x2c
+ 1214 0127 05       		.uleb128 0x5
+ 1215 0128 04       		.byte	0x4
+ 1216 0129 2D010000 		.4byte	0x12d
+ 1217 012d 06       		.uleb128 0x6
+ 1218 012e 45000000 		.4byte	0x45
+ 1219 0132 0B       		.uleb128 0xb
+ 1220 0133 AB000000 		.4byte	0xab
+ 1221 0137 00000000 		.4byte	.LFB0
+ 1222 013b 28010000 		.4byte	.LFE0-.LFB0
+ 1223 013f 01       		.uleb128 0x1
+ 1224 0140 9C       		.byte	0x9c
+ 1225 0141 F0010000 		.4byte	0x1f0
+ 1226 0145 0C       		.uleb128 0xc
+ 1227 0146 BB000000 		.4byte	0xbb
+ 1228 014a 00000000 		.4byte	.LLST0
+ 1229 014e 0D       		.uleb128 0xd
+ 1230 014f C6000000 		.4byte	0xc6
+ 1231 0153 01       		.uleb128 0x1
+ 1232 0154 51       		.byte	0x51
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 23
+
+
+ 1233 0155 0C       		.uleb128 0xc
+ 1234 0156 D1000000 		.4byte	0xd1
+ 1235 015a 53000000 		.4byte	.LLST1
+ 1236 015e 0C       		.uleb128 0xc
+ 1237 015f DC000000 		.4byte	0xdc
+ 1238 0163 98000000 		.4byte	.LLST2
+ 1239 0167 0E       		.uleb128 0xe
+ 1240 0168 E7000000 		.4byte	0xe7
+ 1241 016c 0F       		.uleb128 0xf
+ 1242 016d F0000000 		.4byte	0xf0
+ 1243 0171 DD000000 		.4byte	.LLST3
+ 1244 0175 0E       		.uleb128 0xe
+ 1245 0176 F9000000 		.4byte	0xf9
+ 1246 017a 0E       		.uleb128 0xe
+ 1247 017b 03010000 		.4byte	0x103
+ 1248 017f 0E       		.uleb128 0xe
+ 1249 0180 0D010000 		.4byte	0x10d
+ 1250 0184 0E       		.uleb128 0xe
+ 1251 0185 17010000 		.4byte	0x117
+ 1252 0189 10       		.uleb128 0x10
+ 1253 018a 00000000 		.4byte	.Ldebug_ranges0+0
+ 1254 018e 0C       		.uleb128 0xc
+ 1255 018f DC000000 		.4byte	0xdc
+ 1256 0193 25010000 		.4byte	.LLST4
+ 1257 0197 0C       		.uleb128 0xc
+ 1258 0198 D1000000 		.4byte	0xd1
+ 1259 019c 6A010000 		.4byte	.LLST5
+ 1260 01a0 0C       		.uleb128 0xc
+ 1261 01a1 C6000000 		.4byte	0xc6
+ 1262 01a5 DC010000 		.4byte	.LLST6
+ 1263 01a9 0C       		.uleb128 0xc
+ 1264 01aa BB000000 		.4byte	0xbb
+ 1265 01ae FA010000 		.4byte	.LLST7
+ 1266 01b2 10       		.uleb128 0x10
+ 1267 01b3 00000000 		.4byte	.Ldebug_ranges0+0
+ 1268 01b7 0F       		.uleb128 0xf
+ 1269 01b8 E7000000 		.4byte	0xe7
+ 1270 01bc 26020000 		.4byte	.LLST8
+ 1271 01c0 0F       		.uleb128 0xf
+ 1272 01c1 F0000000 		.4byte	0xf0
+ 1273 01c5 69020000 		.4byte	.LLST9
+ 1274 01c9 0F       		.uleb128 0xf
+ 1275 01ca F9000000 		.4byte	0xf9
+ 1276 01ce 99020000 		.4byte	.LLST10
+ 1277 01d2 0F       		.uleb128 0xf
+ 1278 01d3 03010000 		.4byte	0x103
+ 1279 01d7 D9020000 		.4byte	.LLST11
+ 1280 01db 0F       		.uleb128 0xf
+ 1281 01dc 0D010000 		.4byte	0x10d
+ 1282 01e0 1F030000 		.4byte	.LLST12
+ 1283 01e4 0F       		.uleb128 0xf
+ 1284 01e5 17010000 		.4byte	0x117
+ 1285 01e9 49030000 		.4byte	.LLST13
+ 1286 01ed 00       		.byte	0
+ 1287 01ee 00       		.byte	0
+ 1288 01ef 00       		.byte	0
+ 1289 01f0 11       		.uleb128 0x11
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 24
+
+
+ 1290 01f1 91000000 		.4byte	.LASF16
+ 1291 01f5 01       		.byte	0x1
+ 1292 01f6 85       		.byte	0x85
+ 1293 01f7 25000000 		.4byte	0x25
+ 1294 01fb 00000000 		.4byte	.LFB1
+ 1295 01ff 34010000 		.4byte	.LFE1-.LFB1
+ 1296 0203 01       		.uleb128 0x1
+ 1297 0204 9C       		.byte	0x9c
+ 1298 0205 85020000 		.4byte	0x285
+ 1299 0209 12       		.uleb128 0x12
+ 1300 020a 64737400 		.ascii	"dst\000"
+ 1301 020e 01       		.byte	0x1
+ 1302 020f 85       		.byte	0x85
+ 1303 0210 88000000 		.4byte	0x88
+ 1304 0214 F9030000 		.4byte	.LLST14
+ 1305 0218 13       		.uleb128 0x13
+ 1306 0219 7D000000 		.4byte	.LASF14
+ 1307 021d 01       		.byte	0x1
+ 1308 021e 85       		.byte	0x85
+ 1309 021f 21010000 		.4byte	0x121
+ 1310 0223 01       		.uleb128 0x1
+ 1311 0224 51       		.byte	0x51
+ 1312 0225 12       		.uleb128 0x12
+ 1313 0226 73726300 		.ascii	"src\000"
+ 1314 022a 01       		.byte	0x1
+ 1315 022b 86       		.byte	0x86
+ 1316 022c 27010000 		.4byte	0x127
+ 1317 0230 89040000 		.4byte	.LLST15
+ 1318 0234 14       		.uleb128 0x14
+ 1319 0235 AD000000 		.4byte	.LASF15
+ 1320 0239 01       		.byte	0x1
+ 1321 023a 86       		.byte	0x86
+ 1322 023b 2C000000 		.4byte	0x2c
+ 1323 023f 10050000 		.4byte	.LLST16
+ 1324 0243 15       		.uleb128 0x15
+ 1325 0244 6900     		.ascii	"i\000"
+ 1326 0246 01       		.byte	0x1
+ 1327 0247 88       		.byte	0x88
+ 1328 0248 2C000000 		.4byte	0x2c
+ 1329 024c 7D050000 		.4byte	.LLST17
+ 1330 0250 15       		.uleb128 0x15
+ 1331 0251 6E00     		.ascii	"n\000"
+ 1332 0253 01       		.byte	0x1
+ 1333 0254 88       		.byte	0x88
+ 1334 0255 2C000000 		.4byte	0x2c
+ 1335 0259 F0050000 		.4byte	.LLST18
+ 1336 025d 15       		.uleb128 0x15
+ 1337 025e 6A00     		.ascii	"j\000"
+ 1338 0260 01       		.byte	0x1
+ 1339 0261 89       		.byte	0x89
+ 1340 0262 A0000000 		.4byte	0xa0
+ 1341 0266 8E060000 		.4byte	.LLST19
+ 1342 026a 15       		.uleb128 0x15
+ 1343 026b 7800     		.ascii	"x\000"
+ 1344 026d 01       		.byte	0x1
+ 1345 026e 89       		.byte	0x89
+ 1346 026f A0000000 		.4byte	0xa0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 25
+
+
+ 1347 0273 08070000 		.4byte	.LLST20
+ 1348 0277 15       		.uleb128 0x15
+ 1349 0278 7000     		.ascii	"p\000"
+ 1350 027a 01       		.byte	0x1
+ 1351 027b 8A       		.byte	0x8a
+ 1352 027c 88000000 		.4byte	0x88
+ 1353 0280 54070000 		.4byte	.LLST21
+ 1354 0284 00       		.byte	0
+ 1355 0285 11       		.uleb128 0x11
+ 1356 0286 4D020000 		.4byte	.LASF17
+ 1357 028a 01       		.byte	0x1
+ 1358 028b DA       		.byte	0xda
+ 1359 028c 25000000 		.4byte	0x25
+ 1360 0290 00000000 		.4byte	.LFB2
+ 1361 0294 C8000000 		.4byte	.LFE2-.LFB2
+ 1362 0298 01       		.uleb128 0x1
+ 1363 0299 9C       		.byte	0x9c
+ 1364 029a 6F040000 		.4byte	0x46f
+ 1365 029e 14       		.uleb128 0x14
+ 1366 029f 5E000000 		.4byte	.LASF18
+ 1367 02a3 01       		.byte	0x1
+ 1368 02a4 DA       		.byte	0xda
+ 1369 02a5 25000000 		.4byte	0x25
+ 1370 02a9 F8070000 		.4byte	.LLST22
+ 1371 02ad 16       		.uleb128 0x16
+ 1372 02ae 6C656E00 		.ascii	"len\000"
+ 1373 02b2 01       		.byte	0x1
+ 1374 02b3 DC       		.byte	0xdc
+ 1375 02b4 2C000000 		.4byte	0x2c
+ 1376 02b8 03       		.uleb128 0x3
+ 1377 02b9 91       		.byte	0x91
+ 1378 02ba F47E     		.sleb128 -140
+ 1379 02bc 15       		.uleb128 0x15
+ 1380 02bd 73726300 		.ascii	"src\000"
+ 1381 02c1 01       		.byte	0x1
+ 1382 02c2 DD       		.byte	0xdd
+ 1383 02c3 27010000 		.4byte	0x127
+ 1384 02c7 32080000 		.4byte	.LLST23
+ 1385 02cb 17       		.uleb128 0x17
+ 1386 02cc 68020000 		.4byte	.LASF19
+ 1387 02d0 01       		.byte	0x1
+ 1388 02d1 DE       		.byte	0xde
+ 1389 02d2 6F040000 		.4byte	0x46f
+ 1390 02d6 03       		.uleb128 0x3
+ 1391 02d7 91       		.byte	0x91
+ 1392 02d8 F87E     		.sleb128 -136
+ 1393 02da 18       		.uleb128 0x18
+ 1394 02db 16000000 		.4byte	.LVL90
+ 1395 02df AB000000 		.4byte	0xab
+ 1396 02e3 05030000 		.4byte	0x305
+ 1397 02e7 19       		.uleb128 0x19
+ 1398 02e8 01       		.uleb128 0x1
+ 1399 02e9 53       		.byte	0x53
+ 1400 02ea 02       		.uleb128 0x2
+ 1401 02eb 08       		.byte	0x8
+ 1402 02ec 40       		.byte	0x40
+ 1403 02ed 19       		.uleb128 0x19
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 26
+
+
+ 1404 02ee 01       		.uleb128 0x1
+ 1405 02ef 52       		.byte	0x52
+ 1406 02f0 05       		.uleb128 0x5
+ 1407 02f1 03       		.byte	0x3
+ 1408 02f2 00000000 		.4byte	.LANCHOR2
+ 1409 02f6 19       		.uleb128 0x19
+ 1410 02f7 01       		.uleb128 0x1
+ 1411 02f8 51       		.byte	0x51
+ 1412 02f9 03       		.uleb128 0x3
+ 1413 02fa 91       		.byte	0x91
+ 1414 02fb F47E     		.sleb128 -140
+ 1415 02fd 19       		.uleb128 0x19
+ 1416 02fe 01       		.uleb128 0x1
+ 1417 02ff 50       		.byte	0x50
+ 1418 0300 03       		.uleb128 0x3
+ 1419 0301 91       		.byte	0x91
+ 1420 0302 F87E     		.sleb128 -136
+ 1421 0304 00       		.byte	0
+ 1422 0305 18       		.uleb128 0x18
+ 1423 0306 2A000000 		.4byte	.LVL93
+ 1424 030a 54050000 		.4byte	0x554
+ 1425 030e 29030000 		.4byte	0x329
+ 1426 0312 19       		.uleb128 0x19
+ 1427 0313 01       		.uleb128 0x1
+ 1428 0314 52       		.byte	0x52
+ 1429 0315 02       		.uleb128 0x2
+ 1430 0316 08       		.byte	0x8
+ 1431 0317 58       		.byte	0x58
+ 1432 0318 19       		.uleb128 0x19
+ 1433 0319 01       		.uleb128 0x1
+ 1434 031a 51       		.byte	0x51
+ 1435 031b 03       		.uleb128 0x3
+ 1436 031c 91       		.byte	0x91
+ 1437 031d F87E     		.sleb128 -136
+ 1438 031f 19       		.uleb128 0x19
+ 1439 0320 01       		.uleb128 0x1
+ 1440 0321 50       		.byte	0x50
+ 1441 0322 05       		.uleb128 0x5
+ 1442 0323 03       		.byte	0x3
+ 1443 0324 00000000 		.4byte	.LANCHOR3
+ 1444 0328 00       		.byte	0
+ 1445 0329 18       		.uleb128 0x18
+ 1446 032a 3C000000 		.4byte	.LVL95
+ 1447 032e F0010000 		.4byte	0x1f0
+ 1448 0332 54030000 		.4byte	0x354
+ 1449 0336 19       		.uleb128 0x19
+ 1450 0337 01       		.uleb128 0x1
+ 1451 0338 53       		.byte	0x53
+ 1452 0339 02       		.uleb128 0x2
+ 1453 033a 08       		.byte	0x8
+ 1454 033b 58       		.byte	0x58
+ 1455 033c 19       		.uleb128 0x19
+ 1456 033d 01       		.uleb128 0x1
+ 1457 033e 52       		.byte	0x52
+ 1458 033f 05       		.uleb128 0x5
+ 1459 0340 03       		.byte	0x3
+ 1460 0341 00000000 		.4byte	.LANCHOR3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 27
+
+
+ 1461 0345 19       		.uleb128 0x19
+ 1462 0346 01       		.uleb128 0x1
+ 1463 0347 51       		.byte	0x51
+ 1464 0348 03       		.uleb128 0x3
+ 1465 0349 91       		.byte	0x91
+ 1466 034a F47E     		.sleb128 -140
+ 1467 034c 19       		.uleb128 0x19
+ 1468 034d 01       		.uleb128 0x1
+ 1469 034e 50       		.byte	0x50
+ 1470 034f 03       		.uleb128 0x3
+ 1471 0350 91       		.byte	0x91
+ 1472 0351 F87E     		.sleb128 -136
+ 1473 0353 00       		.byte	0
+ 1474 0354 18       		.uleb128 0x18
+ 1475 0355 4A000000 		.4byte	.LVL96
+ 1476 0359 54050000 		.4byte	0x554
+ 1477 035d 78030000 		.4byte	0x378
+ 1478 0361 19       		.uleb128 0x19
+ 1479 0362 01       		.uleb128 0x1
+ 1480 0363 52       		.byte	0x52
+ 1481 0364 02       		.uleb128 0x2
+ 1482 0365 08       		.byte	0x8
+ 1483 0366 40       		.byte	0x40
+ 1484 0367 19       		.uleb128 0x19
+ 1485 0368 01       		.uleb128 0x1
+ 1486 0369 51       		.byte	0x51
+ 1487 036a 03       		.uleb128 0x3
+ 1488 036b 91       		.byte	0x91
+ 1489 036c F87E     		.sleb128 -136
+ 1490 036e 19       		.uleb128 0x19
+ 1491 036f 01       		.uleb128 0x1
+ 1492 0370 50       		.byte	0x50
+ 1493 0371 05       		.uleb128 0x5
+ 1494 0372 03       		.byte	0x3
+ 1495 0373 00000000 		.4byte	.LANCHOR2
+ 1496 0377 00       		.byte	0
+ 1497 0378 18       		.uleb128 0x18
+ 1498 0379 58000000 		.4byte	.LVL99
+ 1499 037d 7A050000 		.4byte	0x57a
+ 1500 0381 8F030000 		.4byte	0x38f
+ 1501 0385 19       		.uleb128 0x19
+ 1502 0386 01       		.uleb128 0x1
+ 1503 0387 50       		.byte	0x50
+ 1504 0388 05       		.uleb128 0x5
+ 1505 0389 03       		.byte	0x3
+ 1506 038a 00000000 		.4byte	.LC0
+ 1507 038e 00       		.byte	0
+ 1508 038f 18       		.uleb128 0x18
+ 1509 0390 68000000 		.4byte	.LVL101
+ 1510 0394 AB000000 		.4byte	0xab
+ 1511 0398 BA030000 		.4byte	0x3ba
+ 1512 039c 19       		.uleb128 0x19
+ 1513 039d 01       		.uleb128 0x1
+ 1514 039e 53       		.byte	0x53
+ 1515 039f 02       		.uleb128 0x2
+ 1516 03a0 08       		.byte	0x8
+ 1517 03a1 40       		.byte	0x40
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 28
+
+
+ 1518 03a2 19       		.uleb128 0x19
+ 1519 03a3 01       		.uleb128 0x1
+ 1520 03a4 52       		.byte	0x52
+ 1521 03a5 05       		.uleb128 0x5
+ 1522 03a6 03       		.byte	0x3
+ 1523 03a7 00000000 		.4byte	.LANCHOR2
+ 1524 03ab 19       		.uleb128 0x19
+ 1525 03ac 01       		.uleb128 0x1
+ 1526 03ad 51       		.byte	0x51
+ 1527 03ae 03       		.uleb128 0x3
+ 1528 03af 91       		.byte	0x91
+ 1529 03b0 F47E     		.sleb128 -140
+ 1530 03b2 19       		.uleb128 0x19
+ 1531 03b3 01       		.uleb128 0x1
+ 1532 03b4 50       		.byte	0x50
+ 1533 03b5 03       		.uleb128 0x3
+ 1534 03b6 91       		.byte	0x91
+ 1535 03b7 F87E     		.sleb128 -136
+ 1536 03b9 00       		.byte	0
+ 1537 03ba 18       		.uleb128 0x18
+ 1538 03bb 74000000 		.4byte	.LVL102
+ 1539 03bf 54050000 		.4byte	0x554
+ 1540 03c3 DE030000 		.4byte	0x3de
+ 1541 03c7 19       		.uleb128 0x19
+ 1542 03c8 01       		.uleb128 0x1
+ 1543 03c9 52       		.byte	0x52
+ 1544 03ca 02       		.uleb128 0x2
+ 1545 03cb 08       		.byte	0x8
+ 1546 03cc 58       		.byte	0x58
+ 1547 03cd 19       		.uleb128 0x19
+ 1548 03ce 01       		.uleb128 0x1
+ 1549 03cf 51       		.byte	0x51
+ 1550 03d0 03       		.uleb128 0x3
+ 1551 03d1 91       		.byte	0x91
+ 1552 03d2 F87E     		.sleb128 -136
+ 1553 03d4 19       		.uleb128 0x19
+ 1554 03d5 01       		.uleb128 0x1
+ 1555 03d6 50       		.byte	0x50
+ 1556 03d7 05       		.uleb128 0x5
+ 1557 03d8 03       		.byte	0x3
+ 1558 03d9 00000000 		.4byte	.LANCHOR3
+ 1559 03dd 00       		.byte	0
+ 1560 03de 18       		.uleb128 0x18
+ 1561 03df 7C000000 		.4byte	.LVL103
+ 1562 03e3 7A050000 		.4byte	0x57a
+ 1563 03e7 F5030000 		.4byte	0x3f5
+ 1564 03eb 19       		.uleb128 0x19
+ 1565 03ec 01       		.uleb128 0x1
+ 1566 03ed 50       		.byte	0x50
+ 1567 03ee 05       		.uleb128 0x5
+ 1568 03ef 03       		.byte	0x3
+ 1569 03f0 24000000 		.4byte	.LC2
+ 1570 03f4 00       		.byte	0
+ 1571 03f5 18       		.uleb128 0x18
+ 1572 03f6 8A000000 		.4byte	.LVL105
+ 1573 03fa F0010000 		.4byte	0x1f0
+ 1574 03fe 20040000 		.4byte	0x420
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 29
+
+
+ 1575 0402 19       		.uleb128 0x19
+ 1576 0403 01       		.uleb128 0x1
+ 1577 0404 53       		.byte	0x53
+ 1578 0405 02       		.uleb128 0x2
+ 1579 0406 08       		.byte	0x8
+ 1580 0407 58       		.byte	0x58
+ 1581 0408 19       		.uleb128 0x19
+ 1582 0409 01       		.uleb128 0x1
+ 1583 040a 52       		.byte	0x52
+ 1584 040b 05       		.uleb128 0x5
+ 1585 040c 03       		.byte	0x3
+ 1586 040d 00000000 		.4byte	.LANCHOR3
+ 1587 0411 19       		.uleb128 0x19
+ 1588 0412 01       		.uleb128 0x1
+ 1589 0413 51       		.byte	0x51
+ 1590 0414 03       		.uleb128 0x3
+ 1591 0415 91       		.byte	0x91
+ 1592 0416 F47E     		.sleb128 -140
+ 1593 0418 19       		.uleb128 0x19
+ 1594 0419 01       		.uleb128 0x1
+ 1595 041a 50       		.byte	0x50
+ 1596 041b 03       		.uleb128 0x3
+ 1597 041c 91       		.byte	0x91
+ 1598 041d F87E     		.sleb128 -136
+ 1599 041f 00       		.byte	0
+ 1600 0420 18       		.uleb128 0x18
+ 1601 0421 96000000 		.4byte	.LVL106
+ 1602 0425 54050000 		.4byte	0x554
+ 1603 0429 44040000 		.4byte	0x444
+ 1604 042d 19       		.uleb128 0x19
+ 1605 042e 01       		.uleb128 0x1
+ 1606 042f 52       		.byte	0x52
+ 1607 0430 02       		.uleb128 0x2
+ 1608 0431 08       		.byte	0x8
+ 1609 0432 40       		.byte	0x40
+ 1610 0433 19       		.uleb128 0x19
+ 1611 0434 01       		.uleb128 0x1
+ 1612 0435 51       		.byte	0x51
+ 1613 0436 03       		.uleb128 0x3
+ 1614 0437 91       		.byte	0x91
+ 1615 0438 F87E     		.sleb128 -136
+ 1616 043a 19       		.uleb128 0x19
+ 1617 043b 01       		.uleb128 0x1
+ 1618 043c 50       		.byte	0x50
+ 1619 043d 05       		.uleb128 0x5
+ 1620 043e 03       		.byte	0x3
+ 1621 043f 00000000 		.4byte	.LANCHOR2
+ 1622 0443 00       		.byte	0
+ 1623 0444 18       		.uleb128 0x18
+ 1624 0445 A0000000 		.4byte	.LVL107
+ 1625 0449 90050000 		.4byte	0x590
+ 1626 044d 5B040000 		.4byte	0x45b
+ 1627 0451 19       		.uleb128 0x19
+ 1628 0452 01       		.uleb128 0x1
+ 1629 0453 50       		.byte	0x50
+ 1630 0454 05       		.uleb128 0x5
+ 1631 0455 03       		.byte	0x3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 30
+
+
+ 1632 0456 44000000 		.4byte	.LC3
+ 1633 045a 00       		.byte	0
+ 1634 045b 1A       		.uleb128 0x1a
+ 1635 045c A8000000 		.4byte	.LVL109
+ 1636 0460 90050000 		.4byte	0x590
+ 1637 0464 19       		.uleb128 0x19
+ 1638 0465 01       		.uleb128 0x1
+ 1639 0466 50       		.byte	0x50
+ 1640 0467 05       		.uleb128 0x5
+ 1641 0468 03       		.byte	0x3
+ 1642 0469 1C000000 		.4byte	.LC1
+ 1643 046d 00       		.byte	0
+ 1644 046e 00       		.byte	0
+ 1645 046f 1B       		.uleb128 0x1b
+ 1646 0470 45000000 		.4byte	0x45
+ 1647 0474 7F040000 		.4byte	0x47f
+ 1648 0478 1C       		.uleb128 0x1c
+ 1649 0479 81000000 		.4byte	0x81
+ 1650 047d 7F       		.byte	0x7f
+ 1651 047e 00       		.byte	0
+ 1652 047f 1B       		.uleb128 0x1b
+ 1653 0480 45000000 		.4byte	0x45
+ 1654 0484 8F040000 		.4byte	0x48f
+ 1655 0488 1C       		.uleb128 0x1c
+ 1656 0489 81000000 		.4byte	0x81
+ 1657 048d 3F       		.byte	0x3f
+ 1658 048e 00       		.byte	0
+ 1659 048f 17       		.uleb128 0x17
+ 1660 0490 E7010000 		.4byte	.LASF20
+ 1661 0494 01       		.byte	0x1
+ 1662 0495 27       		.byte	0x27
+ 1663 0496 A0040000 		.4byte	0x4a0
+ 1664 049a 05       		.uleb128 0x5
+ 1665 049b 03       		.byte	0x3
+ 1666 049c 00000000 		.4byte	base64_enc_map
+ 1667 04a0 06       		.uleb128 0x6
+ 1668 04a1 7F040000 		.4byte	0x47f
+ 1669 04a5 17       		.uleb128 0x17
+ 1670 04a6 37020000 		.4byte	.LASF21
+ 1671 04aa 01       		.byte	0x1
+ 1672 04ab 32       		.byte	0x32
+ 1673 04ac B6040000 		.4byte	0x4b6
+ 1674 04b0 05       		.uleb128 0x5
+ 1675 04b1 03       		.byte	0x3
+ 1676 04b2 00000000 		.4byte	base64_dec_map
+ 1677 04b6 06       		.uleb128 0x6
+ 1678 04b7 6F040000 		.4byte	0x46f
+ 1679 04bb 17       		.uleb128 0x17
+ 1680 04bc 4E000000 		.4byte	.LASF22
+ 1681 04c0 01       		.byte	0x1
+ 1682 04c1 C7       		.byte	0xc7
+ 1683 04c2 CC040000 		.4byte	0x4cc
+ 1684 04c6 05       		.uleb128 0x5
+ 1685 04c7 03       		.byte	0x3
+ 1686 04c8 00000000 		.4byte	base64_test_dec
+ 1687 04cc 06       		.uleb128 0x6
+ 1688 04cd 7F040000 		.4byte	0x47f
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 31
+
+
+ 1689 04d1 1B       		.uleb128 0x1b
+ 1690 04d2 45000000 		.4byte	0x45
+ 1691 04d6 E1040000 		.4byte	0x4e1
+ 1692 04da 1C       		.uleb128 0x1c
+ 1693 04db 81000000 		.4byte	0x81
+ 1694 04df 58       		.byte	0x58
+ 1695 04e0 00       		.byte	0
+ 1696 04e1 17       		.uleb128 0x17
+ 1697 04e2 6D000000 		.4byte	.LASF23
+ 1698 04e6 01       		.byte	0x1
+ 1699 04e7 D3       		.byte	0xd3
+ 1700 04e8 F2040000 		.4byte	0x4f2
+ 1701 04ec 05       		.uleb128 0x5
+ 1702 04ed 03       		.byte	0x3
+ 1703 04ee 00000000 		.4byte	base64_test_enc
+ 1704 04f2 06       		.uleb128 0x6
+ 1705 04f3 D1040000 		.4byte	0x4d1
+ 1706 04f7 1D       		.uleb128 0x1d
+ 1707 04f8 5B       		.uleb128 0x5b
+ 1708 04f9 9E       		.byte	0x9e
+ 1709 04fa 59       		.uleb128 0x59
+ 1710 04fb 4A       		.byte	0x4a
+ 1711 04fc 45       		.byte	0x45
+ 1712 04fd 68       		.byte	0x68
+ 1713 04fe 75       		.byte	0x75
+ 1714 04ff 56       		.byte	0x56
+ 1715 0500 6F       		.byte	0x6f
+ 1716 0501 64       		.byte	0x64
+ 1717 0502 69       		.byte	0x69
+ 1718 0503 57       		.byte	0x57
+ 1719 0504 72       		.byte	0x72
+ 1720 0505 32       		.byte	0x32
+ 1721 0506 2F       		.byte	0x2f
+ 1722 0507 46       		.byte	0x46
+ 1723 0508 39       		.byte	0x39
+ 1724 0509 6D       		.byte	0x6d
+ 1725 050a 69       		.byte	0x69
+ 1726 050b 78       		.byte	0x78
+ 1727 050c 42       		.byte	0x42
+ 1728 050d 63       		.byte	0x63
+ 1729 050e 61       		.byte	0x61
+ 1730 050f 41       		.byte	0x41
+ 1731 0510 5A       		.byte	0x5a
+ 1732 0511 54       		.byte	0x54
+ 1733 0512 74       		.byte	0x74
+ 1734 0513 6A       		.byte	0x6a
+ 1735 0514 78       		.byte	0x78
+ 1736 0515 34       		.byte	0x34
+ 1737 0516 52       		.byte	0x52
+ 1738 0517 73       		.byte	0x73
+ 1739 0518 39       		.byte	0x39
+ 1740 0519 63       		.byte	0x63
+ 1741 051a 4A       		.byte	0x4a
+ 1742 051b 44       		.byte	0x44
+ 1743 051c 4C       		.byte	0x4c
+ 1744 051d 62       		.byte	0x62
+ 1745 051e 70       		.byte	0x70
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 32
+
+
+ 1746 051f 45       		.byte	0x45
+ 1747 0520 47       		.byte	0x47
+ 1748 0521 38       		.byte	0x38
+ 1749 0522 69       		.byte	0x69
+ 1750 0523 37       		.byte	0x37
+ 1751 0524 68       		.byte	0x68
+ 1752 0525 50       		.byte	0x50
+ 1753 0526 4B       		.byte	0x4b
+ 1754 0527 73       		.byte	0x73
+ 1755 0528 77       		.byte	0x77
+ 1756 0529 63       		.byte	0x63
+ 1757 052a 46       		.byte	0x46
+ 1758 052b 64       		.byte	0x64
+ 1759 052c 73       		.byte	0x73
+ 1760 052d 6E       		.byte	0x6e
+ 1761 052e 36       		.byte	0x36
+ 1762 052f 4D       		.byte	0x4d
+ 1763 0530 57       		.byte	0x57
+ 1764 0531 77       		.byte	0x77
+ 1765 0532 49       		.byte	0x49
+ 1766 0533 4E       		.byte	0x4e
+ 1767 0534 50       		.byte	0x50
+ 1768 0535 2B       		.byte	0x2b
+ 1769 0536 4E       		.byte	0x4e
+ 1770 0537 77       		.byte	0x77
+ 1771 0538 6D       		.byte	0x6d
+ 1772 0539 77       		.byte	0x77
+ 1773 053a 34       		.byte	0x34
+ 1774 053b 41       		.byte	0x41
+ 1775 053c 45       		.byte	0x45
+ 1776 053d 50       		.byte	0x50
+ 1777 053e 70       		.byte	0x70
+ 1778 053f 56       		.byte	0x56
+ 1779 0540 4A       		.byte	0x4a
+ 1780 0541 65       		.byte	0x65
+ 1781 0542 76       		.byte	0x76
+ 1782 0543 55       		.byte	0x55
+ 1783 0544 45       		.byte	0x45
+ 1784 0545 76       		.byte	0x76
+ 1785 0546 52       		.byte	0x52
+ 1786 0547 51       		.byte	0x51
+ 1787 0548 62       		.byte	0x62
+ 1788 0549 71       		.byte	0x71
+ 1789 054a 56       		.byte	0x56
+ 1790 054b 4D       		.byte	0x4d
+ 1791 054c 56       		.byte	0x56
+ 1792 054d 6F       		.byte	0x6f
+ 1793 054e 4C       		.byte	0x4c
+ 1794 054f 6C       		.byte	0x6c
+ 1795 0550 77       		.byte	0x77
+ 1796 0551 3D       		.byte	0x3d
+ 1797 0552 3D       		.byte	0x3d
+ 1798 0553 00       		.byte	0
+ 1799 0554 1E       		.uleb128 0x1e
+ 1800 0555 66000000 		.4byte	.LASF25
+ 1801 0559 05       		.byte	0x5
+ 1802 055a 16       		.byte	0x16
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 33
+
+
+ 1803 055b 25000000 		.4byte	0x25
+ 1804 055f 73050000 		.4byte	0x573
+ 1805 0563 1F       		.uleb128 0x1f
+ 1806 0564 73050000 		.4byte	0x573
+ 1807 0568 1F       		.uleb128 0x1f
+ 1808 0569 73050000 		.4byte	0x573
+ 1809 056d 1F       		.uleb128 0x1f
+ 1810 056e 2C000000 		.4byte	0x2c
+ 1811 0572 00       		.byte	0
+ 1812 0573 05       		.uleb128 0x5
+ 1813 0574 04       		.byte	0x4
+ 1814 0575 79050000 		.4byte	0x579
+ 1815 0579 20       		.uleb128 0x20
+ 1816 057a 1E       		.uleb128 0x1e
+ 1817 057b 46020000 		.4byte	.LASF26
+ 1818 057f 06       		.byte	0x6
+ 1819 0580 B1       		.byte	0xb1
+ 1820 0581 25000000 		.4byte	0x25
+ 1821 0585 90050000 		.4byte	0x590
+ 1822 0589 1F       		.uleb128 0x1f
+ 1823 058a 95000000 		.4byte	0x95
+ 1824 058e 21       		.uleb128 0x21
+ 1825 058f 00       		.byte	0
+ 1826 0590 22       		.uleb128 0x22
+ 1827 0591 82000000 		.4byte	.LASF27
+ 1828 0595 07       		.byte	0x7
+ 1829 0596 00       		.byte	0
+ 1830 0597 94020000 		.4byte	.LASF31
+ 1831 059b 25000000 		.4byte	0x25
+ 1832 059f 1F       		.uleb128 0x1f
+ 1833 05a0 95000000 		.4byte	0x95
+ 1834 05a4 00       		.byte	0
+ 1835 05a5 00       		.byte	0
+ 1836              		.section	.debug_abbrev,"",%progbits
+ 1837              	.Ldebug_abbrev0:
+ 1838 0000 01       		.uleb128 0x1
+ 1839 0001 11       		.uleb128 0x11
+ 1840 0002 01       		.byte	0x1
+ 1841 0003 25       		.uleb128 0x25
+ 1842 0004 0E       		.uleb128 0xe
+ 1843 0005 13       		.uleb128 0x13
+ 1844 0006 0B       		.uleb128 0xb
+ 1845 0007 03       		.uleb128 0x3
+ 1846 0008 0E       		.uleb128 0xe
+ 1847 0009 1B       		.uleb128 0x1b
+ 1848 000a 0E       		.uleb128 0xe
+ 1849 000b 55       		.uleb128 0x55
+ 1850 000c 17       		.uleb128 0x17
+ 1851 000d 11       		.uleb128 0x11
+ 1852 000e 01       		.uleb128 0x1
+ 1853 000f 10       		.uleb128 0x10
+ 1854 0010 17       		.uleb128 0x17
+ 1855 0011 00       		.byte	0
+ 1856 0012 00       		.byte	0
+ 1857 0013 02       		.uleb128 0x2
+ 1858 0014 24       		.uleb128 0x24
+ 1859 0015 00       		.byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 34
+
+
+ 1860 0016 0B       		.uleb128 0xb
+ 1861 0017 0B       		.uleb128 0xb
+ 1862 0018 3E       		.uleb128 0x3e
+ 1863 0019 0B       		.uleb128 0xb
+ 1864 001a 03       		.uleb128 0x3
+ 1865 001b 08       		.uleb128 0x8
+ 1866 001c 00       		.byte	0
+ 1867 001d 00       		.byte	0
+ 1868 001e 03       		.uleb128 0x3
+ 1869 001f 16       		.uleb128 0x16
+ 1870 0020 00       		.byte	0
+ 1871 0021 03       		.uleb128 0x3
+ 1872 0022 0E       		.uleb128 0xe
+ 1873 0023 3A       		.uleb128 0x3a
+ 1874 0024 0B       		.uleb128 0xb
+ 1875 0025 3B       		.uleb128 0x3b
+ 1876 0026 0B       		.uleb128 0xb
+ 1877 0027 49       		.uleb128 0x49
+ 1878 0028 13       		.uleb128 0x13
+ 1879 0029 00       		.byte	0
+ 1880 002a 00       		.byte	0
+ 1881 002b 04       		.uleb128 0x4
+ 1882 002c 24       		.uleb128 0x24
+ 1883 002d 00       		.byte	0
+ 1884 002e 0B       		.uleb128 0xb
+ 1885 002f 0B       		.uleb128 0xb
+ 1886 0030 3E       		.uleb128 0x3e
+ 1887 0031 0B       		.uleb128 0xb
+ 1888 0032 03       		.uleb128 0x3
+ 1889 0033 0E       		.uleb128 0xe
+ 1890 0034 00       		.byte	0
+ 1891 0035 00       		.byte	0
+ 1892 0036 05       		.uleb128 0x5
+ 1893 0037 0F       		.uleb128 0xf
+ 1894 0038 00       		.byte	0
+ 1895 0039 0B       		.uleb128 0xb
+ 1896 003a 0B       		.uleb128 0xb
+ 1897 003b 49       		.uleb128 0x49
+ 1898 003c 13       		.uleb128 0x13
+ 1899 003d 00       		.byte	0
+ 1900 003e 00       		.byte	0
+ 1901 003f 06       		.uleb128 0x6
+ 1902 0040 26       		.uleb128 0x26
+ 1903 0041 00       		.byte	0
+ 1904 0042 49       		.uleb128 0x49
+ 1905 0043 13       		.uleb128 0x13
+ 1906 0044 00       		.byte	0
+ 1907 0045 00       		.byte	0
+ 1908 0046 07       		.uleb128 0x7
+ 1909 0047 2E       		.uleb128 0x2e
+ 1910 0048 01       		.byte	0x1
+ 1911 0049 3F       		.uleb128 0x3f
+ 1912 004a 19       		.uleb128 0x19
+ 1913 004b 03       		.uleb128 0x3
+ 1914 004c 0E       		.uleb128 0xe
+ 1915 004d 3A       		.uleb128 0x3a
+ 1916 004e 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 35
+
+
+ 1917 004f 3B       		.uleb128 0x3b
+ 1918 0050 0B       		.uleb128 0xb
+ 1919 0051 27       		.uleb128 0x27
+ 1920 0052 19       		.uleb128 0x19
+ 1921 0053 49       		.uleb128 0x49
+ 1922 0054 13       		.uleb128 0x13
+ 1923 0055 20       		.uleb128 0x20
+ 1924 0056 0B       		.uleb128 0xb
+ 1925 0057 01       		.uleb128 0x1
+ 1926 0058 13       		.uleb128 0x13
+ 1927 0059 00       		.byte	0
+ 1928 005a 00       		.byte	0
+ 1929 005b 08       		.uleb128 0x8
+ 1930 005c 05       		.uleb128 0x5
+ 1931 005d 00       		.byte	0
+ 1932 005e 03       		.uleb128 0x3
+ 1933 005f 08       		.uleb128 0x8
+ 1934 0060 3A       		.uleb128 0x3a
+ 1935 0061 0B       		.uleb128 0xb
+ 1936 0062 3B       		.uleb128 0x3b
+ 1937 0063 0B       		.uleb128 0xb
+ 1938 0064 49       		.uleb128 0x49
+ 1939 0065 13       		.uleb128 0x13
+ 1940 0066 00       		.byte	0
+ 1941 0067 00       		.byte	0
+ 1942 0068 09       		.uleb128 0x9
+ 1943 0069 05       		.uleb128 0x5
+ 1944 006a 00       		.byte	0
+ 1945 006b 03       		.uleb128 0x3
+ 1946 006c 0E       		.uleb128 0xe
+ 1947 006d 3A       		.uleb128 0x3a
+ 1948 006e 0B       		.uleb128 0xb
+ 1949 006f 3B       		.uleb128 0x3b
+ 1950 0070 0B       		.uleb128 0xb
+ 1951 0071 49       		.uleb128 0x49
+ 1952 0072 13       		.uleb128 0x13
+ 1953 0073 00       		.byte	0
+ 1954 0074 00       		.byte	0
+ 1955 0075 0A       		.uleb128 0xa
+ 1956 0076 34       		.uleb128 0x34
+ 1957 0077 00       		.byte	0
+ 1958 0078 03       		.uleb128 0x3
+ 1959 0079 08       		.uleb128 0x8
+ 1960 007a 3A       		.uleb128 0x3a
+ 1961 007b 0B       		.uleb128 0xb
+ 1962 007c 3B       		.uleb128 0x3b
+ 1963 007d 0B       		.uleb128 0xb
+ 1964 007e 49       		.uleb128 0x49
+ 1965 007f 13       		.uleb128 0x13
+ 1966 0080 00       		.byte	0
+ 1967 0081 00       		.byte	0
+ 1968 0082 0B       		.uleb128 0xb
+ 1969 0083 2E       		.uleb128 0x2e
+ 1970 0084 01       		.byte	0x1
+ 1971 0085 31       		.uleb128 0x31
+ 1972 0086 13       		.uleb128 0x13
+ 1973 0087 11       		.uleb128 0x11
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 36
+
+
+ 1974 0088 01       		.uleb128 0x1
+ 1975 0089 12       		.uleb128 0x12
+ 1976 008a 06       		.uleb128 0x6
+ 1977 008b 40       		.uleb128 0x40
+ 1978 008c 18       		.uleb128 0x18
+ 1979 008d 9742     		.uleb128 0x2117
+ 1980 008f 19       		.uleb128 0x19
+ 1981 0090 01       		.uleb128 0x1
+ 1982 0091 13       		.uleb128 0x13
+ 1983 0092 00       		.byte	0
+ 1984 0093 00       		.byte	0
+ 1985 0094 0C       		.uleb128 0xc
+ 1986 0095 05       		.uleb128 0x5
+ 1987 0096 00       		.byte	0
+ 1988 0097 31       		.uleb128 0x31
+ 1989 0098 13       		.uleb128 0x13
+ 1990 0099 02       		.uleb128 0x2
+ 1991 009a 17       		.uleb128 0x17
+ 1992 009b 00       		.byte	0
+ 1993 009c 00       		.byte	0
+ 1994 009d 0D       		.uleb128 0xd
+ 1995 009e 05       		.uleb128 0x5
+ 1996 009f 00       		.byte	0
+ 1997 00a0 31       		.uleb128 0x31
+ 1998 00a1 13       		.uleb128 0x13
+ 1999 00a2 02       		.uleb128 0x2
+ 2000 00a3 18       		.uleb128 0x18
+ 2001 00a4 00       		.byte	0
+ 2002 00a5 00       		.byte	0
+ 2003 00a6 0E       		.uleb128 0xe
+ 2004 00a7 34       		.uleb128 0x34
+ 2005 00a8 00       		.byte	0
+ 2006 00a9 31       		.uleb128 0x31
+ 2007 00aa 13       		.uleb128 0x13
+ 2008 00ab 00       		.byte	0
+ 2009 00ac 00       		.byte	0
+ 2010 00ad 0F       		.uleb128 0xf
+ 2011 00ae 34       		.uleb128 0x34
+ 2012 00af 00       		.byte	0
+ 2013 00b0 31       		.uleb128 0x31
+ 2014 00b1 13       		.uleb128 0x13
+ 2015 00b2 02       		.uleb128 0x2
+ 2016 00b3 17       		.uleb128 0x17
+ 2017 00b4 00       		.byte	0
+ 2018 00b5 00       		.byte	0
+ 2019 00b6 10       		.uleb128 0x10
+ 2020 00b7 0B       		.uleb128 0xb
+ 2021 00b8 01       		.byte	0x1
+ 2022 00b9 55       		.uleb128 0x55
+ 2023 00ba 17       		.uleb128 0x17
+ 2024 00bb 00       		.byte	0
+ 2025 00bc 00       		.byte	0
+ 2026 00bd 11       		.uleb128 0x11
+ 2027 00be 2E       		.uleb128 0x2e
+ 2028 00bf 01       		.byte	0x1
+ 2029 00c0 3F       		.uleb128 0x3f
+ 2030 00c1 19       		.uleb128 0x19
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 37
+
+
+ 2031 00c2 03       		.uleb128 0x3
+ 2032 00c3 0E       		.uleb128 0xe
+ 2033 00c4 3A       		.uleb128 0x3a
+ 2034 00c5 0B       		.uleb128 0xb
+ 2035 00c6 3B       		.uleb128 0x3b
+ 2036 00c7 0B       		.uleb128 0xb
+ 2037 00c8 27       		.uleb128 0x27
+ 2038 00c9 19       		.uleb128 0x19
+ 2039 00ca 49       		.uleb128 0x49
+ 2040 00cb 13       		.uleb128 0x13
+ 2041 00cc 11       		.uleb128 0x11
+ 2042 00cd 01       		.uleb128 0x1
+ 2043 00ce 12       		.uleb128 0x12
+ 2044 00cf 06       		.uleb128 0x6
+ 2045 00d0 40       		.uleb128 0x40
+ 2046 00d1 18       		.uleb128 0x18
+ 2047 00d2 9742     		.uleb128 0x2117
+ 2048 00d4 19       		.uleb128 0x19
+ 2049 00d5 01       		.uleb128 0x1
+ 2050 00d6 13       		.uleb128 0x13
+ 2051 00d7 00       		.byte	0
+ 2052 00d8 00       		.byte	0
+ 2053 00d9 12       		.uleb128 0x12
+ 2054 00da 05       		.uleb128 0x5
+ 2055 00db 00       		.byte	0
+ 2056 00dc 03       		.uleb128 0x3
+ 2057 00dd 08       		.uleb128 0x8
+ 2058 00de 3A       		.uleb128 0x3a
+ 2059 00df 0B       		.uleb128 0xb
+ 2060 00e0 3B       		.uleb128 0x3b
+ 2061 00e1 0B       		.uleb128 0xb
+ 2062 00e2 49       		.uleb128 0x49
+ 2063 00e3 13       		.uleb128 0x13
+ 2064 00e4 02       		.uleb128 0x2
+ 2065 00e5 17       		.uleb128 0x17
+ 2066 00e6 00       		.byte	0
+ 2067 00e7 00       		.byte	0
+ 2068 00e8 13       		.uleb128 0x13
+ 2069 00e9 05       		.uleb128 0x5
+ 2070 00ea 00       		.byte	0
+ 2071 00eb 03       		.uleb128 0x3
+ 2072 00ec 0E       		.uleb128 0xe
+ 2073 00ed 3A       		.uleb128 0x3a
+ 2074 00ee 0B       		.uleb128 0xb
+ 2075 00ef 3B       		.uleb128 0x3b
+ 2076 00f0 0B       		.uleb128 0xb
+ 2077 00f1 49       		.uleb128 0x49
+ 2078 00f2 13       		.uleb128 0x13
+ 2079 00f3 02       		.uleb128 0x2
+ 2080 00f4 18       		.uleb128 0x18
+ 2081 00f5 00       		.byte	0
+ 2082 00f6 00       		.byte	0
+ 2083 00f7 14       		.uleb128 0x14
+ 2084 00f8 05       		.uleb128 0x5
+ 2085 00f9 00       		.byte	0
+ 2086 00fa 03       		.uleb128 0x3
+ 2087 00fb 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 38
+
+
+ 2088 00fc 3A       		.uleb128 0x3a
+ 2089 00fd 0B       		.uleb128 0xb
+ 2090 00fe 3B       		.uleb128 0x3b
+ 2091 00ff 0B       		.uleb128 0xb
+ 2092 0100 49       		.uleb128 0x49
+ 2093 0101 13       		.uleb128 0x13
+ 2094 0102 02       		.uleb128 0x2
+ 2095 0103 17       		.uleb128 0x17
+ 2096 0104 00       		.byte	0
+ 2097 0105 00       		.byte	0
+ 2098 0106 15       		.uleb128 0x15
+ 2099 0107 34       		.uleb128 0x34
+ 2100 0108 00       		.byte	0
+ 2101 0109 03       		.uleb128 0x3
+ 2102 010a 08       		.uleb128 0x8
+ 2103 010b 3A       		.uleb128 0x3a
+ 2104 010c 0B       		.uleb128 0xb
+ 2105 010d 3B       		.uleb128 0x3b
+ 2106 010e 0B       		.uleb128 0xb
+ 2107 010f 49       		.uleb128 0x49
+ 2108 0110 13       		.uleb128 0x13
+ 2109 0111 02       		.uleb128 0x2
+ 2110 0112 17       		.uleb128 0x17
+ 2111 0113 00       		.byte	0
+ 2112 0114 00       		.byte	0
+ 2113 0115 16       		.uleb128 0x16
+ 2114 0116 34       		.uleb128 0x34
+ 2115 0117 00       		.byte	0
+ 2116 0118 03       		.uleb128 0x3
+ 2117 0119 08       		.uleb128 0x8
+ 2118 011a 3A       		.uleb128 0x3a
+ 2119 011b 0B       		.uleb128 0xb
+ 2120 011c 3B       		.uleb128 0x3b
+ 2121 011d 0B       		.uleb128 0xb
+ 2122 011e 49       		.uleb128 0x49
+ 2123 011f 13       		.uleb128 0x13
+ 2124 0120 02       		.uleb128 0x2
+ 2125 0121 18       		.uleb128 0x18
+ 2126 0122 00       		.byte	0
+ 2127 0123 00       		.byte	0
+ 2128 0124 17       		.uleb128 0x17
+ 2129 0125 34       		.uleb128 0x34
+ 2130 0126 00       		.byte	0
+ 2131 0127 03       		.uleb128 0x3
+ 2132 0128 0E       		.uleb128 0xe
+ 2133 0129 3A       		.uleb128 0x3a
+ 2134 012a 0B       		.uleb128 0xb
+ 2135 012b 3B       		.uleb128 0x3b
+ 2136 012c 0B       		.uleb128 0xb
+ 2137 012d 49       		.uleb128 0x49
+ 2138 012e 13       		.uleb128 0x13
+ 2139 012f 02       		.uleb128 0x2
+ 2140 0130 18       		.uleb128 0x18
+ 2141 0131 00       		.byte	0
+ 2142 0132 00       		.byte	0
+ 2143 0133 18       		.uleb128 0x18
+ 2144 0134 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 39
+
+
+ 2145 0137 01       		.byte	0x1
+ 2146 0138 11       		.uleb128 0x11
+ 2147 0139 01       		.uleb128 0x1
+ 2148 013a 31       		.uleb128 0x31
+ 2149 013b 13       		.uleb128 0x13
+ 2150 013c 01       		.uleb128 0x1
+ 2151 013d 13       		.uleb128 0x13
+ 2152 013e 00       		.byte	0
+ 2153 013f 00       		.byte	0
+ 2154 0140 19       		.uleb128 0x19
+ 2155 0141 8A8201   		.uleb128 0x410a
+ 2156 0144 00       		.byte	0
+ 2157 0145 02       		.uleb128 0x2
+ 2158 0146 18       		.uleb128 0x18
+ 2159 0147 9142     		.uleb128 0x2111
+ 2160 0149 18       		.uleb128 0x18
+ 2161 014a 00       		.byte	0
+ 2162 014b 00       		.byte	0
+ 2163 014c 1A       		.uleb128 0x1a
+ 2164 014d 898201   		.uleb128 0x4109
+ 2165 0150 01       		.byte	0x1
+ 2166 0151 11       		.uleb128 0x11
+ 2167 0152 01       		.uleb128 0x1
+ 2168 0153 31       		.uleb128 0x31
+ 2169 0154 13       		.uleb128 0x13
+ 2170 0155 00       		.byte	0
+ 2171 0156 00       		.byte	0
+ 2172 0157 1B       		.uleb128 0x1b
+ 2173 0158 01       		.uleb128 0x1
+ 2174 0159 01       		.byte	0x1
+ 2175 015a 49       		.uleb128 0x49
+ 2176 015b 13       		.uleb128 0x13
+ 2177 015c 01       		.uleb128 0x1
+ 2178 015d 13       		.uleb128 0x13
+ 2179 015e 00       		.byte	0
+ 2180 015f 00       		.byte	0
+ 2181 0160 1C       		.uleb128 0x1c
+ 2182 0161 21       		.uleb128 0x21
+ 2183 0162 00       		.byte	0
+ 2184 0163 49       		.uleb128 0x49
+ 2185 0164 13       		.uleb128 0x13
+ 2186 0165 2F       		.uleb128 0x2f
+ 2187 0166 0B       		.uleb128 0xb
+ 2188 0167 00       		.byte	0
+ 2189 0168 00       		.byte	0
+ 2190 0169 1D       		.uleb128 0x1d
+ 2191 016a 36       		.uleb128 0x36
+ 2192 016b 00       		.byte	0
+ 2193 016c 02       		.uleb128 0x2
+ 2194 016d 18       		.uleb128 0x18
+ 2195 016e 00       		.byte	0
+ 2196 016f 00       		.byte	0
+ 2197 0170 1E       		.uleb128 0x1e
+ 2198 0171 2E       		.uleb128 0x2e
+ 2199 0172 01       		.byte	0x1
+ 2200 0173 3F       		.uleb128 0x3f
+ 2201 0174 19       		.uleb128 0x19
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 40
+
+
+ 2202 0175 03       		.uleb128 0x3
+ 2203 0176 0E       		.uleb128 0xe
+ 2204 0177 3A       		.uleb128 0x3a
+ 2205 0178 0B       		.uleb128 0xb
+ 2206 0179 3B       		.uleb128 0x3b
+ 2207 017a 0B       		.uleb128 0xb
+ 2208 017b 27       		.uleb128 0x27
+ 2209 017c 19       		.uleb128 0x19
+ 2210 017d 49       		.uleb128 0x49
+ 2211 017e 13       		.uleb128 0x13
+ 2212 017f 3C       		.uleb128 0x3c
+ 2213 0180 19       		.uleb128 0x19
+ 2214 0181 01       		.uleb128 0x1
+ 2215 0182 13       		.uleb128 0x13
+ 2216 0183 00       		.byte	0
+ 2217 0184 00       		.byte	0
+ 2218 0185 1F       		.uleb128 0x1f
+ 2219 0186 05       		.uleb128 0x5
+ 2220 0187 00       		.byte	0
+ 2221 0188 49       		.uleb128 0x49
+ 2222 0189 13       		.uleb128 0x13
+ 2223 018a 00       		.byte	0
+ 2224 018b 00       		.byte	0
+ 2225 018c 20       		.uleb128 0x20
+ 2226 018d 26       		.uleb128 0x26
+ 2227 018e 00       		.byte	0
+ 2228 018f 00       		.byte	0
+ 2229 0190 00       		.byte	0
+ 2230 0191 21       		.uleb128 0x21
+ 2231 0192 18       		.uleb128 0x18
+ 2232 0193 00       		.byte	0
+ 2233 0194 00       		.byte	0
+ 2234 0195 00       		.byte	0
+ 2235 0196 22       		.uleb128 0x22
+ 2236 0197 2E       		.uleb128 0x2e
+ 2237 0198 01       		.byte	0x1
+ 2238 0199 3F       		.uleb128 0x3f
+ 2239 019a 19       		.uleb128 0x19
+ 2240 019b 03       		.uleb128 0x3
+ 2241 019c 0E       		.uleb128 0xe
+ 2242 019d 3A       		.uleb128 0x3a
+ 2243 019e 0B       		.uleb128 0xb
+ 2244 019f 3B       		.uleb128 0x3b
+ 2245 01a0 0B       		.uleb128 0xb
+ 2246 01a1 6E       		.uleb128 0x6e
+ 2247 01a2 0E       		.uleb128 0xe
+ 2248 01a3 27       		.uleb128 0x27
+ 2249 01a4 19       		.uleb128 0x19
+ 2250 01a5 49       		.uleb128 0x49
+ 2251 01a6 13       		.uleb128 0x13
+ 2252 01a7 3C       		.uleb128 0x3c
+ 2253 01a8 19       		.uleb128 0x19
+ 2254 01a9 00       		.byte	0
+ 2255 01aa 00       		.byte	0
+ 2256 01ab 00       		.byte	0
+ 2257              		.section	.debug_loc,"",%progbits
+ 2258              	.Ldebug_loc0:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 41
+
+
+ 2259              	.LLST0:
+ 2260 0000 00000000 		.4byte	.LVL0
+ 2261 0004 D2000000 		.4byte	.LVL31
+ 2262 0008 0100     		.2byte	0x1
+ 2263 000a 50       		.byte	0x50
+ 2264 000b D2000000 		.4byte	.LVL31
+ 2265 000f DE000000 		.4byte	.LVL32
+ 2266 0013 0400     		.2byte	0x4
+ 2267 0015 F3       		.byte	0xf3
+ 2268 0016 01       		.uleb128 0x1
+ 2269 0017 50       		.byte	0x50
+ 2270 0018 9F       		.byte	0x9f
+ 2271 0019 DE000000 		.4byte	.LVL32
+ 2272 001d E4000000 		.4byte	.LVL35
+ 2273 0021 0100     		.2byte	0x1
+ 2274 0023 50       		.byte	0x50
+ 2275 0024 E4000000 		.4byte	.LVL35
+ 2276 0028 E6000000 		.4byte	.LVL36
+ 2277 002c 0400     		.2byte	0x4
+ 2278 002e F3       		.byte	0xf3
+ 2279 002f 01       		.uleb128 0x1
+ 2280 0030 50       		.byte	0x50
+ 2281 0031 9F       		.byte	0x9f
+ 2282 0032 E6000000 		.4byte	.LVL36
+ 2283 0036 1C010000 		.4byte	.LVL45
+ 2284 003a 0100     		.2byte	0x1
+ 2285 003c 50       		.byte	0x50
+ 2286 003d 1C010000 		.4byte	.LVL45
+ 2287 0041 28010000 		.4byte	.LFE0
+ 2288 0045 0400     		.2byte	0x4
+ 2289 0047 F3       		.byte	0xf3
+ 2290 0048 01       		.uleb128 0x1
+ 2291 0049 50       		.byte	0x50
+ 2292 004a 9F       		.byte	0x9f
+ 2293 004b 00000000 		.4byte	0
+ 2294 004f 00000000 		.4byte	0
+ 2295              	.LLST1:
+ 2296 0053 00000000 		.4byte	.LVL0
+ 2297 0057 48000000 		.4byte	.LVL8
+ 2298 005b 0100     		.2byte	0x1
+ 2299 005d 52       		.byte	0x52
+ 2300 005e 48000000 		.4byte	.LVL8
+ 2301 0062 DE000000 		.4byte	.LVL32
+ 2302 0066 0400     		.2byte	0x4
+ 2303 0068 F3       		.byte	0xf3
+ 2304 0069 01       		.uleb128 0x1
+ 2305 006a 52       		.byte	0x52
+ 2306 006b 9F       		.byte	0x9f
+ 2307 006c DE000000 		.4byte	.LVL32
+ 2308 0070 E6000000 		.4byte	.LVL36
+ 2309 0074 0100     		.2byte	0x1
+ 2310 0076 52       		.byte	0x52
+ 2311 0077 E6000000 		.4byte	.LVL36
+ 2312 007b 10010000 		.4byte	.LVL43
+ 2313 007f 0400     		.2byte	0x4
+ 2314 0081 F3       		.byte	0xf3
+ 2315 0082 01       		.uleb128 0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 42
+
+
+ 2316 0083 52       		.byte	0x52
+ 2317 0084 9F       		.byte	0x9f
+ 2318 0085 10010000 		.4byte	.LVL43
+ 2319 0089 28010000 		.4byte	.LFE0
+ 2320 008d 0100     		.2byte	0x1
+ 2321 008f 52       		.byte	0x52
+ 2322 0090 00000000 		.4byte	0
+ 2323 0094 00000000 		.4byte	0
+ 2324              	.LLST2:
+ 2325 0098 00000000 		.4byte	.LVL0
+ 2326 009c B6000000 		.4byte	.LVL25
+ 2327 00a0 0100     		.2byte	0x1
+ 2328 00a2 53       		.byte	0x53
+ 2329 00a3 B6000000 		.4byte	.LVL25
+ 2330 00a7 DE000000 		.4byte	.LVL32
+ 2331 00ab 0400     		.2byte	0x4
+ 2332 00ad F3       		.byte	0xf3
+ 2333 00ae 01       		.uleb128 0x1
+ 2334 00af 53       		.byte	0x53
+ 2335 00b0 9F       		.byte	0x9f
+ 2336 00b1 DE000000 		.4byte	.LVL32
+ 2337 00b5 E8000000 		.4byte	.LVL37
+ 2338 00b9 0100     		.2byte	0x1
+ 2339 00bb 53       		.byte	0x53
+ 2340 00bc E8000000 		.4byte	.LVL37
+ 2341 00c0 10010000 		.4byte	.LVL43
+ 2342 00c4 0400     		.2byte	0x4
+ 2343 00c6 F3       		.byte	0xf3
+ 2344 00c7 01       		.uleb128 0x1
+ 2345 00c8 53       		.byte	0x53
+ 2346 00c9 9F       		.byte	0x9f
+ 2347 00ca 10010000 		.4byte	.LVL43
+ 2348 00ce 28010000 		.4byte	.LFE0
+ 2349 00d2 0100     		.2byte	0x1
+ 2350 00d4 53       		.byte	0x53
+ 2351 00d5 00000000 		.4byte	0
+ 2352 00d9 00000000 		.4byte	0
+ 2353              	.LLST3:
+ 2354 00dd 12000000 		.4byte	.LVL1
+ 2355 00e1 28000000 		.4byte	.LVL3
+ 2356 00e5 0100     		.2byte	0x1
+ 2357 00e7 54       		.byte	0x54
+ 2358 00e8 28000000 		.4byte	.LVL3
+ 2359 00ec 2E000000 		.4byte	.LVL5
+ 2360 00f0 0300     		.2byte	0x3
+ 2361 00f2 74       		.byte	0x74
+ 2362 00f3 7F       		.sleb128 -1
+ 2363 00f4 9F       		.byte	0x9f
+ 2364 00f5 DE000000 		.4byte	.LVL32
+ 2365 00f9 E2000000 		.4byte	.LVL34
+ 2366 00fd 0100     		.2byte	0x1
+ 2367 00ff 54       		.byte	0x54
+ 2368 0100 16010000 		.4byte	.LVL44
+ 2369 0104 20010000 		.4byte	.LVL46
+ 2370 0108 0300     		.2byte	0x3
+ 2371 010a 74       		.byte	0x74
+ 2372 010b 7F       		.sleb128 -1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 43
+
+
+ 2373 010c 9F       		.byte	0x9f
+ 2374 010d 20010000 		.4byte	.LVL46
+ 2375 0111 28010000 		.4byte	.LFE0
+ 2376 0115 0600     		.2byte	0x6
+ 2377 0117 71       		.byte	0x71
+ 2378 0118 00       		.sleb128 0
+ 2379 0119 06       		.byte	0x6
+ 2380 011a 31       		.byte	0x31
+ 2381 011b 1C       		.byte	0x1c
+ 2382 011c 9F       		.byte	0x9f
+ 2383 011d 00000000 		.4byte	0
+ 2384 0121 00000000 		.4byte	0
+ 2385              	.LLST4:
+ 2386 0125 2C000000 		.4byte	.LVL4
+ 2387 0129 B6000000 		.4byte	.LVL25
+ 2388 012d 0100     		.2byte	0x1
+ 2389 012f 53       		.byte	0x53
+ 2390 0130 B6000000 		.4byte	.LVL25
+ 2391 0134 DE000000 		.4byte	.LVL32
+ 2392 0138 0400     		.2byte	0x4
+ 2393 013a F3       		.byte	0xf3
+ 2394 013b 01       		.uleb128 0x1
+ 2395 013c 53       		.byte	0x53
+ 2396 013d 9F       		.byte	0x9f
+ 2397 013e E6000000 		.4byte	.LVL36
+ 2398 0142 E8000000 		.4byte	.LVL37
+ 2399 0146 0100     		.2byte	0x1
+ 2400 0148 53       		.byte	0x53
+ 2401 0149 E8000000 		.4byte	.LVL37
+ 2402 014d 10010000 		.4byte	.LVL43
+ 2403 0151 0400     		.2byte	0x4
+ 2404 0153 F3       		.byte	0xf3
+ 2405 0154 01       		.uleb128 0x1
+ 2406 0155 53       		.byte	0x53
+ 2407 0156 9F       		.byte	0x9f
+ 2408 0157 10010000 		.4byte	.LVL43
+ 2409 015b 16010000 		.4byte	.LVL44
+ 2410 015f 0100     		.2byte	0x1
+ 2411 0161 53       		.byte	0x53
+ 2412 0162 00000000 		.4byte	0
+ 2413 0166 00000000 		.4byte	0
+ 2414              	.LLST5:
+ 2415 016a 2C000000 		.4byte	.LVL4
+ 2416 016e 48000000 		.4byte	.LVL8
+ 2417 0172 0100     		.2byte	0x1
+ 2418 0174 52       		.byte	0x52
+ 2419 0175 48000000 		.4byte	.LVL8
+ 2420 0179 4C000000 		.4byte	.LVL9
+ 2421 017d 0800     		.2byte	0x8
+ 2422 017f 75       		.byte	0x75
+ 2423 0180 00       		.sleb128 0
+ 2424 0181 79       		.byte	0x79
+ 2425 0182 00       		.sleb128 0
+ 2426 0183 22       		.byte	0x22
+ 2427 0184 23       		.byte	0x23
+ 2428 0185 01       		.uleb128 0x1
+ 2429 0186 9F       		.byte	0x9f
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 44
+
+
+ 2430 0187 4C000000 		.4byte	.LVL9
+ 2431 018b 50000000 		.4byte	.LVL10
+ 2432 018f 0800     		.2byte	0x8
+ 2433 0191 75       		.byte	0x75
+ 2434 0192 00       		.sleb128 0
+ 2435 0193 79       		.byte	0x79
+ 2436 0194 00       		.sleb128 0
+ 2437 0195 22       		.byte	0x22
+ 2438 0196 23       		.byte	0x23
+ 2439 0197 02       		.uleb128 0x2
+ 2440 0198 9F       		.byte	0x9f
+ 2441 0199 50000000 		.4byte	.LVL10
+ 2442 019d 9E000000 		.4byte	.LVL19
+ 2443 01a1 0100     		.2byte	0x1
+ 2444 01a3 55       		.byte	0x55
+ 2445 01a4 9E000000 		.4byte	.LVL19
+ 2446 01a8 A8000000 		.4byte	.LVL22
+ 2447 01ac 0100     		.2byte	0x1
+ 2448 01ae 52       		.byte	0x52
+ 2449 01af A8000000 		.4byte	.LVL22
+ 2450 01b3 BA000000 		.4byte	.LVL26
+ 2451 01b7 0300     		.2byte	0x3
+ 2452 01b9 72       		.byte	0x72
+ 2453 01ba 01       		.sleb128 1
+ 2454 01bb 9F       		.byte	0x9f
+ 2455 01bc E6000000 		.4byte	.LVL36
+ 2456 01c0 EA000000 		.4byte	.LVL38
+ 2457 01c4 0300     		.2byte	0x3
+ 2458 01c6 72       		.byte	0x72
+ 2459 01c7 02       		.sleb128 2
+ 2460 01c8 9F       		.byte	0x9f
+ 2461 01c9 10010000 		.4byte	.LVL43
+ 2462 01cd 16010000 		.4byte	.LVL44
+ 2463 01d1 0100     		.2byte	0x1
+ 2464 01d3 52       		.byte	0x52
+ 2465 01d4 00000000 		.4byte	0
+ 2466 01d8 00000000 		.4byte	0
+ 2467              	.LLST6:
+ 2468 01dc 2C000000 		.4byte	.LVL4
+ 2469 01e0 DE000000 		.4byte	.LVL32
+ 2470 01e4 0100     		.2byte	0x1
+ 2471 01e6 51       		.byte	0x51
+ 2472 01e7 E6000000 		.4byte	.LVL36
+ 2473 01eb 16010000 		.4byte	.LVL44
+ 2474 01ef 0100     		.2byte	0x1
+ 2475 01f1 51       		.byte	0x51
+ 2476 01f2 00000000 		.4byte	0
+ 2477 01f6 00000000 		.4byte	0
+ 2478              	.LLST7:
+ 2479 01fa 2C000000 		.4byte	.LVL4
+ 2480 01fe D2000000 		.4byte	.LVL31
+ 2481 0202 0100     		.2byte	0x1
+ 2482 0204 50       		.byte	0x50
+ 2483 0205 D2000000 		.4byte	.LVL31
+ 2484 0209 DE000000 		.4byte	.LVL32
+ 2485 020d 0400     		.2byte	0x4
+ 2486 020f F3       		.byte	0xf3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 45
+
+
+ 2487 0210 01       		.uleb128 0x1
+ 2488 0211 50       		.byte	0x50
+ 2489 0212 9F       		.byte	0x9f
+ 2490 0213 E6000000 		.4byte	.LVL36
+ 2491 0217 16010000 		.4byte	.LVL44
+ 2492 021b 0100     		.2byte	0x1
+ 2493 021d 50       		.byte	0x50
+ 2494 021e 00000000 		.4byte	0
+ 2495 0222 00000000 		.4byte	0
+ 2496              	.LLST8:
+ 2497 0226 36000000 		.4byte	.LVL6
+ 2498 022a 48000000 		.4byte	.LVL8
+ 2499 022e 0200     		.2byte	0x2
+ 2500 0230 30       		.byte	0x30
+ 2501 0231 9F       		.byte	0x9f
+ 2502 0232 48000000 		.4byte	.LVL8
+ 2503 0236 74000000 		.4byte	.LVL15
+ 2504 023a 0100     		.2byte	0x1
+ 2505 023c 59       		.byte	0x59
+ 2506 023d 74000000 		.4byte	.LVL15
+ 2507 0241 96000000 		.4byte	.LVL18
+ 2508 0245 0300     		.2byte	0x3
+ 2509 0247 79       		.byte	0x79
+ 2510 0248 7D       		.sleb128 -3
+ 2511 0249 9F       		.byte	0x9f
+ 2512 024a 96000000 		.4byte	.LVL18
+ 2513 024e A4000000 		.4byte	.LVL21
+ 2514 0252 0100     		.2byte	0x1
+ 2515 0254 59       		.byte	0x59
+ 2516 0255 10010000 		.4byte	.LVL43
+ 2517 0259 16010000 		.4byte	.LVL44
+ 2518 025d 0200     		.2byte	0x2
+ 2519 025f 30       		.byte	0x30
+ 2520 0260 9F       		.byte	0x9f
+ 2521 0261 00000000 		.4byte	0
+ 2522 0265 00000000 		.4byte	0
+ 2523              	.LLST9:
+ 2524 0269 36000000 		.4byte	.LVL6
+ 2525 026d 3A000000 		.4byte	.LVL7
+ 2526 0271 0800     		.2byte	0x8
+ 2527 0273 7A       		.byte	0x7a
+ 2528 0274 00       		.sleb128 0
+ 2529 0275 31       		.byte	0x31
+ 2530 0276 24       		.byte	0x24
+ 2531 0277 7A       		.byte	0x7a
+ 2532 0278 00       		.sleb128 0
+ 2533 0279 22       		.byte	0x22
+ 2534 027a 9F       		.byte	0x9f
+ 2535 027b 3A000000 		.4byte	.LVL7
+ 2536 027f DE000000 		.4byte	.LVL32
+ 2537 0283 0100     		.2byte	0x1
+ 2538 0285 5A       		.byte	0x5a
+ 2539 0286 E6000000 		.4byte	.LVL36
+ 2540 028a 16010000 		.4byte	.LVL44
+ 2541 028e 0100     		.2byte	0x1
+ 2542 0290 5A       		.byte	0x5a
+ 2543 0291 00000000 		.4byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 46
+
+
+ 2544 0295 00000000 		.4byte	0
+ 2545              	.LLST10:
+ 2546 0299 4C000000 		.4byte	.LVL9
+ 2547 029d 66000000 		.4byte	.LVL12
+ 2548 02a1 0600     		.2byte	0x6
+ 2549 02a3 77       		.byte	0x77
+ 2550 02a4 00       		.sleb128 0
+ 2551 02a5 08       		.byte	0x8
+ 2552 02a6 FF       		.byte	0xff
+ 2553 02a7 1A       		.byte	0x1a
+ 2554 02a8 9F       		.byte	0x9f
+ 2555 02a9 66000000 		.4byte	.LVL12
+ 2556 02ad 88000000 		.4byte	.LVL16
+ 2557 02b1 0800     		.2byte	0x8
+ 2558 02b3 75       		.byte	0x75
+ 2559 02b4 7D       		.sleb128 -3
+ 2560 02b5 94       		.byte	0x94
+ 2561 02b6 01       		.byte	0x1
+ 2562 02b7 08       		.byte	0x8
+ 2563 02b8 FF       		.byte	0xff
+ 2564 02b9 1A       		.byte	0x1a
+ 2565 02ba 9F       		.byte	0x9f
+ 2566 02bb B0000000 		.4byte	.LVL23
+ 2567 02bf BC000000 		.4byte	.LVL27
+ 2568 02c3 0100     		.2byte	0x1
+ 2569 02c5 55       		.byte	0x55
+ 2570 02c6 E6000000 		.4byte	.LVL36
+ 2571 02ca FC000000 		.4byte	.LVL40
+ 2572 02ce 0100     		.2byte	0x1
+ 2573 02d0 55       		.byte	0x55
+ 2574 02d1 00000000 		.4byte	0
+ 2575 02d5 00000000 		.4byte	0
+ 2576              	.LLST11:
+ 2577 02d9 50000000 		.4byte	.LVL10
+ 2578 02dd 68000000 		.4byte	.LVL13
+ 2579 02e1 0600     		.2byte	0x6
+ 2580 02e3 76       		.byte	0x76
+ 2581 02e4 00       		.sleb128 0
+ 2582 02e5 08       		.byte	0x8
+ 2583 02e6 FF       		.byte	0xff
+ 2584 02e7 1A       		.byte	0x1a
+ 2585 02e8 9F       		.byte	0x9f
+ 2586 02e9 68000000 		.4byte	.LVL13
+ 2587 02ed 88000000 		.4byte	.LVL16
+ 2588 02f1 0800     		.2byte	0x8
+ 2589 02f3 75       		.byte	0x75
+ 2590 02f4 7E       		.sleb128 -2
+ 2591 02f5 94       		.byte	0x94
+ 2592 02f6 01       		.byte	0x1
+ 2593 02f7 08       		.byte	0x8
+ 2594 02f8 FF       		.byte	0xff
+ 2595 02f9 1A       		.byte	0x1a
+ 2596 02fa 9F       		.byte	0x9f
+ 2597 02fb B2000000 		.4byte	.LVL24
+ 2598 02ff CA000000 		.4byte	.LVL29
+ 2599 0303 0200     		.2byte	0x2
+ 2600 0305 30       		.byte	0x30
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 47
+
+
+ 2601 0306 9F       		.byte	0x9f
+ 2602 0307 E8000000 		.4byte	.LVL37
+ 2603 030b FA000000 		.4byte	.LVL39
+ 2604 030f 0600     		.2byte	0x6
+ 2605 0311 73       		.byte	0x73
+ 2606 0312 00       		.sleb128 0
+ 2607 0313 08       		.byte	0x8
+ 2608 0314 FF       		.byte	0xff
+ 2609 0315 1A       		.byte	0x1a
+ 2610 0316 9F       		.byte	0x9f
+ 2611 0317 00000000 		.4byte	0
+ 2612 031b 00000000 		.4byte	0
+ 2613              	.LLST12:
+ 2614 031f 54000000 		.4byte	.LVL11
+ 2615 0323 70000000 		.4byte	.LVL14
+ 2616 0327 0600     		.2byte	0x6
+ 2617 0329 72       		.byte	0x72
+ 2618 032a 00       		.sleb128 0
+ 2619 032b 08       		.byte	0x8
+ 2620 032c FF       		.byte	0xff
+ 2621 032d 1A       		.byte	0x1a
+ 2622 032e 9F       		.byte	0x9f
+ 2623 032f 70000000 		.4byte	.LVL14
+ 2624 0333 88000000 		.4byte	.LVL16
+ 2625 0337 0800     		.2byte	0x8
+ 2626 0339 75       		.byte	0x75
+ 2627 033a 7F       		.sleb128 -1
+ 2628 033b 94       		.byte	0x94
+ 2629 033c 01       		.byte	0x1
+ 2630 033d 08       		.byte	0x8
+ 2631 033e FF       		.byte	0xff
+ 2632 033f 1A       		.byte	0x1a
+ 2633 0340 9F       		.byte	0x9f
+ 2634 0341 00000000 		.4byte	0
+ 2635 0345 00000000 		.4byte	0
+ 2636              	.LLST13:
+ 2637 0349 36000000 		.4byte	.LVL6
+ 2638 034d 48000000 		.4byte	.LVL8
+ 2639 0351 0100     		.2byte	0x1
+ 2640 0353 50       		.byte	0x50
+ 2641 0354 48000000 		.4byte	.LVL8
+ 2642 0358 54000000 		.4byte	.LVL11
+ 2643 035c 0300     		.2byte	0x3
+ 2644 035e 74       		.byte	0x74
+ 2645 035f 7C       		.sleb128 -4
+ 2646 0360 9F       		.byte	0x9f
+ 2647 0361 54000000 		.4byte	.LVL11
+ 2648 0365 92000000 		.4byte	.LVL17
+ 2649 0369 0300     		.2byte	0x3
+ 2650 036b 74       		.byte	0x74
+ 2651 036c 7D       		.sleb128 -3
+ 2652 036d 9F       		.byte	0x9f
+ 2653 036e 92000000 		.4byte	.LVL17
+ 2654 0372 96000000 		.4byte	.LVL18
+ 2655 0376 0300     		.2byte	0x3
+ 2656 0378 74       		.byte	0x74
+ 2657 0379 7F       		.sleb128 -1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 48
+
+
+ 2658 037a 9F       		.byte	0x9f
+ 2659 037b 96000000 		.4byte	.LVL18
+ 2660 037f A2000000 		.4byte	.LVL20
+ 2661 0383 0100     		.2byte	0x1
+ 2662 0385 54       		.byte	0x54
+ 2663 0386 A2000000 		.4byte	.LVL20
+ 2664 038a B2000000 		.4byte	.LVL24
+ 2665 038e 0100     		.2byte	0x1
+ 2666 0390 56       		.byte	0x56
+ 2667 0391 B2000000 		.4byte	.LVL24
+ 2668 0395 C6000000 		.4byte	.LVL28
+ 2669 0399 0300     		.2byte	0x3
+ 2670 039b 76       		.byte	0x76
+ 2671 039c 01       		.sleb128 1
+ 2672 039d 9F       		.byte	0x9f
+ 2673 039e C6000000 		.4byte	.LVL28
+ 2674 03a2 CA000000 		.4byte	.LVL29
+ 2675 03a6 0300     		.2byte	0x3
+ 2676 03a8 76       		.byte	0x76
+ 2677 03a9 02       		.sleb128 2
+ 2678 03aa 9F       		.byte	0x9f
+ 2679 03ab CA000000 		.4byte	.LVL29
+ 2680 03af DE000000 		.4byte	.LVL32
+ 2681 03b3 0100     		.2byte	0x1
+ 2682 03b5 56       		.byte	0x56
+ 2683 03b6 E6000000 		.4byte	.LVL36
+ 2684 03ba E8000000 		.4byte	.LVL37
+ 2685 03be 0100     		.2byte	0x1
+ 2686 03c0 56       		.byte	0x56
+ 2687 03c1 E8000000 		.4byte	.LVL37
+ 2688 03c5 0C010000 		.4byte	.LVL41
+ 2689 03c9 0300     		.2byte	0x3
+ 2690 03cb 76       		.byte	0x76
+ 2691 03cc 01       		.sleb128 1
+ 2692 03cd 9F       		.byte	0x9f
+ 2693 03ce 0C010000 		.4byte	.LVL41
+ 2694 03d2 0E010000 		.4byte	.LVL42
+ 2695 03d6 0300     		.2byte	0x3
+ 2696 03d8 76       		.byte	0x76
+ 2697 03d9 02       		.sleb128 2
+ 2698 03da 9F       		.byte	0x9f
+ 2699 03db 0E010000 		.4byte	.LVL42
+ 2700 03df 10010000 		.4byte	.LVL43
+ 2701 03e3 0100     		.2byte	0x1
+ 2702 03e5 56       		.byte	0x56
+ 2703 03e6 10010000 		.4byte	.LVL43
+ 2704 03ea 16010000 		.4byte	.LVL44
+ 2705 03ee 0100     		.2byte	0x1
+ 2706 03f0 50       		.byte	0x50
+ 2707 03f1 00000000 		.4byte	0
+ 2708 03f5 00000000 		.4byte	0
+ 2709              	.LLST14:
+ 2710 03f9 00000000 		.4byte	.LVL47
+ 2711 03fd D8000000 		.4byte	.LVL68
+ 2712 0401 0100     		.2byte	0x1
+ 2713 0403 50       		.byte	0x50
+ 2714 0404 D8000000 		.4byte	.LVL68
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 49
+
+
+ 2715 0408 DC000000 		.4byte	.LVL69
+ 2716 040c 0400     		.2byte	0x4
+ 2717 040e F3       		.byte	0xf3
+ 2718 040f 01       		.uleb128 0x1
+ 2719 0410 50       		.byte	0x50
+ 2720 0411 9F       		.byte	0x9f
+ 2721 0412 DC000000 		.4byte	.LVL69
+ 2722 0416 E8000000 		.4byte	.LVL72
+ 2723 041a 0100     		.2byte	0x1
+ 2724 041c 50       		.byte	0x50
+ 2725 041d E8000000 		.4byte	.LVL72
+ 2726 0421 F0000000 		.4byte	.LVL73
+ 2727 0425 0400     		.2byte	0x4
+ 2728 0427 F3       		.byte	0xf3
+ 2729 0428 01       		.uleb128 0x1
+ 2730 0429 50       		.byte	0x50
+ 2731 042a 9F       		.byte	0x9f
+ 2732 042b F0000000 		.4byte	.LVL73
+ 2733 042f 1A010000 		.4byte	.LVL80
+ 2734 0433 0100     		.2byte	0x1
+ 2735 0435 50       		.byte	0x50
+ 2736 0436 1A010000 		.4byte	.LVL80
+ 2737 043a 1C010000 		.4byte	.LVL81
+ 2738 043e 0400     		.2byte	0x4
+ 2739 0440 F3       		.byte	0xf3
+ 2740 0441 01       		.uleb128 0x1
+ 2741 0442 50       		.byte	0x50
+ 2742 0443 9F       		.byte	0x9f
+ 2743 0444 1C010000 		.4byte	.LVL81
+ 2744 0448 1E010000 		.4byte	.LVL82
+ 2745 044c 0100     		.2byte	0x1
+ 2746 044e 50       		.byte	0x50
+ 2747 044f 1E010000 		.4byte	.LVL82
+ 2748 0453 20010000 		.4byte	.LVL83
+ 2749 0457 0400     		.2byte	0x4
+ 2750 0459 F3       		.byte	0xf3
+ 2751 045a 01       		.uleb128 0x1
+ 2752 045b 50       		.byte	0x50
+ 2753 045c 9F       		.byte	0x9f
+ 2754 045d 20010000 		.4byte	.LVL83
+ 2755 0461 26010000 		.4byte	.LVL84
+ 2756 0465 0100     		.2byte	0x1
+ 2757 0467 50       		.byte	0x50
+ 2758 0468 26010000 		.4byte	.LVL84
+ 2759 046c 2A010000 		.4byte	.LVL85
+ 2760 0470 0400     		.2byte	0x4
+ 2761 0472 F3       		.byte	0xf3
+ 2762 0473 01       		.uleb128 0x1
+ 2763 0474 50       		.byte	0x50
+ 2764 0475 9F       		.byte	0x9f
+ 2765 0476 2A010000 		.4byte	.LVL85
+ 2766 047a 34010000 		.4byte	.LFE1
+ 2767 047e 0100     		.2byte	0x1
+ 2768 0480 50       		.byte	0x50
+ 2769 0481 00000000 		.4byte	0
+ 2770 0485 00000000 		.4byte	0
+ 2771              	.LLST15:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 50
+
+
+ 2772 0489 00000000 		.4byte	.LVL47
+ 2773 048d 10000000 		.4byte	.LVL48
+ 2774 0491 0100     		.2byte	0x1
+ 2775 0493 52       		.byte	0x52
+ 2776 0494 10000000 		.4byte	.LVL48
+ 2777 0498 94000000 		.4byte	.LVL59
+ 2778 049c 0100     		.2byte	0x1
+ 2779 049e 58       		.byte	0x58
+ 2780 049f 94000000 		.4byte	.LVL59
+ 2781 04a3 9C000000 		.4byte	.LVL61
+ 2782 04a7 0100     		.2byte	0x1
+ 2783 04a9 5C       		.byte	0x5c
+ 2784 04aa 9C000000 		.4byte	.LVL61
+ 2785 04ae C2000000 		.4byte	.LVL67
+ 2786 04b2 0300     		.2byte	0x3
+ 2787 04b4 7C       		.byte	0x7c
+ 2788 04b5 7F       		.sleb128 -1
+ 2789 04b6 9F       		.byte	0x9f
+ 2790 04b7 C2000000 		.4byte	.LVL67
+ 2791 04bb E4000000 		.4byte	.LVL71
+ 2792 04bf 0100     		.2byte	0x1
+ 2793 04c1 58       		.byte	0x58
+ 2794 04c2 E4000000 		.4byte	.LVL71
+ 2795 04c6 E8000000 		.4byte	.LVL72
+ 2796 04ca 0100     		.2byte	0x1
+ 2797 04cc 5C       		.byte	0x5c
+ 2798 04cd F0000000 		.4byte	.LVL73
+ 2799 04d1 18010000 		.4byte	.LVL79
+ 2800 04d5 0300     		.2byte	0x3
+ 2801 04d7 7C       		.byte	0x7c
+ 2802 04d8 7F       		.sleb128 -1
+ 2803 04d9 9F       		.byte	0x9f
+ 2804 04da 18010000 		.4byte	.LVL79
+ 2805 04de 1C010000 		.4byte	.LVL81
+ 2806 04e2 0100     		.2byte	0x1
+ 2807 04e4 58       		.byte	0x58
+ 2808 04e5 1C010000 		.4byte	.LVL81
+ 2809 04e9 20010000 		.4byte	.LVL83
+ 2810 04ed 0100     		.2byte	0x1
+ 2811 04ef 52       		.byte	0x52
+ 2812 04f0 20010000 		.4byte	.LVL83
+ 2813 04f4 2A010000 		.4byte	.LVL85
+ 2814 04f8 0100     		.2byte	0x1
+ 2815 04fa 58       		.byte	0x58
+ 2816 04fb 2A010000 		.4byte	.LVL85
+ 2817 04ff 34010000 		.4byte	.LFE1
+ 2818 0503 0300     		.2byte	0x3
+ 2819 0505 7C       		.byte	0x7c
+ 2820 0506 7F       		.sleb128 -1
+ 2821 0507 9F       		.byte	0x9f
+ 2822 0508 00000000 		.4byte	0
+ 2823 050c 00000000 		.4byte	0
+ 2824              	.LLST16:
+ 2825 0510 00000000 		.4byte	.LVL47
+ 2826 0514 74000000 		.4byte	.LVL53
+ 2827 0518 0100     		.2byte	0x1
+ 2828 051a 53       		.byte	0x53
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 51
+
+
+ 2829 051b 74000000 		.4byte	.LVL53
+ 2830 051f 90000000 		.4byte	.LVL58
+ 2831 0523 0300     		.2byte	0x3
+ 2832 0525 7E       		.byte	0x7e
+ 2833 0526 7F       		.sleb128 -1
+ 2834 0527 9F       		.byte	0x9f
+ 2835 0528 90000000 		.4byte	.LVL58
+ 2836 052c C2000000 		.4byte	.LVL67
+ 2837 0530 0400     		.2byte	0x4
+ 2838 0532 F3       		.byte	0xf3
+ 2839 0533 01       		.uleb128 0x1
+ 2840 0534 53       		.byte	0x53
+ 2841 0535 9F       		.byte	0x9f
+ 2842 0536 C2000000 		.4byte	.LVL67
+ 2843 053a E4000000 		.4byte	.LVL71
+ 2844 053e 0100     		.2byte	0x1
+ 2845 0540 53       		.byte	0x53
+ 2846 0541 E4000000 		.4byte	.LVL71
+ 2847 0545 1C010000 		.4byte	.LVL81
+ 2848 0549 0400     		.2byte	0x4
+ 2849 054b F3       		.byte	0xf3
+ 2850 054c 01       		.uleb128 0x1
+ 2851 054d 53       		.byte	0x53
+ 2852 054e 9F       		.byte	0x9f
+ 2853 054f 1C010000 		.4byte	.LVL81
+ 2854 0553 20010000 		.4byte	.LVL83
+ 2855 0557 0100     		.2byte	0x1
+ 2856 0559 53       		.byte	0x53
+ 2857 055a 20010000 		.4byte	.LVL83
+ 2858 055e 2A010000 		.4byte	.LVL85
+ 2859 0562 0300     		.2byte	0x3
+ 2860 0564 7E       		.byte	0x7e
+ 2861 0565 7F       		.sleb128 -1
+ 2862 0566 9F       		.byte	0x9f
+ 2863 0567 2A010000 		.4byte	.LVL85
+ 2864 056b 34010000 		.4byte	.LFE1
+ 2865 056f 0400     		.2byte	0x4
+ 2866 0571 F3       		.byte	0xf3
+ 2867 0572 01       		.uleb128 0x1
+ 2868 0573 53       		.byte	0x53
+ 2869 0574 9F       		.byte	0x9f
+ 2870 0575 00000000 		.4byte	0
+ 2871 0579 00000000 		.4byte	0
+ 2872              	.LLST17:
+ 2873 057d 00000000 		.4byte	.LVL47
+ 2874 0581 20000000 		.4byte	.LVL49
+ 2875 0585 0200     		.2byte	0x2
+ 2876 0587 30       		.byte	0x30
+ 2877 0588 9F       		.byte	0x9f
+ 2878 0589 20000000 		.4byte	.LVL49
+ 2879 058d 42000000 		.4byte	.LVL50
+ 2880 0591 0300     		.2byte	0x3
+ 2881 0593 75       		.byte	0x75
+ 2882 0594 7F       		.sleb128 -1
+ 2883 0595 9F       		.byte	0x9f
+ 2884 0596 42000000 		.4byte	.LVL50
+ 2885 059a 4C000000 		.4byte	.LVL51
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 52
+
+
+ 2886 059e 0100     		.2byte	0x1
+ 2887 05a0 54       		.byte	0x54
+ 2888 05a1 4C000000 		.4byte	.LVL51
+ 2889 05a5 60000000 		.4byte	.LVL52
+ 2890 05a9 0300     		.2byte	0x3
+ 2891 05ab 75       		.byte	0x75
+ 2892 05ac 7F       		.sleb128 -1
+ 2893 05ad 9F       		.byte	0x9f
+ 2894 05ae 60000000 		.4byte	.LVL52
+ 2895 05b2 8C000000 		.4byte	.LVL57
+ 2896 05b6 0100     		.2byte	0x1
+ 2897 05b8 54       		.byte	0x54
+ 2898 05b9 C2000000 		.4byte	.LVL67
+ 2899 05bd E4000000 		.4byte	.LVL71
+ 2900 05c1 0300     		.2byte	0x3
+ 2901 05c3 75       		.byte	0x75
+ 2902 05c4 7F       		.sleb128 -1
+ 2903 05c5 9F       		.byte	0x9f
+ 2904 05c6 18010000 		.4byte	.LVL79
+ 2905 05ca 1C010000 		.4byte	.LVL81
+ 2906 05ce 0100     		.2byte	0x1
+ 2907 05d0 54       		.byte	0x54
+ 2908 05d1 1C010000 		.4byte	.LVL81
+ 2909 05d5 20010000 		.4byte	.LVL83
+ 2910 05d9 0200     		.2byte	0x2
+ 2911 05db 30       		.byte	0x30
+ 2912 05dc 9F       		.byte	0x9f
+ 2913 05dd 20010000 		.4byte	.LVL83
+ 2914 05e1 2A010000 		.4byte	.LVL85
+ 2915 05e5 0100     		.2byte	0x1
+ 2916 05e7 54       		.byte	0x54
+ 2917 05e8 00000000 		.4byte	0
+ 2918 05ec 00000000 		.4byte	0
+ 2919              	.LLST18:
+ 2920 05f0 00000000 		.4byte	.LVL47
+ 2921 05f4 20000000 		.4byte	.LVL49
+ 2922 05f8 0200     		.2byte	0x2
+ 2923 05fa 30       		.byte	0x30
+ 2924 05fb 9F       		.byte	0x9f
+ 2925 05fc 20000000 		.4byte	.LVL49
+ 2926 0600 7C000000 		.4byte	.LVL55
+ 2927 0604 0100     		.2byte	0x1
+ 2928 0606 57       		.byte	0x57
+ 2929 0607 7C000000 		.4byte	.LVL55
+ 2930 060b 80000000 		.4byte	.LVL56
+ 2931 060f 0100     		.2byte	0x1
+ 2932 0611 53       		.byte	0x53
+ 2933 0612 80000000 		.4byte	.LVL56
+ 2934 0616 94000000 		.4byte	.LVL59
+ 2935 061a 0200     		.2byte	0x2
+ 2936 061c 30       		.byte	0x30
+ 2937 061d 9F       		.byte	0x9f
+ 2938 061e 94000000 		.4byte	.LVL59
+ 2939 0622 AA000000 		.4byte	.LVL62
+ 2940 0626 0100     		.2byte	0x1
+ 2941 0628 52       		.byte	0x52
+ 2942 0629 AA000000 		.4byte	.LVL62
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 53
+
+
+ 2943 062d BA000000 		.4byte	.LVL64
+ 2944 0631 0300     		.2byte	0x3
+ 2945 0633 72       		.byte	0x72
+ 2946 0634 7F       		.sleb128 -1
+ 2947 0635 9F       		.byte	0x9f
+ 2948 0636 BA000000 		.4byte	.LVL64
+ 2949 063a BC000000 		.4byte	.LVL65
+ 2950 063e 0100     		.2byte	0x1
+ 2951 0640 52       		.byte	0x52
+ 2952 0641 BC000000 		.4byte	.LVL65
+ 2953 0645 C2000000 		.4byte	.LVL67
+ 2954 0649 0200     		.2byte	0x2
+ 2955 064b 30       		.byte	0x30
+ 2956 064c 9F       		.byte	0x9f
+ 2957 064d C2000000 		.4byte	.LVL67
+ 2958 0651 E4000000 		.4byte	.LVL71
+ 2959 0655 0100     		.2byte	0x1
+ 2960 0657 57       		.byte	0x57
+ 2961 0658 E4000000 		.4byte	.LVL71
+ 2962 065c E8000000 		.4byte	.LVL72
+ 2963 0660 0100     		.2byte	0x1
+ 2964 0662 52       		.byte	0x52
+ 2965 0663 F0000000 		.4byte	.LVL73
+ 2966 0667 20010000 		.4byte	.LVL83
+ 2967 066b 0200     		.2byte	0x2
+ 2968 066d 30       		.byte	0x30
+ 2969 066e 9F       		.byte	0x9f
+ 2970 066f 20010000 		.4byte	.LVL83
+ 2971 0673 2A010000 		.4byte	.LVL85
+ 2972 0677 0100     		.2byte	0x1
+ 2973 0679 53       		.byte	0x53
+ 2974 067a 2A010000 		.4byte	.LVL85
+ 2975 067e 34010000 		.4byte	.LFE1
+ 2976 0682 0200     		.2byte	0x2
+ 2977 0684 30       		.byte	0x30
+ 2978 0685 9F       		.byte	0x9f
+ 2979 0686 00000000 		.4byte	0
+ 2980 068a 00000000 		.4byte	0
+ 2981              	.LLST19:
+ 2982 068e 00000000 		.4byte	.LVL47
+ 2983 0692 20000000 		.4byte	.LVL49
+ 2984 0696 0200     		.2byte	0x2
+ 2985 0698 30       		.byte	0x30
+ 2986 0699 9F       		.byte	0x9f
+ 2987 069a 20000000 		.4byte	.LVL49
+ 2988 069e 7A000000 		.4byte	.LVL54
+ 2989 06a2 0100     		.2byte	0x1
+ 2990 06a4 52       		.byte	0x52
+ 2991 06a5 80000000 		.4byte	.LVL56
+ 2992 06a9 94000000 		.4byte	.LVL59
+ 2993 06ad 0200     		.2byte	0x2
+ 2994 06af 33       		.byte	0x33
+ 2995 06b0 9F       		.byte	0x9f
+ 2996 06b1 94000000 		.4byte	.LVL59
+ 2997 06b5 C2000000 		.4byte	.LVL67
+ 2998 06b9 0100     		.2byte	0x1
+ 2999 06bb 56       		.byte	0x56
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 54
+
+
+ 3000 06bc C2000000 		.4byte	.LVL67
+ 3001 06c0 E4000000 		.4byte	.LVL71
+ 3002 06c4 0100     		.2byte	0x1
+ 3003 06c6 52       		.byte	0x52
+ 3004 06c7 E4000000 		.4byte	.LVL71
+ 3005 06cb E8000000 		.4byte	.LVL72
+ 3006 06cf 0100     		.2byte	0x1
+ 3007 06d1 56       		.byte	0x56
+ 3008 06d2 F0000000 		.4byte	.LVL73
+ 3009 06d6 18010000 		.4byte	.LVL79
+ 3010 06da 0100     		.2byte	0x1
+ 3011 06dc 56       		.byte	0x56
+ 3012 06dd 18010000 		.4byte	.LVL79
+ 3013 06e1 1C010000 		.4byte	.LVL81
+ 3014 06e5 0200     		.2byte	0x2
+ 3015 06e7 33       		.byte	0x33
+ 3016 06e8 9F       		.byte	0x9f
+ 3017 06e9 1C010000 		.4byte	.LVL81
+ 3018 06ed 20010000 		.4byte	.LVL83
+ 3019 06f1 0200     		.2byte	0x2
+ 3020 06f3 30       		.byte	0x30
+ 3021 06f4 9F       		.byte	0x9f
+ 3022 06f5 2A010000 		.4byte	.LVL85
+ 3023 06f9 34010000 		.4byte	.LFE1
+ 3024 06fd 0100     		.2byte	0x1
+ 3025 06ff 56       		.byte	0x56
+ 3026 0700 00000000 		.4byte	0
+ 3027 0704 00000000 		.4byte	0
+ 3028              	.LLST20:
+ 3029 0708 80000000 		.4byte	.LVL56
+ 3030 070c 94000000 		.4byte	.LVL59
+ 3031 0710 0200     		.2byte	0x2
+ 3032 0712 30       		.byte	0x30
+ 3033 0713 9F       		.byte	0x9f
+ 3034 0714 94000000 		.4byte	.LVL59
+ 3035 0718 C2000000 		.4byte	.LVL67
+ 3036 071c 0100     		.2byte	0x1
+ 3037 071e 55       		.byte	0x55
+ 3038 071f E4000000 		.4byte	.LVL71
+ 3039 0723 E8000000 		.4byte	.LVL72
+ 3040 0727 0100     		.2byte	0x1
+ 3041 0729 55       		.byte	0x55
+ 3042 072a F0000000 		.4byte	.LVL73
+ 3043 072e 18010000 		.4byte	.LVL79
+ 3044 0732 0100     		.2byte	0x1
+ 3045 0734 55       		.byte	0x55
+ 3046 0735 18010000 		.4byte	.LVL79
+ 3047 0739 1C010000 		.4byte	.LVL81
+ 3048 073d 0200     		.2byte	0x2
+ 3049 073f 30       		.byte	0x30
+ 3050 0740 9F       		.byte	0x9f
+ 3051 0741 2A010000 		.4byte	.LVL85
+ 3052 0745 34010000 		.4byte	.LFE1
+ 3053 0749 0100     		.2byte	0x1
+ 3054 074b 55       		.byte	0x55
+ 3055 074c 00000000 		.4byte	0
+ 3056 0750 00000000 		.4byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 55
+
+
+ 3057              	.LLST21:
+ 3058 0754 80000000 		.4byte	.LVL56
+ 3059 0758 94000000 		.4byte	.LVL59
+ 3060 075c 0100     		.2byte	0x1
+ 3061 075e 50       		.byte	0x50
+ 3062 075f 94000000 		.4byte	.LVL59
+ 3063 0763 C2000000 		.4byte	.LVL67
+ 3064 0767 0100     		.2byte	0x1
+ 3065 0769 5E       		.byte	0x5e
+ 3066 076a E4000000 		.4byte	.LVL71
+ 3067 076e E8000000 		.4byte	.LVL72
+ 3068 0772 0100     		.2byte	0x1
+ 3069 0774 5E       		.byte	0x5e
+ 3070 0775 F0000000 		.4byte	.LVL73
+ 3071 0779 FA000000 		.4byte	.LVL74
+ 3072 077d 0300     		.2byte	0x3
+ 3073 077f 7E       		.byte	0x7e
+ 3074 0780 01       		.sleb128 1
+ 3075 0781 9F       		.byte	0x9f
+ 3076 0782 FA000000 		.4byte	.LVL74
+ 3077 0786 04010000 		.4byte	.LVL75
+ 3078 078a 0300     		.2byte	0x3
+ 3079 078c 7E       		.byte	0x7e
+ 3080 078d 02       		.sleb128 2
+ 3081 078e 9F       		.byte	0x9f
+ 3082 078f 04010000 		.4byte	.LVL75
+ 3083 0793 0E010000 		.4byte	.LVL76
+ 3084 0797 0300     		.2byte	0x3
+ 3085 0799 7E       		.byte	0x7e
+ 3086 079a 03       		.sleb128 3
+ 3087 079b 9F       		.byte	0x9f
+ 3088 079c 0E010000 		.4byte	.LVL76
+ 3089 07a0 10010000 		.4byte	.LVL77
+ 3090 07a4 0100     		.2byte	0x1
+ 3091 07a6 5E       		.byte	0x5e
+ 3092 07a7 10010000 		.4byte	.LVL77
+ 3093 07ab 14010000 		.4byte	.LVL78
+ 3094 07af 0300     		.2byte	0x3
+ 3095 07b1 7E       		.byte	0x7e
+ 3096 07b2 02       		.sleb128 2
+ 3097 07b3 9F       		.byte	0x9f
+ 3098 07b4 14010000 		.4byte	.LVL78
+ 3099 07b8 18010000 		.4byte	.LVL79
+ 3100 07bc 0100     		.2byte	0x1
+ 3101 07be 5E       		.byte	0x5e
+ 3102 07bf 18010000 		.4byte	.LVL79
+ 3103 07c3 1A010000 		.4byte	.LVL80
+ 3104 07c7 0100     		.2byte	0x1
+ 3105 07c9 50       		.byte	0x50
+ 3106 07ca 1A010000 		.4byte	.LVL80
+ 3107 07ce 1C010000 		.4byte	.LVL81
+ 3108 07d2 0400     		.2byte	0x4
+ 3109 07d4 F3       		.byte	0xf3
+ 3110 07d5 01       		.uleb128 0x1
+ 3111 07d6 50       		.byte	0x50
+ 3112 07d7 9F       		.byte	0x9f
+ 3113 07d8 2A010000 		.4byte	.LVL85
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 56
+
+
+ 3114 07dc 2E010000 		.4byte	.LVL86
+ 3115 07e0 0300     		.2byte	0x3
+ 3116 07e2 7E       		.byte	0x7e
+ 3117 07e3 01       		.sleb128 1
+ 3118 07e4 9F       		.byte	0x9f
+ 3119 07e5 2E010000 		.4byte	.LVL86
+ 3120 07e9 34010000 		.4byte	.LFE1
+ 3121 07ed 0100     		.2byte	0x1
+ 3122 07ef 5E       		.byte	0x5e
+ 3123 07f0 00000000 		.4byte	0
+ 3124 07f4 00000000 		.4byte	0
+ 3125              	.LLST22:
+ 3126 07f8 00000000 		.4byte	.LVL87
+ 3127 07fc 0A000000 		.4byte	.LVL88
+ 3128 0800 0100     		.2byte	0x1
+ 3129 0802 50       		.byte	0x50
+ 3130 0803 0A000000 		.4byte	.LVL88
+ 3131 0807 52000000 		.4byte	.LVL97
+ 3132 080b 0400     		.2byte	0x4
+ 3133 080d F3       		.byte	0xf3
+ 3134 080e 01       		.uleb128 0x1
+ 3135 080f 50       		.byte	0x50
+ 3136 0810 9F       		.byte	0x9f
+ 3137 0811 52000000 		.4byte	.LVL97
+ 3138 0815 54000000 		.4byte	.LVL98
+ 3139 0819 0100     		.2byte	0x1
+ 3140 081b 50       		.byte	0x50
+ 3141 081c 54000000 		.4byte	.LVL98
+ 3142 0820 C8000000 		.4byte	.LFE2
+ 3143 0824 0400     		.2byte	0x4
+ 3144 0826 F3       		.byte	0xf3
+ 3145 0827 01       		.uleb128 0x1
+ 3146 0828 50       		.byte	0x50
+ 3147 0829 9F       		.byte	0x9f
+ 3148 082a 00000000 		.4byte	0
+ 3149 082e 00000000 		.4byte	0
+ 3150              	.LLST23:
+ 3151 0832 10000000 		.4byte	.LVL89
+ 3152 0836 18000000 		.4byte	.LVL91
+ 3153 083a 0600     		.2byte	0x6
+ 3154 083c 03       		.byte	0x3
+ 3155 083d 00000000 		.4byte	base64_test_dec
+ 3156 0841 9F       		.byte	0x9f
+ 3157 0842 20000000 		.4byte	.LVL92
+ 3158 0846 36000000 		.4byte	.LVL94
+ 3159 084a 0600     		.2byte	0x6
+ 3160 084c 03       		.byte	0x3
+ 3161 084d 00000000 		.4byte	base64_test_dec
+ 3162 0851 9F       		.byte	0x9f
+ 3163 0852 36000000 		.4byte	.LVL94
+ 3164 0856 52000000 		.4byte	.LVL97
+ 3165 085a 0600     		.2byte	0x6
+ 3166 085c F2       		.byte	0xf2
+ 3167 085d F7040000 		.4byte	.Ldebug_info0+1271
+ 3168 0861 00       		.sleb128 0
+ 3169 0862 62000000 		.4byte	.LVL100
+ 3170 0866 84000000 		.4byte	.LVL104
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 57
+
+
+ 3171 086a 0600     		.2byte	0x6
+ 3172 086c 03       		.byte	0x3
+ 3173 086d 00000000 		.4byte	base64_test_dec
+ 3174 0871 9F       		.byte	0x9f
+ 3175 0872 84000000 		.4byte	.LVL104
+ 3176 0876 A2000000 		.4byte	.LVL108
+ 3177 087a 0600     		.2byte	0x6
+ 3178 087c F2       		.byte	0xf2
+ 3179 087d F7040000 		.4byte	.Ldebug_info0+1271
+ 3180 0881 00       		.sleb128 0
+ 3181 0882 00000000 		.4byte	0
+ 3182 0886 00000000 		.4byte	0
+ 3183              		.section	.debug_aranges,"",%progbits
+ 3184 0000 2C000000 		.4byte	0x2c
+ 3185 0004 0200     		.2byte	0x2
+ 3186 0006 00000000 		.4byte	.Ldebug_info0
+ 3187 000a 04       		.byte	0x4
+ 3188 000b 00       		.byte	0
+ 3189 000c 0000     		.2byte	0
+ 3190 000e 0000     		.2byte	0
+ 3191 0010 00000000 		.4byte	.LFB0
+ 3192 0014 28010000 		.4byte	.LFE0-.LFB0
+ 3193 0018 00000000 		.4byte	.LFB1
+ 3194 001c 34010000 		.4byte	.LFE1-.LFB1
+ 3195 0020 00000000 		.4byte	.LFB2
+ 3196 0024 C8000000 		.4byte	.LFE2-.LFB2
+ 3197 0028 00000000 		.4byte	0
+ 3198 002c 00000000 		.4byte	0
+ 3199              		.section	.debug_ranges,"",%progbits
+ 3200              	.Ldebug_ranges0:
+ 3201 0000 2C000000 		.4byte	.LBB4
+ 3202 0004 DE000000 		.4byte	.LBE4
+ 3203 0008 E6000000 		.4byte	.LBB7
+ 3204 000c 16010000 		.4byte	.LBE7
+ 3205 0010 00000000 		.4byte	0
+ 3206 0014 00000000 		.4byte	0
+ 3207 0018 00000000 		.4byte	.LFB0
+ 3208 001c 28010000 		.4byte	.LFE0
+ 3209 0020 00000000 		.4byte	.LFB1
+ 3210 0024 34010000 		.4byte	.LFE1
+ 3211 0028 00000000 		.4byte	.LFB2
+ 3212 002c C8000000 		.4byte	.LFE2
+ 3213 0030 00000000 		.4byte	0
+ 3214 0034 00000000 		.4byte	0
+ 3215              		.section	.debug_line,"",%progbits
+ 3216              	.Ldebug_line0:
+ 3217 0000 EB020000 		.section	.debug_str,"MS",%progbits,1
+ 3217      02008201 
+ 3217      00000201 
+ 3217      FB0E0D00 
+ 3217      01010101 
+ 3218              	.LASF30:
+ 3219 0000 433A5C55 		.ascii	"C:\\Users\\jo\\Documents\\GitHub\\ChibiOS\\demos\\S"
+ 3219      73657273 
+ 3219      5C6A6F5C 
+ 3219      446F6375 
+ 3219      6D656E74 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 58
+
+
+ 3220 002c 544D3332 		.ascii	"TM32\\RT-STM32F407-DISCOVERY-uHttp\000"
+ 3220      5C52542D 
+ 3220      53544D33 
+ 3220      32463430 
+ 3220      372D4449 
+ 3221              	.LASF22:
+ 3222 004e 62617365 		.ascii	"base64_test_dec\000"
+ 3222      36345F74 
+ 3222      6573745F 
+ 3222      64656300 
+ 3223              	.LASF18:
+ 3224 005e 76657262 		.ascii	"verbose\000"
+ 3224      6F736500 
+ 3225              	.LASF25:
+ 3226 0066 6D656D63 		.ascii	"memcmp\000"
+ 3226      6D7000
+ 3227              	.LASF23:
+ 3228 006d 62617365 		.ascii	"base64_test_enc\000"
+ 3228      36345F74 
+ 3228      6573745F 
+ 3228      656E6300 
+ 3229              	.LASF14:
+ 3230 007d 646C656E 		.ascii	"dlen\000"
+ 3230      00
+ 3231              	.LASF27:
+ 3232 0082 5F5F6275 		.ascii	"__builtin_puts\000"
+ 3232      696C7469 
+ 3232      6E5F7075 
+ 3232      747300
+ 3233              	.LASF16:
+ 3234 0091 62617365 		.ascii	"base64_decode\000"
+ 3234      36345F64 
+ 3234      65636F64 
+ 3234      6500
+ 3235              	.LASF2:
+ 3236 009f 756E7369 		.ascii	"unsigned char\000"
+ 3236      676E6564 
+ 3236      20636861 
+ 3236      7200
+ 3237              	.LASF15:
+ 3238 00ad 736C656E 		.ascii	"slen\000"
+ 3238      00
+ 3239              	.LASF8:
+ 3240 00b2 6C6F6E67 		.ascii	"long unsigned int\000"
+ 3240      20756E73 
+ 3240      69676E65 
+ 3240      6420696E 
+ 3240      7400
+ 3241              	.LASF4:
+ 3242 00c4 73686F72 		.ascii	"short unsigned int\000"
+ 3242      7420756E 
+ 3242      7369676E 
+ 3242      65642069 
+ 3242      6E7400
+ 3243              	.LASF6:
+ 3244 00d7 73697A65 		.ascii	"size_t\000"
+ 3244      5F7400
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 59
+
+
+ 3245              	.LASF7:
+ 3246 00de 5F5F7569 		.ascii	"__uint32_t\000"
+ 3246      6E743332 
+ 3246      5F7400
+ 3247              	.LASF0:
+ 3248 00e9 756E7369 		.ascii	"unsigned int\000"
+ 3248      676E6564 
+ 3248      20696E74 
+ 3248      00
+ 3249              	.LASF28:
+ 3250 00f6 474E5520 		.ascii	"GNU C 4.9.3 20141119 (release) [ARM/embedded-4_9-br"
+ 3250      4320342E 
+ 3250      392E3320 
+ 3250      32303134 
+ 3250      31313139 
+ 3251 0129 616E6368 		.ascii	"anch revision 218278] -mcpu=cortex-m4 -mno-thumb-in"
+ 3251      20726576 
+ 3251      6973696F 
+ 3251      6E203231 
+ 3251      38323738 
+ 3252 015c 74657277 		.ascii	"terwork -mthumb -ggdb -O2 -fomit-frame-pointer -fal"
+ 3252      6F726B20 
+ 3252      2D6D7468 
+ 3252      756D6220 
+ 3252      2D676764 
+ 3253 018f 69676E2D 		.ascii	"ign-functions=16 -ffunction-sections -fdata-section"
+ 3253      66756E63 
+ 3253      74696F6E 
+ 3253      733D3136 
+ 3253      202D6666 
+ 3254 01c2 73202D66 		.ascii	"s -fno-common\000"
+ 3254      6E6F2D63 
+ 3254      6F6D6D6F 
+ 3254      6E00
+ 3255              	.LASF10:
+ 3256 01d0 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 3256      206C6F6E 
+ 3256      6720756E 
+ 3256      7369676E 
+ 3256      65642069 
+ 3257              	.LASF20:
+ 3258 01e7 62617365 		.ascii	"base64_enc_map\000"
+ 3258      36345F65 
+ 3258      6E635F6D 
+ 3258      617000
+ 3259              	.LASF11:
+ 3260 01f6 73697A65 		.ascii	"sizetype\000"
+ 3260      74797065 
+ 3260      00
+ 3261              	.LASF9:
+ 3262 01ff 6C6F6E67 		.ascii	"long long int\000"
+ 3262      206C6F6E 
+ 3262      6720696E 
+ 3262      7400
+ 3263              	.LASF29:
+ 3264 020d 2E2E2F2E 		.ascii	"../../../os/ext/PolarSSL/library/base64.c\000"
+ 3264      2E2F2E2E 
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 60
+
+
+ 3264      2F6F732F 
+ 3264      6578742F 
+ 3264      506F6C61 
+ 3265              	.LASF21:
+ 3266 0237 62617365 		.ascii	"base64_dec_map\000"
+ 3266      36345F64 
+ 3266      65635F6D 
+ 3266      617000
+ 3267              	.LASF26:
+ 3268 0246 7072696E 		.ascii	"printf\000"
+ 3268      746600
+ 3269              	.LASF17:
+ 3270 024d 62617365 		.ascii	"base64_self_test\000"
+ 3270      36345F73 
+ 3270      656C665F 
+ 3270      74657374 
+ 3270      00
+ 3271              	.LASF3:
+ 3272 025e 73686F72 		.ascii	"short int\000"
+ 3272      7420696E 
+ 3272      7400
+ 3273              	.LASF19:
+ 3274 0268 62756666 		.ascii	"buffer\000"
+ 3274      657200
+ 3275              	.LASF24:
+ 3276 026f 62617365 		.ascii	"base64_encode\000"
+ 3276      36345F65 
+ 3276      6E636F64 
+ 3276      6500
+ 3277              	.LASF13:
+ 3278 027d 75696E74 		.ascii	"uint32_t\000"
+ 3278      33325F74 
+ 3278      00
+ 3279              	.LASF5:
+ 3280 0286 6C6F6E67 		.ascii	"long int\000"
+ 3280      20696E74 
+ 3280      00
+ 3281              	.LASF12:
+ 3282 028f 63686172 		.ascii	"char\000"
+ 3282      00
+ 3283              	.LASF31:
+ 3284 0294 70757473 		.ascii	"puts\000"
+ 3284      00
+ 3285              	.LASF1:
+ 3286 0299 7369676E 		.ascii	"signed char\000"
+ 3286      65642063 
+ 3286      68617200 
+ 3287              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s 			page 61
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 base64.c
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:19     .text.base64_encode:00000000 $t
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:25     .text.base64_encode:00000000 base64_encode
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:298    .text.base64_encode:00000120 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:304    .text.base64_decode:00000000 $t
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:310    .text.base64_decode:00000000 base64_decode
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:592    .text.base64_decode:00000130 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:597    .text.base64_self_test:00000000 $t
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:603    .text.base64_self_test:00000000 base64_self_test
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:757    .text.base64_self_test:000000b0 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:767    .rodata.base64_enc_map:00000000 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:771    .rodata.base64_enc_map:00000000 base64_enc_map
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:837    .rodata.base64_test_dec:00000000 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:841    .rodata.base64_test_dec:00000000 base64_test_dec
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:907    .rodata.str1.4:00000000 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:919    .rodata.base64_test_enc:00000000 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:923    .rodata.base64_test_enc:00000000 base64_test_enc
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:927    .rodata.base64_dec_map:00000000 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:931    .rodata.base64_dec_map:00000000 base64_dec_map
+                     .debug_frame:00000010 $d
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:303    .text.base64_encode:00000128 $t
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:596    .text.base64_decode:00000134 $t
+C:\Users\jo\AppData\Local\Temp\ccRVaYUI.s:766    .text.base64_self_test:000000c8 $t
+
+UNDEFINED SYMBOLS
+memcmp
+printf
+puts
