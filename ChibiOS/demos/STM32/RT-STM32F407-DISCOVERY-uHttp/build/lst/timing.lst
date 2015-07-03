@@ -1,0 +1,3147 @@
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m4
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 2
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.file	"timing.c"
+  15              		.text
+  16              	.Ltext0:
+  17              		.cfi_sections	.debug_frame
+  18              		.section	.text.sighandler,"ax",%progbits
+  19              		.align	2
+  20              		.p2align 4,,15
+  21              		.thumb
+  22              		.thumb_func
+  23              		.type	sighandler, %function
+  24              	sighandler:
+  25              	.LFB2:
+  26              		.file 1 "../../../ext/mbedtls-1.3.11/library/timing.c"
+  27              		.loc 1 311 0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31              		@ link register save eliminated.
+  32              	.LVL0:
+  33              		.loc 1 312 0
+  34 0000 024B     		ldr	r3, .L2
+  35              		.loc 1 313 0
+  36 0002 0349     		ldr	r1, .L2+4
+  37              		.loc 1 312 0
+  38 0004 0122     		movs	r2, #1
+  39 0006 1A60     		str	r2, [r3]
+  40              		.loc 1 313 0
+  41 0008 FFF7FEBF 		b	signal
+  42              	.LVL1:
+  43              	.L3:
+  44              		.align	2
+  45              	.L2:
+  46 000c 00000000 		.word	.LANCHOR0
+  47 0010 00000000 		.word	sighandler
+  48              		.cfi_endproc
+  49              	.LFE2:
+  50              		.size	sighandler, .-sighandler
+  51 0014 AFF30080 		.section	.text.hardclock,"ax",%progbits
+  51      AFF30080 
+  51      AFF30080 
+  52              		.align	2
+  53              		.p2align 4,,15
+  54              		.global	hardclock
+  55              		.thumb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 2
+
+
+  56              		.thumb_func
+  57              		.type	hardclock, %function
+  58              	hardclock:
+  59              	.LFB0:
+  60              		.loc 1 216 0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 8
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64 0000 10B5     		push	{r4, lr}
+  65              		.cfi_def_cfa_offset 8
+  66              		.cfi_offset 4, -8
+  67              		.cfi_offset 14, -4
+  68              		.loc 1 219 0
+  69 0002 0C4C     		ldr	r4, .L8
+  70 0004 2168     		ldr	r1, [r4]
+  71              		.loc 1 216 0
+  72 0006 82B0     		sub	sp, sp, #8
+  73              		.cfi_def_cfa_offset 16
+  74              		.loc 1 219 0
+  75 0008 21B9     		cbnz	r1, .L5
+  76              		.loc 1 221 0
+  77 000a 0B48     		ldr	r0, .L8+4
+  78 000c FFF7FEFF 		bl	gettimeofday
+  79              	.LVL2:
+  80              		.loc 1 222 0
+  81 0010 0123     		movs	r3, #1
+  82 0012 2360     		str	r3, [r4]
+  83              	.L5:
+  84              		.loc 1 225 0
+  85 0014 6846     		mov	r0, sp
+  86 0016 0021     		movs	r1, #0
+  87 0018 FFF7FEFF 		bl	gettimeofday
+  88              	.LVL3:
+  89              		.loc 1 226 0
+  90 001c 064B     		ldr	r3, .L8+4
+  91 001e 009A     		ldr	r2, [sp]
+  92 0020 1C68     		ldr	r4, [r3]
+  93              		.loc 1 227 0
+  94 0022 5968     		ldr	r1, [r3, #4]
+  95 0024 019B     		ldr	r3, [sp, #4]
+  96              		.loc 1 226 0
+  97 0026 0548     		ldr	r0, .L8+8
+  98 0028 121B     		subs	r2, r2, r4
+  99              		.loc 1 227 0
+ 100 002a 5B1A     		subs	r3, r3, r1
+ 101              		.loc 1 228 0
+ 102 002c 00FB0230 		mla	r0, r0, r2, r3
+ 103 0030 02B0     		add	sp, sp, #8
+ 104              		.cfi_def_cfa_offset 8
+ 105              		@ sp needed
+ 106 0032 10BD     		pop	{r4, pc}
+ 107              	.L9:
+ 108              		.align	2
+ 109              	.L8:
+ 110 0034 00000000 		.word	.LANCHOR1
+ 111 0038 00000000 		.word	.LANCHOR2
+ 112 003c 40420F00 		.word	1000000
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 3
+
+
+ 113              		.cfi_endproc
+ 114              	.LFE0:
+ 115              		.size	hardclock, .-hardclock
+ 116              		.section	.text.get_timer,"ax",%progbits
+ 117              		.align	2
+ 118              		.p2align 4,,15
+ 119              		.global	get_timer
+ 120              		.thumb
+ 121              		.thumb_func
+ 122              		.type	get_timer, %function
+ 123              	get_timer:
+ 124              	.LFB1:
+ 125              		.loc 1 282 0
+ 126              		.cfi_startproc
+ 127              		@ args = 0, pretend = 0, frame = 8
+ 128              		@ frame_needed = 0, uses_anonymous_args = 0
+ 129              	.LVL4:
+ 130 0000 30B5     		push	{r4, r5, lr}
+ 131              		.cfi_def_cfa_offset 12
+ 132              		.cfi_offset 4, -12
+ 133              		.cfi_offset 5, -8
+ 134              		.cfi_offset 14, -4
+ 135 0002 83B0     		sub	sp, sp, #12
+ 136              		.cfi_def_cfa_offset 24
+ 137              		.loc 1 282 0
+ 138 0004 0D46     		mov	r5, r1
+ 139 0006 0446     		mov	r4, r0
+ 140              	.LVL5:
+ 141              		.loc 1 287 0
+ 142 0008 0021     		movs	r1, #0
+ 143              	.LVL6:
+ 144 000a 6846     		mov	r0, sp
+ 145              	.LVL7:
+ 146 000c FFF7FEFF 		bl	gettimeofday
+ 147              	.LVL8:
+ 148              		.loc 1 289 0
+ 149 0010 8DB9     		cbnz	r5, .L14
+ 150              		.loc 1 297 0
+ 151 0012 019A     		ldr	r2, [sp, #4]
+ 152 0014 6368     		ldr	r3, [r4, #4]
+ 153 0016 0B4D     		ldr	r5, .L15
+ 154              	.LVL9:
+ 155              		.loc 1 296 0
+ 156 0018 2068     		ldr	r0, [r4]
+ 157 001a 0099     		ldr	r1, [sp]
+ 158              		.loc 1 297 0
+ 159 001c D31A     		subs	r3, r2, r3
+ 160 001e 85FB0342 		smull	r4, r2, r5, r3
+ 161              	.LVL10:
+ 162 0022 DB17     		asrs	r3, r3, #31
+ 163              		.loc 1 296 0
+ 164 0024 091A     		subs	r1, r1, r0
+ 165              		.loc 1 297 0
+ 166 0026 C3EBA213 		rsb	r3, r3, r2, asr #6
+ 167              		.loc 1 296 0
+ 168 002a 4FF47A70 		mov	r0, #1000
+ 169              		.loc 1 297 0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 4
+
+
+ 170 002e 00FB0130 		mla	r0, r0, r1, r3
+ 171              		.loc 1 300 0
+ 172 0032 03B0     		add	sp, sp, #12
+ 173              		.cfi_remember_state
+ 174              		.cfi_def_cfa_offset 12
+ 175              		@ sp needed
+ 176 0034 30BD     		pop	{r4, r5, pc}
+ 177              	.LVL11:
+ 178              	.L14:
+ 179              		.cfi_restore_state
+ 180              		.loc 1 292 0
+ 181 0036 9DE80C00 		ldmia	sp, {r2, r3}
+ 182              		.loc 1 293 0
+ 183 003a 0020     		movs	r0, #0
+ 184              		.loc 1 292 0
+ 185 003c 84E80C00 		stmia	r4, {r2, r3}
+ 186              		.loc 1 300 0
+ 187 0040 03B0     		add	sp, sp, #12
+ 188              		.cfi_def_cfa_offset 12
+ 189              		@ sp needed
+ 190 0042 30BD     		pop	{r4, r5, pc}
+ 191              	.LVL12:
+ 192              	.L16:
+ 193              		.align	2
+ 194              	.L15:
+ 195 0044 D34D6210 		.word	274877907
+ 196              		.cfi_endproc
+ 197              	.LFE1:
+ 198              		.size	get_timer, .-get_timer
+ 199 0048 AFF30080 		.section	.text.busy_msleep,"ax",%progbits
+ 199      AFF30080 
+ 200              		.align	2
+ 201              		.p2align 4,,15
+ 202              		.thumb
+ 203              		.thumb_func
+ 204              		.type	busy_msleep, %function
+ 205              	busy_msleep:
+ 206              	.LFB5:
+ 207              		.loc 1 348 0
+ 208              		.cfi_startproc
+ 209              		@ args = 0, pretend = 0, frame = 40
+ 210              		@ frame_needed = 0, uses_anonymous_args = 0
+ 211              	.LVL13:
+ 212 0000 30B5     		push	{r4, r5, lr}
+ 213              		.cfi_def_cfa_offset 12
+ 214              		.cfi_offset 4, -12
+ 215              		.cfi_offset 5, -8
+ 216              		.cfi_offset 14, -4
+ 217 0002 8BB0     		sub	sp, sp, #44
+ 218              		.cfi_def_cfa_offset 56
+ 219              		.loc 1 348 0
+ 220 0004 0546     		mov	r5, r0
+ 221              		.loc 1 353 0
+ 222 0006 0121     		movs	r1, #1
+ 223 0008 02A8     		add	r0, sp, #8
+ 224              	.LVL14:
+ 225 000a FFF7FEFF 		bl	get_timer
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 5
+
+
+ 226              	.LVL15:
+ 227              		.loc 1 350 0
+ 228 000e 0024     		movs	r4, #0
+ 229              		.loc 1 355 0
+ 230 0010 00E0     		b	.L18
+ 231              	.LVL16:
+ 232              	.L19:
+ 233              		.loc 1 356 0
+ 234 0012 0134     		adds	r4, r4, #1
+ 235              	.LVL17:
+ 236              	.L18:
+ 237              		.loc 1 355 0
+ 238 0014 02A8     		add	r0, sp, #8
+ 239 0016 0021     		movs	r1, #0
+ 240 0018 FFF7FEFF 		bl	get_timer
+ 241              	.LVL18:
+ 242 001c A842     		cmp	r0, r5
+ 243 001e F8D3     		bcc	.L19
+ 244              		.loc 1 358 0
+ 245 0020 0194     		str	r4, [sp, #4]
+ 246              		.loc 1 359 0
+ 247 0022 019B     		ldr	r3, [sp, #4]
+ 248              		.loc 1 360 0
+ 249 0024 0BB0     		add	sp, sp, #44
+ 250              		.cfi_def_cfa_offset 12
+ 251              		@ sp needed
+ 252 0026 30BD     		pop	{r4, r5, pc}
+ 253              		.cfi_endproc
+ 254              	.LFE5:
+ 255              		.size	busy_msleep, .-busy_msleep
+ 256 0028 AFF30080 		.section	.text.set_alarm,"ax",%progbits
+ 256      AFF30080 
+ 257              		.align	2
+ 258              		.p2align 4,,15
+ 259              		.global	set_alarm
+ 260              		.thumb
+ 261              		.thumb_func
+ 262              		.type	set_alarm, %function
+ 263              	set_alarm:
+ 264              	.LFB3:
+ 265              		.loc 1 317 0
+ 266              		.cfi_startproc
+ 267              		@ args = 0, pretend = 0, frame = 0
+ 268              		@ frame_needed = 0, uses_anonymous_args = 0
+ 269              	.LVL19:
+ 270 0000 10B5     		push	{r4, lr}
+ 271              		.cfi_def_cfa_offset 8
+ 272              		.cfi_offset 4, -8
+ 273              		.cfi_offset 14, -4
+ 274              		.loc 1 318 0
+ 275 0002 064B     		ldr	r3, .L23
+ 276              		.loc 1 319 0
+ 277 0004 0649     		ldr	r1, .L23+4
+ 278              		.loc 1 317 0
+ 279 0006 0446     		mov	r4, r0
+ 280              		.loc 1 318 0
+ 281 0008 0022     		movs	r2, #0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 6
+
+
+ 282              		.loc 1 319 0
+ 283 000a 0E20     		movs	r0, #14
+ 284              	.LVL20:
+ 285              		.loc 1 318 0
+ 286 000c 1A60     		str	r2, [r3]
+ 287              		.loc 1 319 0
+ 288 000e FFF7FEFF 		bl	signal
+ 289              	.LVL21:
+ 290              		.loc 1 320 0
+ 291 0012 2046     		mov	r0, r4
+ 292              		.loc 1 321 0
+ 293 0014 BDE81040 		pop	{r4, lr}
+ 294              		.cfi_restore 14
+ 295              		.cfi_restore 4
+ 296              		.cfi_def_cfa_offset 0
+ 297              	.LVL22:
+ 298              		.loc 1 320 0
+ 299 0018 FFF7FEBF 		b	alarm
+ 300              	.LVL23:
+ 301              	.L24:
+ 302              		.align	2
+ 303              	.L23:
+ 304 001c 00000000 		.word	.LANCHOR0
+ 305 0020 00000000 		.word	sighandler
+ 306              		.cfi_endproc
+ 307              	.LFE3:
+ 308              		.size	set_alarm, .-set_alarm
+ 309 0024 AFF30080 		.section	.text.m_sleep,"ax",%progbits
+ 309      AFF30080 
+ 309      AFF30080 
+ 310              		.align	2
+ 311              		.p2align 4,,15
+ 312              		.global	m_sleep
+ 313              		.thumb
+ 314              		.thumb_func
+ 315              		.type	m_sleep, %function
+ 316              	m_sleep:
+ 317              	.LFB4:
+ 318              		.loc 1 324 0
+ 319              		.cfi_startproc
+ 320              		@ args = 0, pretend = 0, frame = 8
+ 321              		@ frame_needed = 0, uses_anonymous_args = 0
+ 322              	.LVL24:
+ 323 0000 30B5     		push	{r4, r5, lr}
+ 324              		.cfi_def_cfa_offset 12
+ 325              		.cfi_offset 4, -12
+ 326              		.cfi_offset 5, -8
+ 327              		.cfi_offset 14, -4
+ 328              		.loc 1 327 0
+ 329 0002 0C4D     		ldr	r5, .L27
+ 330 0004 85FB0035 		smull	r3, r5, r5, r0
+ 331 0008 C317     		asrs	r3, r0, #31
+ 332              		.loc 1 324 0
+ 333 000a 85B0     		sub	sp, sp, #20
+ 334              		.cfi_def_cfa_offset 32
+ 335              		.loc 1 327 0
+ 336 000c C3EBA515 		rsb	r5, r3, r5, asr #6
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 7
+
+
+ 337              		.loc 1 328 0
+ 338 0010 4FF47A72 		mov	r2, #1000
+ 339 0014 02FB1503 		mls	r3, r2, r5, r0
+ 340              		.loc 1 330 0
+ 341 0018 02A9     		add	r1, sp, #8
+ 342 001a 0020     		movs	r0, #0
+ 343              	.LVL25:
+ 344              		.loc 1 328 0
+ 345 001c 02FB03F4 		mul	r4, r2, r3
+ 346              		.loc 1 330 0
+ 347 0020 0091     		str	r1, [sp]
+ 348 0022 0246     		mov	r2, r0
+ 349 0024 0146     		mov	r1, r0
+ 350 0026 0346     		mov	r3, r0
+ 351              		.loc 1 327 0
+ 352 0028 0295     		str	r5, [sp, #8]
+ 353              		.loc 1 328 0
+ 354 002a 0394     		str	r4, [sp, #12]
+ 355              		.loc 1 330 0
+ 356 002c FFF7FEFF 		bl	select
+ 357              	.LVL26:
+ 358              		.loc 1 331 0
+ 359 0030 05B0     		add	sp, sp, #20
+ 360              		.cfi_def_cfa_offset 12
+ 361              		@ sp needed
+ 362 0032 30BD     		pop	{r4, r5, pc}
+ 363              	.L28:
+ 364              		.align	2
+ 365              	.L27:
+ 366 0034 D34D6210 		.word	274877907
+ 367              		.cfi_endproc
+ 368              	.LFE4:
+ 369              		.size	m_sleep, .-m_sleep
+ 370 0038 AFF30080 		.section	.text.timing_self_test,"ax",%progbits
+ 370      AFF30080 
+ 371              		.align	2
+ 372              		.p2align 4,,15
+ 373              		.global	timing_self_test
+ 374              		.thumb
+ 375              		.thumb_func
+ 376              		.type	timing_self_test, %function
+ 377              	timing_self_test:
+ 378              	.LFB6:
+ 379              		.loc 1 369 0
+ 380              		.cfi_startproc
+ 381              		@ args = 0, pretend = 0, frame = 32
+ 382              		@ frame_needed = 0, uses_anonymous_args = 0
+ 383              	.LVL27:
+ 384 0000 2DE9F047 		push	{r4, r5, r6, r7, r8, r9, r10, lr}
+ 385              		.cfi_def_cfa_offset 32
+ 386              		.cfi_offset 4, -32
+ 387              		.cfi_offset 5, -28
+ 388              		.cfi_offset 6, -24
+ 389              		.cfi_offset 7, -20
+ 390              		.cfi_offset 8, -16
+ 391              		.cfi_offset 9, -12
+ 392              		.cfi_offset 10, -8
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 8
+
+
+ 393              		.cfi_offset 14, -4
+ 394              		.loc 1 375 0
+ 395 0004 0646     		mov	r6, r0
+ 396              		.loc 1 369 0
+ 397 0006 88B0     		sub	sp, sp, #32
+ 398              		.cfi_def_cfa_offset 64
+ 399              		.loc 1 375 0
+ 400 0008 0028     		cmp	r0, #0
+ 401 000a 40F09880 		bne	.L69
+ 402              	.LVL28:
+ 403              	.L30:
+ 404              		.loc 1 369 0 discriminator 1
+ 405 000e 40F22627 		movw	r7, #550
+ 406 0012 4FF4E175 		mov	r5, #450
+ 407 0016 4FF4FA74 		mov	r4, #500
+ 408              	.LVL29:
+ 409              	.L34:
+ 410              		.loc 1 383 0
+ 411 001a 0121     		movs	r1, #1
+ 412 001c 6846     		mov	r0, sp
+ 413 001e FFF7FEFF 		bl	get_timer
+ 414              	.LVL30:
+ 415              		.loc 1 385 0
+ 416 0022 2046     		mov	r0, r4
+ 417 0024 FFF7FEFF 		bl	m_sleep
+ 418              	.LVL31:
+ 419              		.loc 1 387 0
+ 420 0028 6846     		mov	r0, sp
+ 421 002a 0021     		movs	r1, #0
+ 422 002c FFF7FEFF 		bl	get_timer
+ 423              	.LVL32:
+ 424              		.loc 1 389 0
+ 425 0030 A842     		cmp	r0, r5
+ 426 0032 04F5FA74 		add	r4, r4, #500
+ 427 0036 05F5E175 		add	r5, r5, #450
+ 428 003a 7BD3     		bcc	.L31
+ 429              		.loc 1 389 0 is_stmt 0 discriminator 1
+ 430 003c B842     		cmp	r0, r7
+ 431 003e 07F22627 		addw	r7, r7, #550
+ 432 0042 77D8     		bhi	.L31
+ 433              		.loc 1 381 0 is_stmt 1 discriminator 2
+ 434 0044 B4F5FA6F 		cmp	r4, #2000
+ 435 0048 E7D1     		bne	.L34
+ 436              		.loc 1 398 0
+ 437 004a 002E     		cmp	r6, #0
+ 438 004c 7ED1     		bne	.L70
+ 439              	.LVL33:
+ 440              	.L35:
+ 441 004e 544C     		ldr	r4, .L76
+ 442              		.loc 1 369 0 discriminator 1
+ 443 0050 4FF46177 		mov	r7, #900
+ 444 0054 40F24C48 		movw	r8, #1100
+ 445 0058 0125     		movs	r5, #1
+ 446              	.LVL34:
+ 447              	.L37:
+ 448              		.loc 1 406 0
+ 449 005a 6846     		mov	r0, sp
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 9
+
+
+ 450 005c 0121     		movs	r1, #1
+ 451 005e FFF7FEFF 		bl	get_timer
+ 452              	.LVL35:
+ 453              		.loc 1 408 0
+ 454 0062 2846     		mov	r0, r5
+ 455 0064 FFF7FEFF 		bl	set_alarm
+ 456              	.LVL36:
+ 457              	.L36:
+ 458              		.loc 1 409 0 discriminator 1
+ 459 0068 2368     		ldr	r3, [r4]
+ 460 006a 002B     		cmp	r3, #0
+ 461 006c FCD0     		beq	.L36
+ 462              		.loc 1 412 0
+ 463 006e 6846     		mov	r0, sp
+ 464 0070 0021     		movs	r1, #0
+ 465 0072 FFF7FEFF 		bl	get_timer
+ 466              	.LVL37:
+ 467              		.loc 1 414 0
+ 468 0076 B842     		cmp	r0, r7
+ 469 0078 5CD3     		bcc	.L31
+ 470              		.loc 1 414 0 is_stmt 0 discriminator 1
+ 471 007a 4045     		cmp	r0, r8
+ 472 007c 5AD8     		bhi	.L31
+ 473              		.loc 1 404 0 is_stmt 1 discriminator 2
+ 474 007e 0135     		adds	r5, r5, #1
+ 475              	.LVL38:
+ 476 0080 042D     		cmp	r5, #4
+ 477 0082 08F24C48 		addw	r8, r8, #1100
+ 478 0086 07F56177 		add	r7, r7, #900
+ 479 008a E6D1     		bne	.L37
+ 480              		.loc 1 423 0
+ 481 008c 002E     		cmp	r6, #0
+ 482 008e 64D1     		bne	.L71
+ 483              	.LVL39:
+ 484              	.L38:
+ 485 0090 DFF83081 		ldr	r8, .L76+36
+ 486 0094 4FF00209 		mov	r9, #2
+ 487              	.LVL40:
+ 488              	.L41:
+ 489              		.loc 1 447 0
+ 490 0098 FFF7FEFF 		bl	hardclock
+ 491              	.LVL41:
+ 492 009c 0546     		mov	r5, r0
+ 493              	.LVL42:
+ 494              		.loc 1 448 0
+ 495 009e 0120     		movs	r0, #1
+ 496              	.LVL43:
+ 497 00a0 FFF7FEFF 		bl	busy_msleep
+ 498              	.LVL44:
+ 499              		.loc 1 449 0
+ 500 00a4 FFF7FEFF 		bl	hardclock
+ 501              	.LVL45:
+ 502 00a8 401B     		subs	r0, r0, r5
+ 503              	.LVL46:
+ 504 00aa A8FB0035 		umull	r3, r5, r8, r0
+ 505 00ae AD08     		lsrs	r5, r5, #2
+ 506 00b0 471B     		subs	r7, r0, r5
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 10
+
+
+ 507              		.loc 1 453 0
+ 508 00b2 4FF0020A 		mov	r10, #2
+ 509              		.loc 1 461 0
+ 510 00b6 0544     		add	r5, r5, r0
+ 511              	.LVL47:
+ 512              	.L42:
+ 513              		.loc 1 455 0
+ 514 00b8 FFF7FEFF 		bl	hardclock
+ 515              	.LVL48:
+ 516 00bc 0446     		mov	r4, r0
+ 517              	.LVL49:
+ 518              		.loc 1 456 0
+ 519 00be 5046     		mov	r0, r10
+ 520              	.LVL50:
+ 521 00c0 FFF7FEFF 		bl	busy_msleep
+ 522              	.LVL51:
+ 523              		.loc 1 457 0
+ 524 00c4 FFF7FEFF 		bl	hardclock
+ 525              	.LVL52:
+ 526 00c8 001B     		subs	r0, r0, r4
+ 527              	.LVL53:
+ 528              		.loc 1 460 0
+ 529 00ca B0FBFAF3 		udiv	r3, r0, r10
+ 530 00ce BB42     		cmp	r3, r7
+ 531              		.loc 1 453 0
+ 532 00d0 0AF1010A 		add	r10, r10, #1
+ 533              	.LVL54:
+ 534              		.loc 1 460 0
+ 535 00d4 2BD3     		bcc	.L39
+ 536              		.loc 1 460 0 is_stmt 0 discriminator 1
+ 537 00d6 AB42     		cmp	r3, r5
+ 538 00d8 29D8     		bhi	.L39
+ 539              		.loc 1 453 0 is_stmt 1 discriminator 2
+ 540 00da BAF1050F 		cmp	r10, #5
+ 541 00de EBD1     		bne	.L42
+ 542              		.loc 1 468 0
+ 543 00e0 002E     		cmp	r6, #0
+ 544 00e2 48D1     		bne	.L72
+ 545              	.LVL55:
+ 546              	.L43:
+ 547              		.loc 1 453 0 discriminator 1
+ 548 00e4 2F4C     		ldr	r4, .L76+4
+ 549              		.loc 1 475 0 discriminator 1
+ 550 00e6 DFF8E080 		ldr	r8, .L76+40
+ 551              		.loc 1 453 0 discriminator 1
+ 552 00ea 40F22627 		movw	r7, #550
+ 553 00ee 4FF4E175 		mov	r5, #450
+ 554              	.LVL56:
+ 555              	.L44:
+ 556              		.loc 1 477 0
+ 557 00f2 0121     		movs	r1, #1
+ 558 00f4 6846     		mov	r0, sp
+ 559 00f6 FFF7FEFF 		bl	get_timer
+ 560              	.LVL57:
+ 561              		.loc 1 479 0
+ 562 00fa 2046     		mov	r0, r4
+ 563 00fc FFF7FEFF 		bl	net_usleep
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 11
+
+
+ 564              	.LVL58:
+ 565              		.loc 1 481 0
+ 566 0100 6846     		mov	r0, sp
+ 567 0102 0021     		movs	r1, #0
+ 568 0104 FFF7FEFF 		bl	get_timer
+ 569              	.LVL59:
+ 570 0108 04F5F424 		add	r4, r4, #499712
+ 571              		.loc 1 483 0
+ 572 010c A842     		cmp	r0, r5
+ 573 010e 04F59074 		add	r4, r4, #288
+ 574 0112 05F5E175 		add	r5, r5, #450
+ 575 0116 0DD3     		bcc	.L31
+ 576              		.loc 1 483 0 is_stmt 0 discriminator 1
+ 577 0118 B842     		cmp	r0, r7
+ 578 011a 07F22627 		addw	r7, r7, #550
+ 579 011e 09D8     		bhi	.L31
+ 580              		.loc 1 475 0 is_stmt 1 discriminator 2
+ 581 0120 4445     		cmp	r4, r8
+ 582 0122 E6D1     		bne	.L44
+ 583              		.loc 1 492 0
+ 584 0124 76BB     		cbnz	r6, .L73
+ 585              		.loc 1 499 0
+ 586 0126 3046     		mov	r0, r6
+ 587              	.LVL60:
+ 588              		.loc 1 500 0
+ 589 0128 08B0     		add	sp, sp, #32
+ 590              		.cfi_remember_state
+ 591              		.cfi_def_cfa_offset 32
+ 592              		@ sp needed
+ 593 012a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 594              	.LVL61:
+ 595              	.L39:
+ 596              		.cfi_restore_state
+ 597              		.loc 1 437 0
+ 598 012e B9F1010F 		cmp	r9, #1
+ 599 0132 31D1     		bne	.L74
+ 600              	.LVL62:
+ 601              	.L31:
+ 602              		.loc 1 394 0
+ 603 0134 0120     		movs	r0, #1
+ 604              		.loc 1 391 0
+ 605 0136 BEB9     		cbnz	r6, .L75
+ 606              		.loc 1 500 0
+ 607 0138 08B0     		add	sp, sp, #32
+ 608              		.cfi_remember_state
+ 609              		.cfi_def_cfa_offset 32
+ 610              		@ sp needed
+ 611 013a BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 612              	.LVL63:
+ 613              	.L69:
+ 614              		.cfi_restore_state
+ 615              		.loc 1 376 0
+ 616 013e 1A48     		ldr	r0, .L76+8
+ 617              	.LVL64:
+ 618 0140 FFF7FEFF 		bl	puts
+ 619              	.LVL65:
+ 620              		.loc 1 379 0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 12
+
+
+ 621 0144 1948     		ldr	r0, .L76+12
+ 622 0146 FFF7FEFF 		bl	printf
+ 623              	.LVL66:
+ 624 014a 60E7     		b	.L30
+ 625              	.LVL67:
+ 626              	.L70:
+ 627              		.loc 1 399 0
+ 628 014c 1848     		ldr	r0, .L76+16
+ 629              	.LVL68:
+ 630 014e FFF7FEFF 		bl	puts
+ 631              	.LVL69:
+ 632              		.loc 1 402 0
+ 633 0152 1848     		ldr	r0, .L76+20
+ 634 0154 FFF7FEFF 		bl	printf
+ 635              	.LVL70:
+ 636 0158 79E7     		b	.L35
+ 637              	.LVL71:
+ 638              	.L71:
+ 639              		.loc 1 424 0
+ 640 015a 1548     		ldr	r0, .L76+16
+ 641              	.LVL72:
+ 642 015c FFF7FEFF 		bl	puts
+ 643              	.LVL73:
+ 644              		.loc 1 427 0
+ 645 0160 1548     		ldr	r0, .L76+24
+ 646 0162 FFF7FEFF 		bl	printf
+ 647              	.LVL74:
+ 648 0166 93E7     		b	.L38
+ 649              	.LVL75:
+ 650              	.L75:
+ 651              		.loc 1 392 0
+ 652 0168 1448     		ldr	r0, .L76+28
+ 653 016a FFF7FEFF 		bl	puts
+ 654              	.LVL76:
+ 655              		.loc 1 394 0
+ 656 016e 0120     		movs	r0, #1
+ 657              		.loc 1 500 0
+ 658 0170 08B0     		add	sp, sp, #32
+ 659              		.cfi_remember_state
+ 660              		.cfi_def_cfa_offset 32
+ 661              		@ sp needed
+ 662 0172 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 663              	.LVL77:
+ 664              	.L72:
+ 665              		.cfi_restore_state
+ 666              		.loc 1 469 0
+ 667 0176 0E48     		ldr	r0, .L76+16
+ 668              	.LVL78:
+ 669 0178 FFF7FEFF 		bl	puts
+ 670              	.LVL79:
+ 671              		.loc 1 473 0
+ 672 017c 1048     		ldr	r0, .L76+32
+ 673 017e FFF7FEFF 		bl	printf
+ 674              	.LVL80:
+ 675 0182 AFE7     		b	.L43
+ 676              	.LVL81:
+ 677              	.L73:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 13
+
+
+ 678              		.loc 1 493 0
+ 679 0184 0A48     		ldr	r0, .L76+16
+ 680              	.LVL82:
+ 681 0186 FFF7FEFF 		bl	puts
+ 682              	.LVL83:
+ 683              		.loc 1 497 0
+ 684 018a 0A20     		movs	r0, #10
+ 685 018c FFF7FEFF 		bl	putchar
+ 686              	.LVL84:
+ 687              		.loc 1 499 0
+ 688 0190 0020     		movs	r0, #0
+ 689              		.loc 1 500 0
+ 690 0192 08B0     		add	sp, sp, #32
+ 691              		.cfi_remember_state
+ 692              		.cfi_def_cfa_offset 32
+ 693              		@ sp needed
+ 694 0194 BDE8F087 		pop	{r4, r5, r6, r7, r8, r9, r10, pc}
+ 695              	.LVL85:
+ 696              	.L74:
+ 697              		.cfi_restore_state
+ 698 0198 4FF00109 		mov	r9, #1
+ 699              	.LVL86:
+ 700 019c 7CE7     		b	.L41
+ 701              	.L77:
+ 702 019e 00BF     		.align	2
+ 703              	.L76:
+ 704 01a0 00000000 		.word	.LANCHOR0
+ 705 01a4 20A10700 		.word	500000
+ 706 01a8 00000000 		.word	.LC0
+ 707 01ac 2C000000 		.word	.LC1
+ 708 01b0 60000000 		.word	.LC3
+ 709 01b4 68000000 		.word	.LC4
+ 710 01b8 94000000 		.word	.LC5
+ 711 01bc 58000000 		.word	.LC2
+ 712 01c0 C0000000 		.word	.LC6
+ 713 01c4 CDCCCCCC 		.word	-858993459
+ 714 01c8 80841E00 		.word	2000000
+ 715              		.cfi_endproc
+ 716              	.LFE6:
+ 717              		.size	timing_self_test, .-timing_self_test
+ 718              		.global	alarmed
+ 719 01cc AFF30080 		.section	.bss.hardclock_init,"aw",%nobits
+ 720              		.align	2
+ 721              		.set	.LANCHOR1,. + 0
+ 722              		.type	hardclock_init, %object
+ 723              		.size	hardclock_init, 4
+ 724              	hardclock_init:
+ 725 0000 00000000 		.space	4
+ 726              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 727              		.align	2
+ 728              	.LC0:
+ 729 0000 20205449 		.ascii	"  TIMING tests note: will take some time!\000"
+ 729      4D494E47 
+ 729      20746573 
+ 729      7473206E 
+ 729      6F74653A 
+ 730 002a 0000     		.space	2
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 14
+
+
+ 731              	.LC1:
+ 732 002c 20205449 		.ascii	"  TIMING test #1 (m_sleep   / get_timer): \000"
+ 732      4D494E47 
+ 732      20746573 
+ 732      74202331 
+ 732      20286D5F 
+ 733 0057 00       		.space	1
+ 734              	.LC2:
+ 735 0058 6661696C 		.ascii	"failed\000"
+ 735      656400
+ 736 005f 00       		.space	1
+ 737              	.LC3:
+ 738 0060 70617373 		.ascii	"passed\000"
+ 738      656400
+ 739 0067 00       		.space	1
+ 740              	.LC4:
+ 741 0068 20205449 		.ascii	"  TIMING test #2 (set_alarm / get_timer): \000"
+ 741      4D494E47 
+ 741      20746573 
+ 741      74202332 
+ 741      20287365 
+ 742 0093 00       		.space	1
+ 743              	.LC5:
+ 744 0094 20205449 		.ascii	"  TIMING test #3 (hardclock / get_timer): \000"
+ 744      4D494E47 
+ 744      20746573 
+ 744      74202333 
+ 744      20286861 
+ 745 00bf 00       		.space	1
+ 746              	.LC6:
+ 747 00c0 20205449 		.ascii	"  TIMING test #4 (net_usleep/ get_timer): \000"
+ 747      4D494E47 
+ 747      20746573 
+ 747      74202334 
+ 747      20286E65 
+ 748 00eb 00       		.section	.bss.alarmed,"aw",%nobits
+ 749              		.align	2
+ 750              		.set	.LANCHOR0,. + 0
+ 751              		.type	alarmed, %object
+ 752              		.size	alarmed, 4
+ 753              	alarmed:
+ 754 0000 00000000 		.space	4
+ 755              		.section	.bss.tv_init,"aw",%nobits
+ 756              		.align	2
+ 757              		.set	.LANCHOR2,. + 0
+ 758              		.type	tv_init, %object
+ 759              		.size	tv_init, 8
+ 760              	tv_init:
+ 761 0000 00000000 		.space	8
+ 761      00000000 
+ 762              		.text
+ 763              	.Letext0:
+ 764              		.file 2 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\sys\\types
+ 765              		.file 3 "../../../ext/mbedtls-1.3.11/library/../include/polarssl/timing.h"
+ 766              		.file 4 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\sys\\time.
+ 767              		.file 5 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\sys\\signa
+ 768              		.file 6 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\signal.h"
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 15
+
+
+ 769              		.file 7 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\sys\\unist
+ 770              		.file 8 "../../../ext/mbedtls-1.3.11/library/../include/polarssl/net.h"
+ 771              		.file 9 "c:\\program files\\gnu tools arm embedded\\4.9 2014q4\\arm-none-eabi\\include\\stdio.h"
+ 772              		.file 10 "<built-in>"
+ 773              		.section	.debug_info,"",%progbits
+ 774              	.Ldebug_info0:
+ 775 0000 0D070000 		.4byte	0x70d
+ 776 0004 0400     		.2byte	0x4
+ 777 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 778 000a 04       		.byte	0x4
+ 779 000b 01       		.uleb128 0x1
+ 780 000c BD010000 		.4byte	.LASF51
+ 781 0010 01       		.byte	0x1
+ 782 0011 06010000 		.4byte	.LASF52
+ 783 0015 52000000 		.4byte	.LASF53
+ 784 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 785 001d 00000000 		.4byte	0
+ 786 0021 00000000 		.4byte	.Ldebug_line0
+ 787 0025 02       		.uleb128 0x2
+ 788 0026 01       		.byte	0x1
+ 789 0027 06       		.byte	0x6
+ 790 0028 AE000000 		.4byte	.LASF0
+ 791 002c 02       		.uleb128 0x2
+ 792 002d 01       		.byte	0x1
+ 793 002e 08       		.byte	0x8
+ 794 002f D7020000 		.4byte	.LASF1
+ 795 0033 02       		.uleb128 0x2
+ 796 0034 02       		.byte	0x2
+ 797 0035 05       		.byte	0x5
+ 798 0036 E5020000 		.4byte	.LASF2
+ 799 003a 02       		.uleb128 0x2
+ 800 003b 02       		.byte	0x2
+ 801 003c 07       		.byte	0x7
+ 802 003d 7F010000 		.4byte	.LASF3
+ 803 0041 02       		.uleb128 0x2
+ 804 0042 04       		.byte	0x4
+ 805 0043 05       		.byte	0x5
+ 806 0044 C5000000 		.4byte	.LASF4
+ 807 0048 02       		.uleb128 0x2
+ 808 0049 04       		.byte	0x4
+ 809 004a 07       		.byte	0x7
+ 810 004b 54010000 		.4byte	.LASF5
+ 811 004f 02       		.uleb128 0x2
+ 812 0050 08       		.byte	0x8
+ 813 0051 05       		.byte	0x5
+ 814 0052 A0000000 		.4byte	.LASF6
+ 815 0056 02       		.uleb128 0x2
+ 816 0057 08       		.byte	0x8
+ 817 0058 07       		.byte	0x7
+ 818 0059 26000000 		.4byte	.LASF7
+ 819 005d 03       		.uleb128 0x3
+ 820 005e 04       		.byte	0x4
+ 821 005f 05       		.byte	0x5
+ 822 0060 696E7400 		.ascii	"int\000"
+ 823 0064 02       		.uleb128 0x2
+ 824 0065 04       		.byte	0x4
+ 825 0066 07       		.byte	0x7
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 16
+
+
+ 826 0067 3F010000 		.4byte	.LASF8
+ 827 006b 04       		.uleb128 0x4
+ 828 006c 04       		.byte	0x4
+ 829 006d 02       		.uleb128 0x2
+ 830 006e 04       		.byte	0x4
+ 831 006f 07       		.byte	0x7
+ 832 0070 9C020000 		.4byte	.LASF9
+ 833 0074 02       		.uleb128 0x2
+ 834 0075 01       		.byte	0x1
+ 835 0076 08       		.byte	0x8
+ 836 0077 25030000 		.4byte	.LASF10
+ 837 007b 05       		.uleb128 0x5
+ 838 007c 04       		.byte	0x4
+ 839 007d 81000000 		.4byte	0x81
+ 840 0081 06       		.uleb128 0x6
+ 841 0082 74000000 		.4byte	0x74
+ 842 0086 07       		.uleb128 0x7
+ 843 0087 91000000 		.4byte	0x91
+ 844 008b 08       		.uleb128 0x8
+ 845 008c 5D000000 		.4byte	0x5d
+ 846 0090 00       		.byte	0
+ 847 0091 05       		.uleb128 0x5
+ 848 0092 04       		.byte	0x4
+ 849 0093 86000000 		.4byte	0x86
+ 850 0097 09       		.uleb128 0x9
+ 851 0098 BB020000 		.4byte	.LASF11
+ 852 009c 02       		.byte	0x2
+ 853 009d 7A       		.byte	0x7a
+ 854 009e 41000000 		.4byte	0x41
+ 855 00a2 0A       		.uleb128 0xa
+ 856 00a3 33010000 		.4byte	.LASF12
+ 857 00a7 02       		.byte	0x2
+ 858 00a8 1D01     		.2byte	0x11d
+ 859 00aa 41000000 		.4byte	0x41
+ 860 00ae 0B       		.uleb128 0xb
+ 861 00af AD010000 		.4byte	.LASF13
+ 862 00b3 20       		.byte	0x20
+ 863 00b4 03       		.byte	0x3
+ 864 00b5 2C       		.byte	0x2c
+ 865 00b6 C7000000 		.4byte	0xc7
+ 866 00ba 0C       		.uleb128 0xc
+ 867 00bb 1F000000 		.4byte	.LASF15
+ 868 00bf 03       		.byte	0x3
+ 869 00c0 2E       		.byte	0x2e
+ 870 00c1 C7000000 		.4byte	0xc7
+ 871 00c5 00       		.byte	0
+ 872 00c6 00       		.byte	0
+ 873 00c7 0D       		.uleb128 0xd
+ 874 00c8 2C000000 		.4byte	0x2c
+ 875 00cc D7000000 		.4byte	0xd7
+ 876 00d0 0E       		.uleb128 0xe
+ 877 00d1 6D000000 		.4byte	0x6d
+ 878 00d5 1F       		.byte	0x1f
+ 879 00d6 00       		.byte	0
+ 880 00d7 0B       		.uleb128 0xb
+ 881 00d8 B5010000 		.4byte	.LASF14
+ 882 00dc 08       		.byte	0x8
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 17
+
+
+ 883 00dd 04       		.byte	0x4
+ 884 00de 11       		.byte	0x11
+ 885 00df FC000000 		.4byte	0xfc
+ 886 00e3 0C       		.uleb128 0xc
+ 887 00e4 AD020000 		.4byte	.LASF16
+ 888 00e8 04       		.byte	0x4
+ 889 00e9 12       		.byte	0x12
+ 890 00ea 97000000 		.4byte	0x97
+ 891 00ee 00       		.byte	0
+ 892 00ef 0C       		.uleb128 0xc
+ 893 00f0 16030000 		.4byte	.LASF17
+ 894 00f4 04       		.byte	0x4
+ 895 00f5 13       		.byte	0x13
+ 896 00f6 A2000000 		.4byte	0xa2
+ 897 00fa 04       		.byte	0x4
+ 898 00fb 00       		.byte	0
+ 899 00fc 09       		.uleb128 0x9
+ 900 00fd 92010000 		.4byte	.LASF18
+ 901 0101 05       		.byte	0x5
+ 902 0102 8F       		.byte	0x8f
+ 903 0103 91000000 		.4byte	0x91
+ 904 0107 0B       		.uleb128 0xb
+ 905 0108 F3000000 		.4byte	.LASF19
+ 906 010c 08       		.byte	0x8
+ 907 010d 01       		.byte	0x1
+ 908 010e 3A       		.byte	0x3a
+ 909 010f 20010000 		.4byte	0x120
+ 910 0113 0C       		.uleb128 0xc
+ 911 0114 7D030000 		.4byte	.LASF20
+ 912 0118 01       		.byte	0x1
+ 913 0119 3C       		.byte	0x3c
+ 914 011a D7000000 		.4byte	0xd7
+ 915 011e 00       		.byte	0
+ 916 011f 00       		.byte	0
+ 917 0120 0F       		.uleb128 0xf
+ 918 0121 07000000 		.4byte	.LASF27
+ 919 0125 01       		.byte	0x1
+ 920 0126 3601     		.2byte	0x136
+ 921 0128 00000000 		.4byte	.LFB2
+ 922 012c 14000000 		.4byte	.LFE2-.LFB2
+ 923 0130 01       		.uleb128 0x1
+ 924 0131 9C       		.byte	0x9c
+ 925 0132 61010000 		.4byte	0x161
+ 926 0136 10       		.uleb128 0x10
+ 927 0137 78010000 		.4byte	.LASF23
+ 928 013b 01       		.byte	0x1
+ 929 013c 3601     		.2byte	0x136
+ 930 013e 5D000000 		.4byte	0x5d
+ 931 0142 00000000 		.4byte	.LLST0
+ 932 0146 11       		.uleb128 0x11
+ 933 0147 0C000000 		.4byte	.LVL1
+ 934 014b 5A060000 		.4byte	0x65a
+ 935 014f 12       		.uleb128 0x12
+ 936 0150 01       		.uleb128 0x1
+ 937 0151 51       		.byte	0x51
+ 938 0152 05       		.uleb128 0x5
+ 939 0153 03       		.byte	0x3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 18
+
+
+ 940 0154 00000000 		.4byte	sighandler
+ 941 0158 12       		.uleb128 0x12
+ 942 0159 01       		.uleb128 0x1
+ 943 015a 50       		.byte	0x50
+ 944 015b 03       		.uleb128 0x3
+ 945 015c F3       		.byte	0xf3
+ 946 015d 01       		.uleb128 0x1
+ 947 015e 50       		.byte	0x50
+ 948 015f 00       		.byte	0
+ 949 0160 00       		.byte	0
+ 950 0161 13       		.uleb128 0x13
+ 951 0162 4E030000 		.4byte	.LASF21
+ 952 0166 01       		.byte	0x1
+ 953 0167 D7       		.byte	0xd7
+ 954 0168 48000000 		.4byte	0x48
+ 955 016c 00000000 		.4byte	.LFB0
+ 956 0170 40000000 		.4byte	.LFE0-.LFB0
+ 957 0174 01       		.uleb128 0x1
+ 958 0175 9C       		.byte	0x9c
+ 959 0176 B5010000 		.4byte	0x1b5
+ 960 017a 14       		.uleb128 0x14
+ 961 017b B4020000 		.4byte	.LASF25
+ 962 017f 01       		.byte	0x1
+ 963 0180 D9       		.byte	0xd9
+ 964 0181 D7000000 		.4byte	0xd7
+ 965 0185 02       		.uleb128 0x2
+ 966 0186 91       		.byte	0x91
+ 967 0187 70       		.sleb128 -16
+ 968 0188 15       		.uleb128 0x15
+ 969 0189 10000000 		.4byte	.LVL2
+ 970 018d 74060000 		.4byte	0x674
+ 971 0191 9F010000 		.4byte	0x19f
+ 972 0195 12       		.uleb128 0x12
+ 973 0196 01       		.uleb128 0x1
+ 974 0197 50       		.byte	0x50
+ 975 0198 05       		.uleb128 0x5
+ 976 0199 03       		.byte	0x3
+ 977 019a 00000000 		.4byte	.LANCHOR2
+ 978 019e 00       		.byte	0
+ 979 019f 16       		.uleb128 0x16
+ 980 01a0 1C000000 		.4byte	.LVL3
+ 981 01a4 74060000 		.4byte	0x674
+ 982 01a8 12       		.uleb128 0x12
+ 983 01a9 01       		.uleb128 0x1
+ 984 01aa 51       		.byte	0x51
+ 985 01ab 01       		.uleb128 0x1
+ 986 01ac 30       		.byte	0x30
+ 987 01ad 12       		.uleb128 0x12
+ 988 01ae 01       		.uleb128 0x1
+ 989 01af 50       		.byte	0x50
+ 990 01b0 02       		.uleb128 0x2
+ 991 01b1 7D       		.byte	0x7d
+ 992 01b2 00       		.sleb128 0
+ 993 01b3 00       		.byte	0
+ 994 01b4 00       		.byte	0
+ 995 01b5 17       		.uleb128 0x17
+ 996 01b6 FC000000 		.4byte	.LASF22
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 19
+
+
+ 997 01ba 01       		.byte	0x1
+ 998 01bb 1901     		.2byte	0x119
+ 999 01bd 48000000 		.4byte	0x48
+ 1000 01c1 00000000 		.4byte	.LFB1
+ 1001 01c5 48000000 		.4byte	.LFE1-.LFB1
+ 1002 01c9 01       		.uleb128 0x1
+ 1003 01ca 9C       		.byte	0x9c
+ 1004 01cb 2E020000 		.4byte	0x22e
+ 1005 01cf 18       		.uleb128 0x18
+ 1006 01d0 76616C00 		.ascii	"val\000"
+ 1007 01d4 01       		.byte	0x1
+ 1008 01d5 1901     		.2byte	0x119
+ 1009 01d7 2E020000 		.4byte	0x22e
+ 1010 01db 21000000 		.4byte	.LLST1
+ 1011 01df 10       		.uleb128 0x10
+ 1012 01e0 12000000 		.4byte	.LASF24
+ 1013 01e4 01       		.byte	0x1
+ 1014 01e5 1901     		.2byte	0x119
+ 1015 01e7 5D000000 		.4byte	0x5d
+ 1016 01eb 66000000 		.4byte	.LLST2
+ 1017 01ef 19       		.uleb128 0x19
+ 1018 01f0 4C000000 		.4byte	.LASF54
+ 1019 01f4 01       		.byte	0x1
+ 1020 01f5 1B01     		.2byte	0x11b
+ 1021 01f7 48000000 		.4byte	0x48
+ 1022 01fb 1A       		.uleb128 0x1a
+ 1023 01fc 38030000 		.4byte	.LASF26
+ 1024 0200 01       		.byte	0x1
+ 1025 0201 1C01     		.2byte	0x11c
+ 1026 0203 D7000000 		.4byte	0xd7
+ 1027 0207 02       		.uleb128 0x2
+ 1028 0208 91       		.byte	0x91
+ 1029 0209 68       		.sleb128 -24
+ 1030 020a 1B       		.uleb128 0x1b
+ 1031 020b 7400     		.ascii	"t\000"
+ 1032 020d 01       		.byte	0x1
+ 1033 020e 1D01     		.2byte	0x11d
+ 1034 0210 34020000 		.4byte	0x234
+ 1035 0214 AB000000 		.4byte	.LLST3
+ 1036 0218 16       		.uleb128 0x16
+ 1037 0219 10000000 		.4byte	.LVL8
+ 1038 021d 74060000 		.4byte	0x674
+ 1039 0221 12       		.uleb128 0x12
+ 1040 0222 01       		.uleb128 0x1
+ 1041 0223 51       		.byte	0x51
+ 1042 0224 01       		.uleb128 0x1
+ 1043 0225 30       		.byte	0x30
+ 1044 0226 12       		.uleb128 0x12
+ 1045 0227 01       		.uleb128 0x1
+ 1046 0228 50       		.byte	0x50
+ 1047 0229 02       		.uleb128 0x2
+ 1048 022a 7D       		.byte	0x7d
+ 1049 022b 00       		.sleb128 0
+ 1050 022c 00       		.byte	0
+ 1051 022d 00       		.byte	0
+ 1052 022e 05       		.uleb128 0x5
+ 1053 022f 04       		.byte	0x4
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 20
+
+
+ 1054 0230 AE000000 		.4byte	0xae
+ 1055 0234 05       		.uleb128 0x5
+ 1056 0235 04       		.byte	0x4
+ 1057 0236 07010000 		.4byte	0x107
+ 1058 023a 0F       		.uleb128 0xf
+ 1059 023b 00030000 		.4byte	.LASF28
+ 1060 023f 01       		.byte	0x1
+ 1061 0240 5B01     		.2byte	0x15b
+ 1062 0242 00000000 		.4byte	.LFB5
+ 1063 0246 28000000 		.4byte	.LFE5-.LFB5
+ 1064 024a 01       		.uleb128 0x1
+ 1065 024b 9C       		.byte	0x9c
+ 1066 024c B9020000 		.4byte	0x2b9
+ 1067 0250 10       		.uleb128 0x10
+ 1068 0251 C0000000 		.4byte	.LASF29
+ 1069 0255 01       		.byte	0x1
+ 1070 0256 5B01     		.2byte	0x15b
+ 1071 0258 48000000 		.4byte	0x48
+ 1072 025c F0000000 		.4byte	.LLST4
+ 1073 0260 1A       		.uleb128 0x1a
+ 1074 0261 BA000000 		.4byte	.LASF30
+ 1075 0265 01       		.byte	0x1
+ 1076 0266 5D01     		.2byte	0x15d
+ 1077 0268 AE000000 		.4byte	0xae
+ 1078 026c 02       		.uleb128 0x2
+ 1079 026d 91       		.byte	0x91
+ 1080 026e 50       		.sleb128 -48
+ 1081 026f 1B       		.uleb128 0x1b
+ 1082 0270 6900     		.ascii	"i\000"
+ 1083 0272 01       		.byte	0x1
+ 1084 0273 5E01     		.2byte	0x15e
+ 1085 0275 48000000 		.4byte	0x48
+ 1086 0279 0E010000 		.4byte	.LLST5
+ 1087 027d 1C       		.uleb128 0x1c
+ 1088 027e 6A00     		.ascii	"j\000"
+ 1089 0280 01       		.byte	0x1
+ 1090 0281 5F01     		.2byte	0x15f
+ 1091 0283 B9020000 		.4byte	0x2b9
+ 1092 0287 02       		.uleb128 0x2
+ 1093 0288 91       		.byte	0x91
+ 1094 0289 4C       		.sleb128 -52
+ 1095 028a 15       		.uleb128 0x15
+ 1096 028b 0E000000 		.4byte	.LVL15
+ 1097 028f B5010000 		.4byte	0x1b5
+ 1098 0293 A3020000 		.4byte	0x2a3
+ 1099 0297 12       		.uleb128 0x12
+ 1100 0298 01       		.uleb128 0x1
+ 1101 0299 51       		.byte	0x51
+ 1102 029a 01       		.uleb128 0x1
+ 1103 029b 31       		.byte	0x31
+ 1104 029c 12       		.uleb128 0x12
+ 1105 029d 01       		.uleb128 0x1
+ 1106 029e 50       		.byte	0x50
+ 1107 029f 02       		.uleb128 0x2
+ 1108 02a0 91       		.byte	0x91
+ 1109 02a1 50       		.sleb128 -48
+ 1110 02a2 00       		.byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 21
+
+
+ 1111 02a3 16       		.uleb128 0x16
+ 1112 02a4 1C000000 		.4byte	.LVL18
+ 1113 02a8 B5010000 		.4byte	0x1b5
+ 1114 02ac 12       		.uleb128 0x12
+ 1115 02ad 01       		.uleb128 0x1
+ 1116 02ae 51       		.byte	0x51
+ 1117 02af 01       		.uleb128 0x1
+ 1118 02b0 30       		.byte	0x30
+ 1119 02b1 12       		.uleb128 0x12
+ 1120 02b2 01       		.uleb128 0x1
+ 1121 02b3 50       		.byte	0x50
+ 1122 02b4 02       		.uleb128 0x2
+ 1123 02b5 91       		.byte	0x91
+ 1124 02b6 50       		.sleb128 -48
+ 1125 02b7 00       		.byte	0
+ 1126 02b8 00       		.byte	0
+ 1127 02b9 1D       		.uleb128 0x1d
+ 1128 02ba 48000000 		.4byte	0x48
+ 1129 02be 1E       		.uleb128 0x1e
+ 1130 02bf EF020000 		.4byte	.LASF32
+ 1131 02c3 01       		.byte	0x1
+ 1132 02c4 3C01     		.2byte	0x13c
+ 1133 02c6 00000000 		.4byte	.LFB3
+ 1134 02ca 24000000 		.4byte	.LFE3-.LFB3
+ 1135 02ce 01       		.uleb128 0x1
+ 1136 02cf 9C       		.byte	0x9c
+ 1137 02d0 12030000 		.4byte	0x312
+ 1138 02d4 10       		.uleb128 0x10
+ 1139 02d5 C2020000 		.4byte	.LASF31
+ 1140 02d9 01       		.byte	0x1
+ 1141 02da 3C01     		.2byte	0x13c
+ 1142 02dc 5D000000 		.4byte	0x5d
+ 1143 02e0 2D010000 		.4byte	.LLST6
+ 1144 02e4 15       		.uleb128 0x15
+ 1145 02e5 12000000 		.4byte	.LVL21
+ 1146 02e9 5A060000 		.4byte	0x65a
+ 1147 02ed 00030000 		.4byte	0x300
+ 1148 02f1 12       		.uleb128 0x12
+ 1149 02f2 01       		.uleb128 0x1
+ 1150 02f3 51       		.byte	0x51
+ 1151 02f4 05       		.uleb128 0x5
+ 1152 02f5 03       		.byte	0x3
+ 1153 02f6 00000000 		.4byte	sighandler
+ 1154 02fa 12       		.uleb128 0x12
+ 1155 02fb 01       		.uleb128 0x1
+ 1156 02fc 50       		.byte	0x50
+ 1157 02fd 01       		.uleb128 0x1
+ 1158 02fe 3E       		.byte	0x3e
+ 1159 02ff 00       		.byte	0
+ 1160 0300 11       		.uleb128 0x11
+ 1161 0301 1C000000 		.4byte	.LVL23
+ 1162 0305 94060000 		.4byte	0x694
+ 1163 0309 12       		.uleb128 0x12
+ 1164 030a 01       		.uleb128 0x1
+ 1165 030b 50       		.byte	0x50
+ 1166 030c 03       		.uleb128 0x3
+ 1167 030d F3       		.byte	0xf3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 22
+
+
+ 1168 030e 01       		.uleb128 0x1
+ 1169 030f 50       		.byte	0x50
+ 1170 0310 00       		.byte	0
+ 1171 0311 00       		.byte	0
+ 1172 0312 1E       		.uleb128 0x1e
+ 1173 0313 4C010000 		.4byte	.LASF33
+ 1174 0317 01       		.byte	0x1
+ 1175 0318 4301     		.2byte	0x143
+ 1176 031a 00000000 		.4byte	.LFB4
+ 1177 031e 38000000 		.4byte	.LFE4-.LFB4
+ 1178 0322 01       		.uleb128 0x1
+ 1179 0323 9C       		.byte	0x9c
+ 1180 0324 7E030000 		.4byte	0x37e
+ 1181 0328 10       		.uleb128 0x10
+ 1182 0329 CA020000 		.4byte	.LASF34
+ 1183 032d 01       		.byte	0x1
+ 1184 032e 4301     		.2byte	0x143
+ 1185 0330 5D000000 		.4byte	0x5d
+ 1186 0334 64010000 		.4byte	.LLST7
+ 1187 0338 1C       		.uleb128 0x1c
+ 1188 0339 747600   		.ascii	"tv\000"
+ 1189 033c 01       		.byte	0x1
+ 1190 033d 4501     		.2byte	0x145
+ 1191 033f D7000000 		.4byte	0xd7
+ 1192 0343 02       		.uleb128 0x2
+ 1193 0344 91       		.byte	0x91
+ 1194 0345 68       		.sleb128 -24
+ 1195 0346 1F       		.uleb128 0x1f
+ 1196 0347 18000000 		.4byte	.LASF47
+ 1197 034b 01       		.byte	0x1
+ 1198 034c 4A01     		.2byte	0x14a
+ 1199 034e 5D000000 		.4byte	0x5d
+ 1200 0352 58030000 		.4byte	0x358
+ 1201 0356 20       		.uleb128 0x20
+ 1202 0357 00       		.byte	0
+ 1203 0358 16       		.uleb128 0x16
+ 1204 0359 30000000 		.4byte	.LVL26
+ 1205 035d A9060000 		.4byte	0x6a9
+ 1206 0361 12       		.uleb128 0x12
+ 1207 0362 01       		.uleb128 0x1
+ 1208 0363 53       		.byte	0x53
+ 1209 0364 01       		.uleb128 0x1
+ 1210 0365 30       		.byte	0x30
+ 1211 0366 12       		.uleb128 0x12
+ 1212 0367 01       		.uleb128 0x1
+ 1213 0368 52       		.byte	0x52
+ 1214 0369 01       		.uleb128 0x1
+ 1215 036a 30       		.byte	0x30
+ 1216 036b 12       		.uleb128 0x12
+ 1217 036c 01       		.uleb128 0x1
+ 1218 036d 51       		.byte	0x51
+ 1219 036e 01       		.uleb128 0x1
+ 1220 036f 30       		.byte	0x30
+ 1221 0370 12       		.uleb128 0x12
+ 1222 0371 01       		.uleb128 0x1
+ 1223 0372 50       		.byte	0x50
+ 1224 0373 01       		.uleb128 0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 23
+
+
+ 1225 0374 30       		.byte	0x30
+ 1226 0375 12       		.uleb128 0x12
+ 1227 0376 02       		.uleb128 0x2
+ 1228 0377 7D       		.byte	0x7d
+ 1229 0378 00       		.sleb128 0
+ 1230 0379 02       		.uleb128 0x2
+ 1231 037a 91       		.byte	0x91
+ 1232 037b 68       		.sleb128 -24
+ 1233 037c 00       		.byte	0
+ 1234 037d 00       		.byte	0
+ 1235 037e 17       		.uleb128 0x17
+ 1236 037f 61030000 		.4byte	.LASF35
+ 1237 0383 01       		.byte	0x1
+ 1238 0384 7001     		.2byte	0x170
+ 1239 0386 5D000000 		.4byte	0x5d
+ 1240 038a 00000000 		.4byte	.LFB6
+ 1241 038e CC010000 		.4byte	.LFE6-.LFB6
+ 1242 0392 01       		.uleb128 0x1
+ 1243 0393 9C       		.byte	0x9c
+ 1244 0394 22060000 		.4byte	0x622
+ 1245 0398 10       		.uleb128 0x10
+ 1246 0399 2A030000 		.4byte	.LASF36
+ 1247 039d 01       		.byte	0x1
+ 1248 039e 7001     		.2byte	0x170
+ 1249 03a0 5D000000 		.4byte	0x5d
+ 1250 03a4 85010000 		.4byte	.LLST8
+ 1251 03a8 21       		.uleb128 0x21
+ 1252 03a9 F9020000 		.4byte	.LASF37
+ 1253 03ad 01       		.byte	0x1
+ 1254 03ae 7201     		.2byte	0x172
+ 1255 03b0 48000000 		.4byte	0x48
+ 1256 03b4 B9010000 		.4byte	.LLST9
+ 1257 03b8 21       		.uleb128 0x21
+ 1258 03b9 32030000 		.4byte	.LASF38
+ 1259 03bd 01       		.byte	0x1
+ 1260 03be 7201     		.2byte	0x172
+ 1261 03c0 48000000 		.4byte	0x48
+ 1262 03c4 34020000 		.4byte	.LLST10
+ 1263 03c8 21       		.uleb128 0x21
+ 1264 03c9 0C030000 		.4byte	.LASF39
+ 1265 03cd 01       		.byte	0x1
+ 1266 03ce 7301     		.2byte	0x173
+ 1267 03d0 48000000 		.4byte	0x48
+ 1268 03d4 47020000 		.4byte	.LLST11
+ 1269 03d8 21       		.uleb128 0x21
+ 1270 03d9 47000000 		.4byte	.LASF40
+ 1271 03dd 01       		.byte	0x1
+ 1272 03de 7301     		.2byte	0x173
+ 1273 03e0 48000000 		.4byte	0x48
+ 1274 03e4 D5020000 		.4byte	.LLST12
+ 1275 03e8 21       		.uleb128 0x21
+ 1276 03e9 58030000 		.4byte	.LASF41
+ 1277 03ed 01       		.byte	0x1
+ 1278 03ee 7401     		.2byte	0x174
+ 1279 03f0 5D000000 		.4byte	0x5d
+ 1280 03f4 17030000 		.4byte	.LLST13
+ 1281 03f8 1A       		.uleb128 0x1a
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 24
+
+
+ 1282 03f9 BA000000 		.4byte	.LASF30
+ 1283 03fd 01       		.byte	0x1
+ 1284 03fe 7501     		.2byte	0x175
+ 1285 0400 AE000000 		.4byte	0xae
+ 1286 0404 02       		.uleb128 0x2
+ 1287 0405 91       		.byte	0x91
+ 1288 0406 40       		.sleb128 -64
+ 1289 0407 22       		.uleb128 0x22
+ 1290 0408 3D000000 		.4byte	.LASF55
+ 1291 040c 01       		.byte	0x1
+ 1292 040d B401     		.2byte	0x1b4
+ 1293 040f 15       		.uleb128 0x15
+ 1294 0410 22000000 		.4byte	.LVL30
+ 1295 0414 B5010000 		.4byte	0x1b5
+ 1296 0418 28040000 		.4byte	0x428
+ 1297 041c 12       		.uleb128 0x12
+ 1298 041d 01       		.uleb128 0x1
+ 1299 041e 51       		.byte	0x51
+ 1300 041f 01       		.uleb128 0x1
+ 1301 0420 31       		.byte	0x31
+ 1302 0421 12       		.uleb128 0x12
+ 1303 0422 01       		.uleb128 0x1
+ 1304 0423 50       		.byte	0x50
+ 1305 0424 02       		.uleb128 0x2
+ 1306 0425 7D       		.byte	0x7d
+ 1307 0426 00       		.sleb128 0
+ 1308 0427 00       		.byte	0
+ 1309 0428 15       		.uleb128 0x15
+ 1310 0429 28000000 		.4byte	.LVL31
+ 1311 042d 12030000 		.4byte	0x312
+ 1312 0431 3C040000 		.4byte	0x43c
+ 1313 0435 12       		.uleb128 0x12
+ 1314 0436 01       		.uleb128 0x1
+ 1315 0437 50       		.byte	0x50
+ 1316 0438 02       		.uleb128 0x2
+ 1317 0439 74       		.byte	0x74
+ 1318 043a 00       		.sleb128 0
+ 1319 043b 00       		.byte	0
+ 1320 043c 15       		.uleb128 0x15
+ 1321 043d 30000000 		.4byte	.LVL32
+ 1322 0441 B5010000 		.4byte	0x1b5
+ 1323 0445 55040000 		.4byte	0x455
+ 1324 0449 12       		.uleb128 0x12
+ 1325 044a 01       		.uleb128 0x1
+ 1326 044b 51       		.byte	0x51
+ 1327 044c 01       		.uleb128 0x1
+ 1328 044d 30       		.byte	0x30
+ 1329 044e 12       		.uleb128 0x12
+ 1330 044f 01       		.uleb128 0x1
+ 1331 0450 50       		.byte	0x50
+ 1332 0451 02       		.uleb128 0x2
+ 1333 0452 7D       		.byte	0x7d
+ 1334 0453 00       		.sleb128 0
+ 1335 0454 00       		.byte	0
+ 1336 0455 15       		.uleb128 0x15
+ 1337 0456 62000000 		.4byte	.LVL35
+ 1338 045a B5010000 		.4byte	0x1b5
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 25
+
+
+ 1339 045e 6E040000 		.4byte	0x46e
+ 1340 0462 12       		.uleb128 0x12
+ 1341 0463 01       		.uleb128 0x1
+ 1342 0464 51       		.byte	0x51
+ 1343 0465 01       		.uleb128 0x1
+ 1344 0466 31       		.byte	0x31
+ 1345 0467 12       		.uleb128 0x12
+ 1346 0468 01       		.uleb128 0x1
+ 1347 0469 50       		.byte	0x50
+ 1348 046a 02       		.uleb128 0x2
+ 1349 046b 7D       		.byte	0x7d
+ 1350 046c 00       		.sleb128 0
+ 1351 046d 00       		.byte	0
+ 1352 046e 15       		.uleb128 0x15
+ 1353 046f 68000000 		.4byte	.LVL36
+ 1354 0473 BE020000 		.4byte	0x2be
+ 1355 0477 82040000 		.4byte	0x482
+ 1356 047b 12       		.uleb128 0x12
+ 1357 047c 01       		.uleb128 0x1
+ 1358 047d 50       		.byte	0x50
+ 1359 047e 02       		.uleb128 0x2
+ 1360 047f 75       		.byte	0x75
+ 1361 0480 00       		.sleb128 0
+ 1362 0481 00       		.byte	0
+ 1363 0482 15       		.uleb128 0x15
+ 1364 0483 76000000 		.4byte	.LVL37
+ 1365 0487 B5010000 		.4byte	0x1b5
+ 1366 048b 9B040000 		.4byte	0x49b
+ 1367 048f 12       		.uleb128 0x12
+ 1368 0490 01       		.uleb128 0x1
+ 1369 0491 51       		.byte	0x51
+ 1370 0492 01       		.uleb128 0x1
+ 1371 0493 30       		.byte	0x30
+ 1372 0494 12       		.uleb128 0x12
+ 1373 0495 01       		.uleb128 0x1
+ 1374 0496 50       		.byte	0x50
+ 1375 0497 02       		.uleb128 0x2
+ 1376 0498 7D       		.byte	0x7d
+ 1377 0499 00       		.sleb128 0
+ 1378 049a 00       		.byte	0
+ 1379 049b 23       		.uleb128 0x23
+ 1380 049c 9C000000 		.4byte	.LVL41
+ 1381 04a0 61010000 		.4byte	0x161
+ 1382 04a4 15       		.uleb128 0x15
+ 1383 04a5 A4000000 		.4byte	.LVL44
+ 1384 04a9 3A020000 		.4byte	0x23a
+ 1385 04ad B7040000 		.4byte	0x4b7
+ 1386 04b1 12       		.uleb128 0x12
+ 1387 04b2 01       		.uleb128 0x1
+ 1388 04b3 50       		.byte	0x50
+ 1389 04b4 01       		.uleb128 0x1
+ 1390 04b5 31       		.byte	0x31
+ 1391 04b6 00       		.byte	0
+ 1392 04b7 23       		.uleb128 0x23
+ 1393 04b8 A8000000 		.4byte	.LVL45
+ 1394 04bc 61010000 		.4byte	0x161
+ 1395 04c0 23       		.uleb128 0x23
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 26
+
+
+ 1396 04c1 BC000000 		.4byte	.LVL48
+ 1397 04c5 61010000 		.4byte	0x161
+ 1398 04c9 15       		.uleb128 0x15
+ 1399 04ca C4000000 		.4byte	.LVL51
+ 1400 04ce 3A020000 		.4byte	0x23a
+ 1401 04d2 DD040000 		.4byte	0x4dd
+ 1402 04d6 12       		.uleb128 0x12
+ 1403 04d7 01       		.uleb128 0x1
+ 1404 04d8 50       		.byte	0x50
+ 1405 04d9 02       		.uleb128 0x2
+ 1406 04da 7A       		.byte	0x7a
+ 1407 04db 00       		.sleb128 0
+ 1408 04dc 00       		.byte	0
+ 1409 04dd 23       		.uleb128 0x23
+ 1410 04de C8000000 		.4byte	.LVL52
+ 1411 04e2 61010000 		.4byte	0x161
+ 1412 04e6 15       		.uleb128 0x15
+ 1413 04e7 FA000000 		.4byte	.LVL57
+ 1414 04eb B5010000 		.4byte	0x1b5
+ 1415 04ef FF040000 		.4byte	0x4ff
+ 1416 04f3 12       		.uleb128 0x12
+ 1417 04f4 01       		.uleb128 0x1
+ 1418 04f5 51       		.byte	0x51
+ 1419 04f6 01       		.uleb128 0x1
+ 1420 04f7 31       		.byte	0x31
+ 1421 04f8 12       		.uleb128 0x12
+ 1422 04f9 01       		.uleb128 0x1
+ 1423 04fa 50       		.byte	0x50
+ 1424 04fb 02       		.uleb128 0x2
+ 1425 04fc 7D       		.byte	0x7d
+ 1426 04fd 00       		.sleb128 0
+ 1427 04fe 00       		.byte	0
+ 1428 04ff 15       		.uleb128 0x15
+ 1429 0500 00010000 		.4byte	.LVL58
+ 1430 0504 BB060000 		.4byte	0x6bb
+ 1431 0508 13050000 		.4byte	0x513
+ 1432 050c 12       		.uleb128 0x12
+ 1433 050d 01       		.uleb128 0x1
+ 1434 050e 50       		.byte	0x50
+ 1435 050f 02       		.uleb128 0x2
+ 1436 0510 74       		.byte	0x74
+ 1437 0511 00       		.sleb128 0
+ 1438 0512 00       		.byte	0
+ 1439 0513 15       		.uleb128 0x15
+ 1440 0514 08010000 		.4byte	.LVL59
+ 1441 0518 B5010000 		.4byte	0x1b5
+ 1442 051c 2C050000 		.4byte	0x52c
+ 1443 0520 12       		.uleb128 0x12
+ 1444 0521 01       		.uleb128 0x1
+ 1445 0522 51       		.byte	0x51
+ 1446 0523 01       		.uleb128 0x1
+ 1447 0524 30       		.byte	0x30
+ 1448 0525 12       		.uleb128 0x12
+ 1449 0526 01       		.uleb128 0x1
+ 1450 0527 50       		.byte	0x50
+ 1451 0528 02       		.uleb128 0x2
+ 1452 0529 7D       		.byte	0x7d
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 27
+
+
+ 1453 052a 00       		.sleb128 0
+ 1454 052b 00       		.byte	0
+ 1455 052c 15       		.uleb128 0x15
+ 1456 052d 44010000 		.4byte	.LVL65
+ 1457 0531 CC060000 		.4byte	0x6cc
+ 1458 0535 43050000 		.4byte	0x543
+ 1459 0539 12       		.uleb128 0x12
+ 1460 053a 01       		.uleb128 0x1
+ 1461 053b 50       		.byte	0x50
+ 1462 053c 05       		.uleb128 0x5
+ 1463 053d 03       		.byte	0x3
+ 1464 053e 00000000 		.4byte	.LC0
+ 1465 0542 00       		.byte	0
+ 1466 0543 15       		.uleb128 0x15
+ 1467 0544 4A010000 		.4byte	.LVL66
+ 1468 0548 E5060000 		.4byte	0x6e5
+ 1469 054c 5A050000 		.4byte	0x55a
+ 1470 0550 12       		.uleb128 0x12
+ 1471 0551 01       		.uleb128 0x1
+ 1472 0552 50       		.byte	0x50
+ 1473 0553 05       		.uleb128 0x5
+ 1474 0554 03       		.byte	0x3
+ 1475 0555 2C000000 		.4byte	.LC1
+ 1476 0559 00       		.byte	0
+ 1477 055a 15       		.uleb128 0x15
+ 1478 055b 52010000 		.4byte	.LVL69
+ 1479 055f CC060000 		.4byte	0x6cc
+ 1480 0563 71050000 		.4byte	0x571
+ 1481 0567 12       		.uleb128 0x12
+ 1482 0568 01       		.uleb128 0x1
+ 1483 0569 50       		.byte	0x50
+ 1484 056a 05       		.uleb128 0x5
+ 1485 056b 03       		.byte	0x3
+ 1486 056c 60000000 		.4byte	.LC3
+ 1487 0570 00       		.byte	0
+ 1488 0571 15       		.uleb128 0x15
+ 1489 0572 58010000 		.4byte	.LVL70
+ 1490 0576 E5060000 		.4byte	0x6e5
+ 1491 057a 88050000 		.4byte	0x588
+ 1492 057e 12       		.uleb128 0x12
+ 1493 057f 01       		.uleb128 0x1
+ 1494 0580 50       		.byte	0x50
+ 1495 0581 05       		.uleb128 0x5
+ 1496 0582 03       		.byte	0x3
+ 1497 0583 68000000 		.4byte	.LC4
+ 1498 0587 00       		.byte	0
+ 1499 0588 15       		.uleb128 0x15
+ 1500 0589 60010000 		.4byte	.LVL73
+ 1501 058d CC060000 		.4byte	0x6cc
+ 1502 0591 9F050000 		.4byte	0x59f
+ 1503 0595 12       		.uleb128 0x12
+ 1504 0596 01       		.uleb128 0x1
+ 1505 0597 50       		.byte	0x50
+ 1506 0598 05       		.uleb128 0x5
+ 1507 0599 03       		.byte	0x3
+ 1508 059a 60000000 		.4byte	.LC3
+ 1509 059e 00       		.byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 28
+
+
+ 1510 059f 15       		.uleb128 0x15
+ 1511 05a0 66010000 		.4byte	.LVL74
+ 1512 05a4 E5060000 		.4byte	0x6e5
+ 1513 05a8 B6050000 		.4byte	0x5b6
+ 1514 05ac 12       		.uleb128 0x12
+ 1515 05ad 01       		.uleb128 0x1
+ 1516 05ae 50       		.byte	0x50
+ 1517 05af 05       		.uleb128 0x5
+ 1518 05b0 03       		.byte	0x3
+ 1519 05b1 94000000 		.4byte	.LC5
+ 1520 05b5 00       		.byte	0
+ 1521 05b6 15       		.uleb128 0x15
+ 1522 05b7 6E010000 		.4byte	.LVL76
+ 1523 05bb CC060000 		.4byte	0x6cc
+ 1524 05bf CD050000 		.4byte	0x5cd
+ 1525 05c3 12       		.uleb128 0x12
+ 1526 05c4 01       		.uleb128 0x1
+ 1527 05c5 50       		.byte	0x50
+ 1528 05c6 05       		.uleb128 0x5
+ 1529 05c7 03       		.byte	0x3
+ 1530 05c8 58000000 		.4byte	.LC2
+ 1531 05cc 00       		.byte	0
+ 1532 05cd 15       		.uleb128 0x15
+ 1533 05ce 7C010000 		.4byte	.LVL79
+ 1534 05d2 CC060000 		.4byte	0x6cc
+ 1535 05d6 E4050000 		.4byte	0x5e4
+ 1536 05da 12       		.uleb128 0x12
+ 1537 05db 01       		.uleb128 0x1
+ 1538 05dc 50       		.byte	0x50
+ 1539 05dd 05       		.uleb128 0x5
+ 1540 05de 03       		.byte	0x3
+ 1541 05df 60000000 		.4byte	.LC3
+ 1542 05e3 00       		.byte	0
+ 1543 05e4 15       		.uleb128 0x15
+ 1544 05e5 82010000 		.4byte	.LVL80
+ 1545 05e9 E5060000 		.4byte	0x6e5
+ 1546 05ed FB050000 		.4byte	0x5fb
+ 1547 05f1 12       		.uleb128 0x12
+ 1548 05f2 01       		.uleb128 0x1
+ 1549 05f3 50       		.byte	0x50
+ 1550 05f4 05       		.uleb128 0x5
+ 1551 05f5 03       		.byte	0x3
+ 1552 05f6 C0000000 		.4byte	.LC6
+ 1553 05fa 00       		.byte	0
+ 1554 05fb 15       		.uleb128 0x15
+ 1555 05fc 8A010000 		.4byte	.LVL83
+ 1556 0600 CC060000 		.4byte	0x6cc
+ 1557 0604 12060000 		.4byte	0x612
+ 1558 0608 12       		.uleb128 0x12
+ 1559 0609 01       		.uleb128 0x1
+ 1560 060a 50       		.byte	0x50
+ 1561 060b 05       		.uleb128 0x5
+ 1562 060c 03       		.byte	0x3
+ 1563 060d 60000000 		.4byte	.LC3
+ 1564 0611 00       		.byte	0
+ 1565 0612 16       		.uleb128 0x16
+ 1566 0613 90010000 		.4byte	.LVL84
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 29
+
+
+ 1567 0617 FB060000 		.4byte	0x6fb
+ 1568 061b 12       		.uleb128 0x12
+ 1569 061c 01       		.uleb128 0x1
+ 1570 061d 50       		.byte	0x50
+ 1571 061e 01       		.uleb128 0x1
+ 1572 061f 3A       		.byte	0x3a
+ 1573 0620 00       		.byte	0
+ 1574 0621 00       		.byte	0
+ 1575 0622 14       		.uleb128 0x14
+ 1576 0623 3F030000 		.4byte	.LASF42
+ 1577 0627 01       		.byte	0x1
+ 1578 0628 D4       		.byte	0xd4
+ 1579 0629 5D000000 		.4byte	0x5d
+ 1580 062d 05       		.uleb128 0x5
+ 1581 062e 03       		.byte	0x3
+ 1582 062f 00000000 		.4byte	hardclock_init
+ 1583 0633 14       		.uleb128 0x14
+ 1584 0634 A5020000 		.4byte	.LASF43
+ 1585 0638 01       		.byte	0x1
+ 1586 0639 D5       		.byte	0xd5
+ 1587 063a D7000000 		.4byte	0xd7
+ 1588 063e 05       		.uleb128 0x5
+ 1589 063f 03       		.byte	0x3
+ 1590 0640 00000000 		.4byte	tv_init
+ 1591 0644 24       		.uleb128 0x24
+ 1592 0645 CE000000 		.4byte	.LASF56
+ 1593 0649 01       		.byte	0x1
+ 1594 064a E7       		.byte	0xe7
+ 1595 064b 55060000 		.4byte	0x655
+ 1596 064f 05       		.uleb128 0x5
+ 1597 0650 03       		.byte	0x3
+ 1598 0651 00000000 		.4byte	alarmed
+ 1599 0655 1D       		.uleb128 0x1d
+ 1600 0656 5D000000 		.4byte	0x5d
+ 1601 065a 25       		.uleb128 0x25
+ 1602 065b 1E030000 		.4byte	.LASF44
+ 1603 065f 06       		.byte	0x6
+ 1604 0660 19       		.byte	0x19
+ 1605 0661 FC000000 		.4byte	0xfc
+ 1606 0665 74060000 		.4byte	0x674
+ 1607 0669 08       		.uleb128 0x8
+ 1608 066a 5D000000 		.4byte	0x5d
+ 1609 066e 08       		.uleb128 0x8
+ 1610 066f FC000000 		.4byte	0xfc
+ 1611 0673 00       		.byte	0
+ 1612 0674 25       		.uleb128 0x25
+ 1613 0675 A0010000 		.4byte	.LASF45
+ 1614 0679 04       		.byte	0x4
+ 1615 067a 4D       		.byte	0x4d
+ 1616 067b 5D000000 		.4byte	0x5d
+ 1617 067f 8E060000 		.4byte	0x68e
+ 1618 0683 08       		.uleb128 0x8
+ 1619 0684 8E060000 		.4byte	0x68e
+ 1620 0688 08       		.uleb128 0x8
+ 1621 0689 6B000000 		.4byte	0x6b
+ 1622 068d 00       		.byte	0
+ 1623 068e 05       		.uleb128 0x5
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 30
+
+
+ 1624 068f 04       		.byte	0x4
+ 1625 0690 D7000000 		.4byte	0xd7
+ 1626 0694 25       		.uleb128 0x25
+ 1627 0695 D6000000 		.4byte	.LASF46
+ 1628 0699 07       		.byte	0x7
+ 1629 069a 15       		.byte	0x15
+ 1630 069b 64000000 		.4byte	0x64
+ 1631 069f A9060000 		.4byte	0x6a9
+ 1632 06a3 08       		.uleb128 0x8
+ 1633 06a4 64000000 		.4byte	0x64
+ 1634 06a8 00       		.byte	0
+ 1635 06a9 1F       		.uleb128 0x1f
+ 1636 06aa 18000000 		.4byte	.LASF47
+ 1637 06ae 01       		.byte	0x1
+ 1638 06af 4A01     		.2byte	0x14a
+ 1639 06b1 5D000000 		.4byte	0x5d
+ 1640 06b5 BB060000 		.4byte	0x6bb
+ 1641 06b9 20       		.uleb128 0x20
+ 1642 06ba 00       		.byte	0
+ 1643 06bb 26       		.uleb128 0x26
+ 1644 06bc 72030000 		.4byte	.LASF48
+ 1645 06c0 08       		.byte	0x8
+ 1646 06c1 74       		.byte	0x74
+ 1647 06c2 CC060000 		.4byte	0x6cc
+ 1648 06c6 08       		.uleb128 0x8
+ 1649 06c7 48000000 		.4byte	0x48
+ 1650 06cb 00       		.byte	0
+ 1651 06cc 27       		.uleb128 0x27
+ 1652 06cd DC000000 		.4byte	.LASF57
+ 1653 06d1 0A       		.byte	0xa
+ 1654 06d2 00       		.byte	0
+ 1655 06d3 97020000 		.4byte	.LASF58
+ 1656 06d7 5D000000 		.4byte	0x5d
+ 1657 06db E5060000 		.4byte	0x6e5
+ 1658 06df 08       		.uleb128 0x8
+ 1659 06e0 7B000000 		.4byte	0x7b
+ 1660 06e4 00       		.byte	0
+ 1661 06e5 25       		.uleb128 0x25
+ 1662 06e6 00000000 		.4byte	.LASF49
+ 1663 06ea 09       		.byte	0x9
+ 1664 06eb B1       		.byte	0xb1
+ 1665 06ec 5D000000 		.4byte	0x5d
+ 1666 06f0 FB060000 		.4byte	0x6fb
+ 1667 06f4 08       		.uleb128 0x8
+ 1668 06f5 7B000000 		.4byte	0x7b
+ 1669 06f9 20       		.uleb128 0x20
+ 1670 06fa 00       		.byte	0
+ 1671 06fb 28       		.uleb128 0x28
+ 1672 06fc 66010000 		.4byte	.LASF50
+ 1673 0700 0A       		.byte	0xa
+ 1674 0701 00       		.byte	0
+ 1675 0702 EB000000 		.4byte	.LASF59
+ 1676 0706 5D000000 		.4byte	0x5d
+ 1677 070a 08       		.uleb128 0x8
+ 1678 070b 5D000000 		.4byte	0x5d
+ 1679 070f 00       		.byte	0
+ 1680 0710 00       		.byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 31
+
+
+ 1681              		.section	.debug_abbrev,"",%progbits
+ 1682              	.Ldebug_abbrev0:
+ 1683 0000 01       		.uleb128 0x1
+ 1684 0001 11       		.uleb128 0x11
+ 1685 0002 01       		.byte	0x1
+ 1686 0003 25       		.uleb128 0x25
+ 1687 0004 0E       		.uleb128 0xe
+ 1688 0005 13       		.uleb128 0x13
+ 1689 0006 0B       		.uleb128 0xb
+ 1690 0007 03       		.uleb128 0x3
+ 1691 0008 0E       		.uleb128 0xe
+ 1692 0009 1B       		.uleb128 0x1b
+ 1693 000a 0E       		.uleb128 0xe
+ 1694 000b 55       		.uleb128 0x55
+ 1695 000c 17       		.uleb128 0x17
+ 1696 000d 11       		.uleb128 0x11
+ 1697 000e 01       		.uleb128 0x1
+ 1698 000f 10       		.uleb128 0x10
+ 1699 0010 17       		.uleb128 0x17
+ 1700 0011 00       		.byte	0
+ 1701 0012 00       		.byte	0
+ 1702 0013 02       		.uleb128 0x2
+ 1703 0014 24       		.uleb128 0x24
+ 1704 0015 00       		.byte	0
+ 1705 0016 0B       		.uleb128 0xb
+ 1706 0017 0B       		.uleb128 0xb
+ 1707 0018 3E       		.uleb128 0x3e
+ 1708 0019 0B       		.uleb128 0xb
+ 1709 001a 03       		.uleb128 0x3
+ 1710 001b 0E       		.uleb128 0xe
+ 1711 001c 00       		.byte	0
+ 1712 001d 00       		.byte	0
+ 1713 001e 03       		.uleb128 0x3
+ 1714 001f 24       		.uleb128 0x24
+ 1715 0020 00       		.byte	0
+ 1716 0021 0B       		.uleb128 0xb
+ 1717 0022 0B       		.uleb128 0xb
+ 1718 0023 3E       		.uleb128 0x3e
+ 1719 0024 0B       		.uleb128 0xb
+ 1720 0025 03       		.uleb128 0x3
+ 1721 0026 08       		.uleb128 0x8
+ 1722 0027 00       		.byte	0
+ 1723 0028 00       		.byte	0
+ 1724 0029 04       		.uleb128 0x4
+ 1725 002a 0F       		.uleb128 0xf
+ 1726 002b 00       		.byte	0
+ 1727 002c 0B       		.uleb128 0xb
+ 1728 002d 0B       		.uleb128 0xb
+ 1729 002e 00       		.byte	0
+ 1730 002f 00       		.byte	0
+ 1731 0030 05       		.uleb128 0x5
+ 1732 0031 0F       		.uleb128 0xf
+ 1733 0032 00       		.byte	0
+ 1734 0033 0B       		.uleb128 0xb
+ 1735 0034 0B       		.uleb128 0xb
+ 1736 0035 49       		.uleb128 0x49
+ 1737 0036 13       		.uleb128 0x13
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 32
+
+
+ 1738 0037 00       		.byte	0
+ 1739 0038 00       		.byte	0
+ 1740 0039 06       		.uleb128 0x6
+ 1741 003a 26       		.uleb128 0x26
+ 1742 003b 00       		.byte	0
+ 1743 003c 49       		.uleb128 0x49
+ 1744 003d 13       		.uleb128 0x13
+ 1745 003e 00       		.byte	0
+ 1746 003f 00       		.byte	0
+ 1747 0040 07       		.uleb128 0x7
+ 1748 0041 15       		.uleb128 0x15
+ 1749 0042 01       		.byte	0x1
+ 1750 0043 27       		.uleb128 0x27
+ 1751 0044 19       		.uleb128 0x19
+ 1752 0045 01       		.uleb128 0x1
+ 1753 0046 13       		.uleb128 0x13
+ 1754 0047 00       		.byte	0
+ 1755 0048 00       		.byte	0
+ 1756 0049 08       		.uleb128 0x8
+ 1757 004a 05       		.uleb128 0x5
+ 1758 004b 00       		.byte	0
+ 1759 004c 49       		.uleb128 0x49
+ 1760 004d 13       		.uleb128 0x13
+ 1761 004e 00       		.byte	0
+ 1762 004f 00       		.byte	0
+ 1763 0050 09       		.uleb128 0x9
+ 1764 0051 16       		.uleb128 0x16
+ 1765 0052 00       		.byte	0
+ 1766 0053 03       		.uleb128 0x3
+ 1767 0054 0E       		.uleb128 0xe
+ 1768 0055 3A       		.uleb128 0x3a
+ 1769 0056 0B       		.uleb128 0xb
+ 1770 0057 3B       		.uleb128 0x3b
+ 1771 0058 0B       		.uleb128 0xb
+ 1772 0059 49       		.uleb128 0x49
+ 1773 005a 13       		.uleb128 0x13
+ 1774 005b 00       		.byte	0
+ 1775 005c 00       		.byte	0
+ 1776 005d 0A       		.uleb128 0xa
+ 1777 005e 16       		.uleb128 0x16
+ 1778 005f 00       		.byte	0
+ 1779 0060 03       		.uleb128 0x3
+ 1780 0061 0E       		.uleb128 0xe
+ 1781 0062 3A       		.uleb128 0x3a
+ 1782 0063 0B       		.uleb128 0xb
+ 1783 0064 3B       		.uleb128 0x3b
+ 1784 0065 05       		.uleb128 0x5
+ 1785 0066 49       		.uleb128 0x49
+ 1786 0067 13       		.uleb128 0x13
+ 1787 0068 00       		.byte	0
+ 1788 0069 00       		.byte	0
+ 1789 006a 0B       		.uleb128 0xb
+ 1790 006b 13       		.uleb128 0x13
+ 1791 006c 01       		.byte	0x1
+ 1792 006d 03       		.uleb128 0x3
+ 1793 006e 0E       		.uleb128 0xe
+ 1794 006f 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 33
+
+
+ 1795 0070 0B       		.uleb128 0xb
+ 1796 0071 3A       		.uleb128 0x3a
+ 1797 0072 0B       		.uleb128 0xb
+ 1798 0073 3B       		.uleb128 0x3b
+ 1799 0074 0B       		.uleb128 0xb
+ 1800 0075 01       		.uleb128 0x1
+ 1801 0076 13       		.uleb128 0x13
+ 1802 0077 00       		.byte	0
+ 1803 0078 00       		.byte	0
+ 1804 0079 0C       		.uleb128 0xc
+ 1805 007a 0D       		.uleb128 0xd
+ 1806 007b 00       		.byte	0
+ 1807 007c 03       		.uleb128 0x3
+ 1808 007d 0E       		.uleb128 0xe
+ 1809 007e 3A       		.uleb128 0x3a
+ 1810 007f 0B       		.uleb128 0xb
+ 1811 0080 3B       		.uleb128 0x3b
+ 1812 0081 0B       		.uleb128 0xb
+ 1813 0082 49       		.uleb128 0x49
+ 1814 0083 13       		.uleb128 0x13
+ 1815 0084 38       		.uleb128 0x38
+ 1816 0085 0B       		.uleb128 0xb
+ 1817 0086 00       		.byte	0
+ 1818 0087 00       		.byte	0
+ 1819 0088 0D       		.uleb128 0xd
+ 1820 0089 01       		.uleb128 0x1
+ 1821 008a 01       		.byte	0x1
+ 1822 008b 49       		.uleb128 0x49
+ 1823 008c 13       		.uleb128 0x13
+ 1824 008d 01       		.uleb128 0x1
+ 1825 008e 13       		.uleb128 0x13
+ 1826 008f 00       		.byte	0
+ 1827 0090 00       		.byte	0
+ 1828 0091 0E       		.uleb128 0xe
+ 1829 0092 21       		.uleb128 0x21
+ 1830 0093 00       		.byte	0
+ 1831 0094 49       		.uleb128 0x49
+ 1832 0095 13       		.uleb128 0x13
+ 1833 0096 2F       		.uleb128 0x2f
+ 1834 0097 0B       		.uleb128 0xb
+ 1835 0098 00       		.byte	0
+ 1836 0099 00       		.byte	0
+ 1837 009a 0F       		.uleb128 0xf
+ 1838 009b 2E       		.uleb128 0x2e
+ 1839 009c 01       		.byte	0x1
+ 1840 009d 03       		.uleb128 0x3
+ 1841 009e 0E       		.uleb128 0xe
+ 1842 009f 3A       		.uleb128 0x3a
+ 1843 00a0 0B       		.uleb128 0xb
+ 1844 00a1 3B       		.uleb128 0x3b
+ 1845 00a2 05       		.uleb128 0x5
+ 1846 00a3 27       		.uleb128 0x27
+ 1847 00a4 19       		.uleb128 0x19
+ 1848 00a5 11       		.uleb128 0x11
+ 1849 00a6 01       		.uleb128 0x1
+ 1850 00a7 12       		.uleb128 0x12
+ 1851 00a8 06       		.uleb128 0x6
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 34
+
+
+ 1852 00a9 40       		.uleb128 0x40
+ 1853 00aa 18       		.uleb128 0x18
+ 1854 00ab 9742     		.uleb128 0x2117
+ 1855 00ad 19       		.uleb128 0x19
+ 1856 00ae 01       		.uleb128 0x1
+ 1857 00af 13       		.uleb128 0x13
+ 1858 00b0 00       		.byte	0
+ 1859 00b1 00       		.byte	0
+ 1860 00b2 10       		.uleb128 0x10
+ 1861 00b3 05       		.uleb128 0x5
+ 1862 00b4 00       		.byte	0
+ 1863 00b5 03       		.uleb128 0x3
+ 1864 00b6 0E       		.uleb128 0xe
+ 1865 00b7 3A       		.uleb128 0x3a
+ 1866 00b8 0B       		.uleb128 0xb
+ 1867 00b9 3B       		.uleb128 0x3b
+ 1868 00ba 05       		.uleb128 0x5
+ 1869 00bb 49       		.uleb128 0x49
+ 1870 00bc 13       		.uleb128 0x13
+ 1871 00bd 02       		.uleb128 0x2
+ 1872 00be 17       		.uleb128 0x17
+ 1873 00bf 00       		.byte	0
+ 1874 00c0 00       		.byte	0
+ 1875 00c1 11       		.uleb128 0x11
+ 1876 00c2 898201   		.uleb128 0x4109
+ 1877 00c5 01       		.byte	0x1
+ 1878 00c6 11       		.uleb128 0x11
+ 1879 00c7 01       		.uleb128 0x1
+ 1880 00c8 9542     		.uleb128 0x2115
+ 1881 00ca 19       		.uleb128 0x19
+ 1882 00cb 31       		.uleb128 0x31
+ 1883 00cc 13       		.uleb128 0x13
+ 1884 00cd 00       		.byte	0
+ 1885 00ce 00       		.byte	0
+ 1886 00cf 12       		.uleb128 0x12
+ 1887 00d0 8A8201   		.uleb128 0x410a
+ 1888 00d3 00       		.byte	0
+ 1889 00d4 02       		.uleb128 0x2
+ 1890 00d5 18       		.uleb128 0x18
+ 1891 00d6 9142     		.uleb128 0x2111
+ 1892 00d8 18       		.uleb128 0x18
+ 1893 00d9 00       		.byte	0
+ 1894 00da 00       		.byte	0
+ 1895 00db 13       		.uleb128 0x13
+ 1896 00dc 2E       		.uleb128 0x2e
+ 1897 00dd 01       		.byte	0x1
+ 1898 00de 3F       		.uleb128 0x3f
+ 1899 00df 19       		.uleb128 0x19
+ 1900 00e0 03       		.uleb128 0x3
+ 1901 00e1 0E       		.uleb128 0xe
+ 1902 00e2 3A       		.uleb128 0x3a
+ 1903 00e3 0B       		.uleb128 0xb
+ 1904 00e4 3B       		.uleb128 0x3b
+ 1905 00e5 0B       		.uleb128 0xb
+ 1906 00e6 27       		.uleb128 0x27
+ 1907 00e7 19       		.uleb128 0x19
+ 1908 00e8 49       		.uleb128 0x49
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 35
+
+
+ 1909 00e9 13       		.uleb128 0x13
+ 1910 00ea 11       		.uleb128 0x11
+ 1911 00eb 01       		.uleb128 0x1
+ 1912 00ec 12       		.uleb128 0x12
+ 1913 00ed 06       		.uleb128 0x6
+ 1914 00ee 40       		.uleb128 0x40
+ 1915 00ef 18       		.uleb128 0x18
+ 1916 00f0 9742     		.uleb128 0x2117
+ 1917 00f2 19       		.uleb128 0x19
+ 1918 00f3 01       		.uleb128 0x1
+ 1919 00f4 13       		.uleb128 0x13
+ 1920 00f5 00       		.byte	0
+ 1921 00f6 00       		.byte	0
+ 1922 00f7 14       		.uleb128 0x14
+ 1923 00f8 34       		.uleb128 0x34
+ 1924 00f9 00       		.byte	0
+ 1925 00fa 03       		.uleb128 0x3
+ 1926 00fb 0E       		.uleb128 0xe
+ 1927 00fc 3A       		.uleb128 0x3a
+ 1928 00fd 0B       		.uleb128 0xb
+ 1929 00fe 3B       		.uleb128 0x3b
+ 1930 00ff 0B       		.uleb128 0xb
+ 1931 0100 49       		.uleb128 0x49
+ 1932 0101 13       		.uleb128 0x13
+ 1933 0102 02       		.uleb128 0x2
+ 1934 0103 18       		.uleb128 0x18
+ 1935 0104 00       		.byte	0
+ 1936 0105 00       		.byte	0
+ 1937 0106 15       		.uleb128 0x15
+ 1938 0107 898201   		.uleb128 0x4109
+ 1939 010a 01       		.byte	0x1
+ 1940 010b 11       		.uleb128 0x11
+ 1941 010c 01       		.uleb128 0x1
+ 1942 010d 31       		.uleb128 0x31
+ 1943 010e 13       		.uleb128 0x13
+ 1944 010f 01       		.uleb128 0x1
+ 1945 0110 13       		.uleb128 0x13
+ 1946 0111 00       		.byte	0
+ 1947 0112 00       		.byte	0
+ 1948 0113 16       		.uleb128 0x16
+ 1949 0114 898201   		.uleb128 0x4109
+ 1950 0117 01       		.byte	0x1
+ 1951 0118 11       		.uleb128 0x11
+ 1952 0119 01       		.uleb128 0x1
+ 1953 011a 31       		.uleb128 0x31
+ 1954 011b 13       		.uleb128 0x13
+ 1955 011c 00       		.byte	0
+ 1956 011d 00       		.byte	0
+ 1957 011e 17       		.uleb128 0x17
+ 1958 011f 2E       		.uleb128 0x2e
+ 1959 0120 01       		.byte	0x1
+ 1960 0121 3F       		.uleb128 0x3f
+ 1961 0122 19       		.uleb128 0x19
+ 1962 0123 03       		.uleb128 0x3
+ 1963 0124 0E       		.uleb128 0xe
+ 1964 0125 3A       		.uleb128 0x3a
+ 1965 0126 0B       		.uleb128 0xb
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 36
+
+
+ 1966 0127 3B       		.uleb128 0x3b
+ 1967 0128 05       		.uleb128 0x5
+ 1968 0129 27       		.uleb128 0x27
+ 1969 012a 19       		.uleb128 0x19
+ 1970 012b 49       		.uleb128 0x49
+ 1971 012c 13       		.uleb128 0x13
+ 1972 012d 11       		.uleb128 0x11
+ 1973 012e 01       		.uleb128 0x1
+ 1974 012f 12       		.uleb128 0x12
+ 1975 0130 06       		.uleb128 0x6
+ 1976 0131 40       		.uleb128 0x40
+ 1977 0132 18       		.uleb128 0x18
+ 1978 0133 9742     		.uleb128 0x2117
+ 1979 0135 19       		.uleb128 0x19
+ 1980 0136 01       		.uleb128 0x1
+ 1981 0137 13       		.uleb128 0x13
+ 1982 0138 00       		.byte	0
+ 1983 0139 00       		.byte	0
+ 1984 013a 18       		.uleb128 0x18
+ 1985 013b 05       		.uleb128 0x5
+ 1986 013c 00       		.byte	0
+ 1987 013d 03       		.uleb128 0x3
+ 1988 013e 08       		.uleb128 0x8
+ 1989 013f 3A       		.uleb128 0x3a
+ 1990 0140 0B       		.uleb128 0xb
+ 1991 0141 3B       		.uleb128 0x3b
+ 1992 0142 05       		.uleb128 0x5
+ 1993 0143 49       		.uleb128 0x49
+ 1994 0144 13       		.uleb128 0x13
+ 1995 0145 02       		.uleb128 0x2
+ 1996 0146 17       		.uleb128 0x17
+ 1997 0147 00       		.byte	0
+ 1998 0148 00       		.byte	0
+ 1999 0149 19       		.uleb128 0x19
+ 2000 014a 34       		.uleb128 0x34
+ 2001 014b 00       		.byte	0
+ 2002 014c 03       		.uleb128 0x3
+ 2003 014d 0E       		.uleb128 0xe
+ 2004 014e 3A       		.uleb128 0x3a
+ 2005 014f 0B       		.uleb128 0xb
+ 2006 0150 3B       		.uleb128 0x3b
+ 2007 0151 05       		.uleb128 0x5
+ 2008 0152 49       		.uleb128 0x49
+ 2009 0153 13       		.uleb128 0x13
+ 2010 0154 00       		.byte	0
+ 2011 0155 00       		.byte	0
+ 2012 0156 1A       		.uleb128 0x1a
+ 2013 0157 34       		.uleb128 0x34
+ 2014 0158 00       		.byte	0
+ 2015 0159 03       		.uleb128 0x3
+ 2016 015a 0E       		.uleb128 0xe
+ 2017 015b 3A       		.uleb128 0x3a
+ 2018 015c 0B       		.uleb128 0xb
+ 2019 015d 3B       		.uleb128 0x3b
+ 2020 015e 05       		.uleb128 0x5
+ 2021 015f 49       		.uleb128 0x49
+ 2022 0160 13       		.uleb128 0x13
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 37
+
+
+ 2023 0161 02       		.uleb128 0x2
+ 2024 0162 18       		.uleb128 0x18
+ 2025 0163 00       		.byte	0
+ 2026 0164 00       		.byte	0
+ 2027 0165 1B       		.uleb128 0x1b
+ 2028 0166 34       		.uleb128 0x34
+ 2029 0167 00       		.byte	0
+ 2030 0168 03       		.uleb128 0x3
+ 2031 0169 08       		.uleb128 0x8
+ 2032 016a 3A       		.uleb128 0x3a
+ 2033 016b 0B       		.uleb128 0xb
+ 2034 016c 3B       		.uleb128 0x3b
+ 2035 016d 05       		.uleb128 0x5
+ 2036 016e 49       		.uleb128 0x49
+ 2037 016f 13       		.uleb128 0x13
+ 2038 0170 02       		.uleb128 0x2
+ 2039 0171 17       		.uleb128 0x17
+ 2040 0172 00       		.byte	0
+ 2041 0173 00       		.byte	0
+ 2042 0174 1C       		.uleb128 0x1c
+ 2043 0175 34       		.uleb128 0x34
+ 2044 0176 00       		.byte	0
+ 2045 0177 03       		.uleb128 0x3
+ 2046 0178 08       		.uleb128 0x8
+ 2047 0179 3A       		.uleb128 0x3a
+ 2048 017a 0B       		.uleb128 0xb
+ 2049 017b 3B       		.uleb128 0x3b
+ 2050 017c 05       		.uleb128 0x5
+ 2051 017d 49       		.uleb128 0x49
+ 2052 017e 13       		.uleb128 0x13
+ 2053 017f 02       		.uleb128 0x2
+ 2054 0180 18       		.uleb128 0x18
+ 2055 0181 00       		.byte	0
+ 2056 0182 00       		.byte	0
+ 2057 0183 1D       		.uleb128 0x1d
+ 2058 0184 35       		.uleb128 0x35
+ 2059 0185 00       		.byte	0
+ 2060 0186 49       		.uleb128 0x49
+ 2061 0187 13       		.uleb128 0x13
+ 2062 0188 00       		.byte	0
+ 2063 0189 00       		.byte	0
+ 2064 018a 1E       		.uleb128 0x1e
+ 2065 018b 2E       		.uleb128 0x2e
+ 2066 018c 01       		.byte	0x1
+ 2067 018d 3F       		.uleb128 0x3f
+ 2068 018e 19       		.uleb128 0x19
+ 2069 018f 03       		.uleb128 0x3
+ 2070 0190 0E       		.uleb128 0xe
+ 2071 0191 3A       		.uleb128 0x3a
+ 2072 0192 0B       		.uleb128 0xb
+ 2073 0193 3B       		.uleb128 0x3b
+ 2074 0194 05       		.uleb128 0x5
+ 2075 0195 27       		.uleb128 0x27
+ 2076 0196 19       		.uleb128 0x19
+ 2077 0197 11       		.uleb128 0x11
+ 2078 0198 01       		.uleb128 0x1
+ 2079 0199 12       		.uleb128 0x12
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 38
+
+
+ 2080 019a 06       		.uleb128 0x6
+ 2081 019b 40       		.uleb128 0x40
+ 2082 019c 18       		.uleb128 0x18
+ 2083 019d 9742     		.uleb128 0x2117
+ 2084 019f 19       		.uleb128 0x19
+ 2085 01a0 01       		.uleb128 0x1
+ 2086 01a1 13       		.uleb128 0x13
+ 2087 01a2 00       		.byte	0
+ 2088 01a3 00       		.byte	0
+ 2089 01a4 1F       		.uleb128 0x1f
+ 2090 01a5 2E       		.uleb128 0x2e
+ 2091 01a6 01       		.byte	0x1
+ 2092 01a7 3F       		.uleb128 0x3f
+ 2093 01a8 19       		.uleb128 0x19
+ 2094 01a9 03       		.uleb128 0x3
+ 2095 01aa 0E       		.uleb128 0xe
+ 2096 01ab 3A       		.uleb128 0x3a
+ 2097 01ac 0B       		.uleb128 0xb
+ 2098 01ad 3B       		.uleb128 0x3b
+ 2099 01ae 05       		.uleb128 0x5
+ 2100 01af 49       		.uleb128 0x49
+ 2101 01b0 13       		.uleb128 0x13
+ 2102 01b1 3C       		.uleb128 0x3c
+ 2103 01b2 19       		.uleb128 0x19
+ 2104 01b3 01       		.uleb128 0x1
+ 2105 01b4 13       		.uleb128 0x13
+ 2106 01b5 00       		.byte	0
+ 2107 01b6 00       		.byte	0
+ 2108 01b7 20       		.uleb128 0x20
+ 2109 01b8 18       		.uleb128 0x18
+ 2110 01b9 00       		.byte	0
+ 2111 01ba 00       		.byte	0
+ 2112 01bb 00       		.byte	0
+ 2113 01bc 21       		.uleb128 0x21
+ 2114 01bd 34       		.uleb128 0x34
+ 2115 01be 00       		.byte	0
+ 2116 01bf 03       		.uleb128 0x3
+ 2117 01c0 0E       		.uleb128 0xe
+ 2118 01c1 3A       		.uleb128 0x3a
+ 2119 01c2 0B       		.uleb128 0xb
+ 2120 01c3 3B       		.uleb128 0x3b
+ 2121 01c4 05       		.uleb128 0x5
+ 2122 01c5 49       		.uleb128 0x49
+ 2123 01c6 13       		.uleb128 0x13
+ 2124 01c7 02       		.uleb128 0x2
+ 2125 01c8 17       		.uleb128 0x17
+ 2126 01c9 00       		.byte	0
+ 2127 01ca 00       		.byte	0
+ 2128 01cb 22       		.uleb128 0x22
+ 2129 01cc 0A       		.uleb128 0xa
+ 2130 01cd 00       		.byte	0
+ 2131 01ce 03       		.uleb128 0x3
+ 2132 01cf 0E       		.uleb128 0xe
+ 2133 01d0 3A       		.uleb128 0x3a
+ 2134 01d1 0B       		.uleb128 0xb
+ 2135 01d2 3B       		.uleb128 0x3b
+ 2136 01d3 05       		.uleb128 0x5
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 39
+
+
+ 2137 01d4 00       		.byte	0
+ 2138 01d5 00       		.byte	0
+ 2139 01d6 23       		.uleb128 0x23
+ 2140 01d7 898201   		.uleb128 0x4109
+ 2141 01da 00       		.byte	0
+ 2142 01db 11       		.uleb128 0x11
+ 2143 01dc 01       		.uleb128 0x1
+ 2144 01dd 31       		.uleb128 0x31
+ 2145 01de 13       		.uleb128 0x13
+ 2146 01df 00       		.byte	0
+ 2147 01e0 00       		.byte	0
+ 2148 01e1 24       		.uleb128 0x24
+ 2149 01e2 34       		.uleb128 0x34
+ 2150 01e3 00       		.byte	0
+ 2151 01e4 03       		.uleb128 0x3
+ 2152 01e5 0E       		.uleb128 0xe
+ 2153 01e6 3A       		.uleb128 0x3a
+ 2154 01e7 0B       		.uleb128 0xb
+ 2155 01e8 3B       		.uleb128 0x3b
+ 2156 01e9 0B       		.uleb128 0xb
+ 2157 01ea 49       		.uleb128 0x49
+ 2158 01eb 13       		.uleb128 0x13
+ 2159 01ec 3F       		.uleb128 0x3f
+ 2160 01ed 19       		.uleb128 0x19
+ 2161 01ee 02       		.uleb128 0x2
+ 2162 01ef 18       		.uleb128 0x18
+ 2163 01f0 00       		.byte	0
+ 2164 01f1 00       		.byte	0
+ 2165 01f2 25       		.uleb128 0x25
+ 2166 01f3 2E       		.uleb128 0x2e
+ 2167 01f4 01       		.byte	0x1
+ 2168 01f5 3F       		.uleb128 0x3f
+ 2169 01f6 19       		.uleb128 0x19
+ 2170 01f7 03       		.uleb128 0x3
+ 2171 01f8 0E       		.uleb128 0xe
+ 2172 01f9 3A       		.uleb128 0x3a
+ 2173 01fa 0B       		.uleb128 0xb
+ 2174 01fb 3B       		.uleb128 0x3b
+ 2175 01fc 0B       		.uleb128 0xb
+ 2176 01fd 27       		.uleb128 0x27
+ 2177 01fe 19       		.uleb128 0x19
+ 2178 01ff 49       		.uleb128 0x49
+ 2179 0200 13       		.uleb128 0x13
+ 2180 0201 3C       		.uleb128 0x3c
+ 2181 0202 19       		.uleb128 0x19
+ 2182 0203 01       		.uleb128 0x1
+ 2183 0204 13       		.uleb128 0x13
+ 2184 0205 00       		.byte	0
+ 2185 0206 00       		.byte	0
+ 2186 0207 26       		.uleb128 0x26
+ 2187 0208 2E       		.uleb128 0x2e
+ 2188 0209 01       		.byte	0x1
+ 2189 020a 3F       		.uleb128 0x3f
+ 2190 020b 19       		.uleb128 0x19
+ 2191 020c 03       		.uleb128 0x3
+ 2192 020d 0E       		.uleb128 0xe
+ 2193 020e 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 40
+
+
+ 2194 020f 0B       		.uleb128 0xb
+ 2195 0210 3B       		.uleb128 0x3b
+ 2196 0211 0B       		.uleb128 0xb
+ 2197 0212 27       		.uleb128 0x27
+ 2198 0213 19       		.uleb128 0x19
+ 2199 0214 3C       		.uleb128 0x3c
+ 2200 0215 19       		.uleb128 0x19
+ 2201 0216 01       		.uleb128 0x1
+ 2202 0217 13       		.uleb128 0x13
+ 2203 0218 00       		.byte	0
+ 2204 0219 00       		.byte	0
+ 2205 021a 27       		.uleb128 0x27
+ 2206 021b 2E       		.uleb128 0x2e
+ 2207 021c 01       		.byte	0x1
+ 2208 021d 3F       		.uleb128 0x3f
+ 2209 021e 19       		.uleb128 0x19
+ 2210 021f 03       		.uleb128 0x3
+ 2211 0220 0E       		.uleb128 0xe
+ 2212 0221 3A       		.uleb128 0x3a
+ 2213 0222 0B       		.uleb128 0xb
+ 2214 0223 3B       		.uleb128 0x3b
+ 2215 0224 0B       		.uleb128 0xb
+ 2216 0225 6E       		.uleb128 0x6e
+ 2217 0226 0E       		.uleb128 0xe
+ 2218 0227 27       		.uleb128 0x27
+ 2219 0228 19       		.uleb128 0x19
+ 2220 0229 49       		.uleb128 0x49
+ 2221 022a 13       		.uleb128 0x13
+ 2222 022b 3C       		.uleb128 0x3c
+ 2223 022c 19       		.uleb128 0x19
+ 2224 022d 01       		.uleb128 0x1
+ 2225 022e 13       		.uleb128 0x13
+ 2226 022f 00       		.byte	0
+ 2227 0230 00       		.byte	0
+ 2228 0231 28       		.uleb128 0x28
+ 2229 0232 2E       		.uleb128 0x2e
+ 2230 0233 01       		.byte	0x1
+ 2231 0234 3F       		.uleb128 0x3f
+ 2232 0235 19       		.uleb128 0x19
+ 2233 0236 03       		.uleb128 0x3
+ 2234 0237 0E       		.uleb128 0xe
+ 2235 0238 3A       		.uleb128 0x3a
+ 2236 0239 0B       		.uleb128 0xb
+ 2237 023a 3B       		.uleb128 0x3b
+ 2238 023b 0B       		.uleb128 0xb
+ 2239 023c 6E       		.uleb128 0x6e
+ 2240 023d 0E       		.uleb128 0xe
+ 2241 023e 27       		.uleb128 0x27
+ 2242 023f 19       		.uleb128 0x19
+ 2243 0240 49       		.uleb128 0x49
+ 2244 0241 13       		.uleb128 0x13
+ 2245 0242 3C       		.uleb128 0x3c
+ 2246 0243 19       		.uleb128 0x19
+ 2247 0244 00       		.byte	0
+ 2248 0245 00       		.byte	0
+ 2249 0246 00       		.byte	0
+ 2250              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 41
+
+
+ 2251              	.Ldebug_loc0:
+ 2252              	.LLST0:
+ 2253 0000 00000000 		.4byte	.LVL0
+ 2254 0004 0B000000 		.4byte	.LVL1-1
+ 2255 0008 0100     		.2byte	0x1
+ 2256 000a 50       		.byte	0x50
+ 2257 000b 0B000000 		.4byte	.LVL1-1
+ 2258 000f 14000000 		.4byte	.LFE2
+ 2259 0013 0400     		.2byte	0x4
+ 2260 0015 F3       		.byte	0xf3
+ 2261 0016 01       		.uleb128 0x1
+ 2262 0017 50       		.byte	0x50
+ 2263 0018 9F       		.byte	0x9f
+ 2264 0019 00000000 		.4byte	0
+ 2265 001d 00000000 		.4byte	0
+ 2266              	.LLST1:
+ 2267 0021 00000000 		.4byte	.LVL4
+ 2268 0025 0C000000 		.4byte	.LVL7
+ 2269 0029 0100     		.2byte	0x1
+ 2270 002b 50       		.byte	0x50
+ 2271 002c 0C000000 		.4byte	.LVL7
+ 2272 0030 22000000 		.4byte	.LVL10
+ 2273 0034 0100     		.2byte	0x1
+ 2274 0036 54       		.byte	0x54
+ 2275 0037 22000000 		.4byte	.LVL10
+ 2276 003b 36000000 		.4byte	.LVL11
+ 2277 003f 0400     		.2byte	0x4
+ 2278 0041 F3       		.byte	0xf3
+ 2279 0042 01       		.uleb128 0x1
+ 2280 0043 50       		.byte	0x50
+ 2281 0044 9F       		.byte	0x9f
+ 2282 0045 36000000 		.4byte	.LVL11
+ 2283 0049 44000000 		.4byte	.LVL12
+ 2284 004d 0100     		.2byte	0x1
+ 2285 004f 54       		.byte	0x54
+ 2286 0050 44000000 		.4byte	.LVL12
+ 2287 0054 48000000 		.4byte	.LFE1
+ 2288 0058 0400     		.2byte	0x4
+ 2289 005a F3       		.byte	0xf3
+ 2290 005b 01       		.uleb128 0x1
+ 2291 005c 50       		.byte	0x50
+ 2292 005d 9F       		.byte	0x9f
+ 2293 005e 00000000 		.4byte	0
+ 2294 0062 00000000 		.4byte	0
+ 2295              	.LLST2:
+ 2296 0066 00000000 		.4byte	.LVL4
+ 2297 006a 0A000000 		.4byte	.LVL6
+ 2298 006e 0100     		.2byte	0x1
+ 2299 0070 51       		.byte	0x51
+ 2300 0071 0A000000 		.4byte	.LVL6
+ 2301 0075 18000000 		.4byte	.LVL9
+ 2302 0079 0100     		.2byte	0x1
+ 2303 007b 55       		.byte	0x55
+ 2304 007c 18000000 		.4byte	.LVL9
+ 2305 0080 36000000 		.4byte	.LVL11
+ 2306 0084 0400     		.2byte	0x4
+ 2307 0086 F3       		.byte	0xf3
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 42
+
+
+ 2308 0087 01       		.uleb128 0x1
+ 2309 0088 51       		.byte	0x51
+ 2310 0089 9F       		.byte	0x9f
+ 2311 008a 36000000 		.4byte	.LVL11
+ 2312 008e 44000000 		.4byte	.LVL12
+ 2313 0092 0100     		.2byte	0x1
+ 2314 0094 55       		.byte	0x55
+ 2315 0095 44000000 		.4byte	.LVL12
+ 2316 0099 48000000 		.4byte	.LFE1
+ 2317 009d 0400     		.2byte	0x4
+ 2318 009f F3       		.byte	0xf3
+ 2319 00a0 01       		.uleb128 0x1
+ 2320 00a1 51       		.byte	0x51
+ 2321 00a2 9F       		.byte	0x9f
+ 2322 00a3 00000000 		.4byte	0
+ 2323 00a7 00000000 		.4byte	0
+ 2324              	.LLST3:
+ 2325 00ab 08000000 		.4byte	.LVL5
+ 2326 00af 0C000000 		.4byte	.LVL7
+ 2327 00b3 0100     		.2byte	0x1
+ 2328 00b5 50       		.byte	0x50
+ 2329 00b6 0C000000 		.4byte	.LVL7
+ 2330 00ba 22000000 		.4byte	.LVL10
+ 2331 00be 0100     		.2byte	0x1
+ 2332 00c0 54       		.byte	0x54
+ 2333 00c1 22000000 		.4byte	.LVL10
+ 2334 00c5 36000000 		.4byte	.LVL11
+ 2335 00c9 0400     		.2byte	0x4
+ 2336 00cb F3       		.byte	0xf3
+ 2337 00cc 01       		.uleb128 0x1
+ 2338 00cd 50       		.byte	0x50
+ 2339 00ce 9F       		.byte	0x9f
+ 2340 00cf 36000000 		.4byte	.LVL11
+ 2341 00d3 44000000 		.4byte	.LVL12
+ 2342 00d7 0100     		.2byte	0x1
+ 2343 00d9 54       		.byte	0x54
+ 2344 00da 44000000 		.4byte	.LVL12
+ 2345 00de 48000000 		.4byte	.LFE1
+ 2346 00e2 0400     		.2byte	0x4
+ 2347 00e4 F3       		.byte	0xf3
+ 2348 00e5 01       		.uleb128 0x1
+ 2349 00e6 50       		.byte	0x50
+ 2350 00e7 9F       		.byte	0x9f
+ 2351 00e8 00000000 		.4byte	0
+ 2352 00ec 00000000 		.4byte	0
+ 2353              	.LLST4:
+ 2354 00f0 00000000 		.4byte	.LVL13
+ 2355 00f4 0A000000 		.4byte	.LVL14
+ 2356 00f8 0100     		.2byte	0x1
+ 2357 00fa 50       		.byte	0x50
+ 2358 00fb 0A000000 		.4byte	.LVL14
+ 2359 00ff 28000000 		.4byte	.LFE5
+ 2360 0103 0100     		.2byte	0x1
+ 2361 0105 55       		.byte	0x55
+ 2362 0106 00000000 		.4byte	0
+ 2363 010a 00000000 		.4byte	0
+ 2364              	.LLST5:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 43
+
+
+ 2365 010e 00000000 		.4byte	.LVL13
+ 2366 0112 12000000 		.4byte	.LVL16
+ 2367 0116 0200     		.2byte	0x2
+ 2368 0118 30       		.byte	0x30
+ 2369 0119 9F       		.byte	0x9f
+ 2370 011a 12000000 		.4byte	.LVL16
+ 2371 011e 28000000 		.4byte	.LFE5
+ 2372 0122 0100     		.2byte	0x1
+ 2373 0124 54       		.byte	0x54
+ 2374 0125 00000000 		.4byte	0
+ 2375 0129 00000000 		.4byte	0
+ 2376              	.LLST6:
+ 2377 012d 00000000 		.4byte	.LVL19
+ 2378 0131 0C000000 		.4byte	.LVL20
+ 2379 0135 0100     		.2byte	0x1
+ 2380 0137 50       		.byte	0x50
+ 2381 0138 0C000000 		.4byte	.LVL20
+ 2382 013c 18000000 		.4byte	.LVL22
+ 2383 0140 0100     		.2byte	0x1
+ 2384 0142 54       		.byte	0x54
+ 2385 0143 18000000 		.4byte	.LVL22
+ 2386 0147 1B000000 		.4byte	.LVL23-1
+ 2387 014b 0100     		.2byte	0x1
+ 2388 014d 50       		.byte	0x50
+ 2389 014e 1B000000 		.4byte	.LVL23-1
+ 2390 0152 24000000 		.4byte	.LFE3
+ 2391 0156 0400     		.2byte	0x4
+ 2392 0158 F3       		.byte	0xf3
+ 2393 0159 01       		.uleb128 0x1
+ 2394 015a 50       		.byte	0x50
+ 2395 015b 9F       		.byte	0x9f
+ 2396 015c 00000000 		.4byte	0
+ 2397 0160 00000000 		.4byte	0
+ 2398              	.LLST7:
+ 2399 0164 00000000 		.4byte	.LVL24
+ 2400 0168 1C000000 		.4byte	.LVL25
+ 2401 016c 0100     		.2byte	0x1
+ 2402 016e 50       		.byte	0x50
+ 2403 016f 1C000000 		.4byte	.LVL25
+ 2404 0173 38000000 		.4byte	.LFE4
+ 2405 0177 0400     		.2byte	0x4
+ 2406 0179 F3       		.byte	0xf3
+ 2407 017a 01       		.uleb128 0x1
+ 2408 017b 50       		.byte	0x50
+ 2409 017c 9F       		.byte	0x9f
+ 2410 017d 00000000 		.4byte	0
+ 2411 0181 00000000 		.4byte	0
+ 2412              	.LLST8:
+ 2413 0185 00000000 		.4byte	.LVL27
+ 2414 0189 0E000000 		.4byte	.LVL28
+ 2415 018d 0100     		.2byte	0x1
+ 2416 018f 50       		.byte	0x50
+ 2417 0190 0E000000 		.4byte	.LVL28
+ 2418 0194 3E010000 		.4byte	.LVL63
+ 2419 0198 0100     		.2byte	0x1
+ 2420 019a 56       		.byte	0x56
+ 2421 019b 3E010000 		.4byte	.LVL63
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 44
+
+
+ 2422 019f 40010000 		.4byte	.LVL64
+ 2423 01a3 0100     		.2byte	0x1
+ 2424 01a5 50       		.byte	0x50
+ 2425 01a6 40010000 		.4byte	.LVL64
+ 2426 01aa CC010000 		.4byte	.LFE6
+ 2427 01ae 0100     		.2byte	0x1
+ 2428 01b0 56       		.byte	0x56
+ 2429 01b1 00000000 		.4byte	0
+ 2430 01b5 00000000 		.4byte	0
+ 2431              	.LLST9:
+ 2432 01b9 9E000000 		.4byte	.LVL42
+ 2433 01bd A0000000 		.4byte	.LVL43
+ 2434 01c1 0100     		.2byte	0x1
+ 2435 01c3 50       		.byte	0x50
+ 2436 01c4 A0000000 		.4byte	.LVL43
+ 2437 01c8 AA000000 		.4byte	.LVL46
+ 2438 01cc 0100     		.2byte	0x1
+ 2439 01ce 55       		.byte	0x55
+ 2440 01cf AA000000 		.4byte	.LVL46
+ 2441 01d3 BB000000 		.4byte	.LVL48-1
+ 2442 01d7 0100     		.2byte	0x1
+ 2443 01d9 50       		.byte	0x50
+ 2444 01da BE000000 		.4byte	.LVL49
+ 2445 01de C0000000 		.4byte	.LVL50
+ 2446 01e2 0100     		.2byte	0x1
+ 2447 01e4 50       		.byte	0x50
+ 2448 01e5 C0000000 		.4byte	.LVL50
+ 2449 01e9 C8000000 		.4byte	.LVL52
+ 2450 01ed 0100     		.2byte	0x1
+ 2451 01ef 54       		.byte	0x54
+ 2452 01f0 C8000000 		.4byte	.LVL52
+ 2453 01f4 CA000000 		.4byte	.LVL53
+ 2454 01f8 0600     		.2byte	0x6
+ 2455 01fa 70       		.byte	0x70
+ 2456 01fb 00       		.sleb128 0
+ 2457 01fc 74       		.byte	0x74
+ 2458 01fd 00       		.sleb128 0
+ 2459 01fe 1C       		.byte	0x1c
+ 2460 01ff 9F       		.byte	0x9f
+ 2461 0200 CA000000 		.4byte	.LVL53
+ 2462 0204 E4000000 		.4byte	.LVL55
+ 2463 0208 0100     		.2byte	0x1
+ 2464 020a 50       		.byte	0x50
+ 2465 020b 2E010000 		.4byte	.LVL61
+ 2466 020f 34010000 		.4byte	.LVL62
+ 2467 0213 0100     		.2byte	0x1
+ 2468 0215 50       		.byte	0x50
+ 2469 0216 76010000 		.4byte	.LVL77
+ 2470 021a 78010000 		.4byte	.LVL78
+ 2471 021e 0100     		.2byte	0x1
+ 2472 0220 50       		.byte	0x50
+ 2473 0221 98010000 		.4byte	.LVL85
+ 2474 0225 CC010000 		.4byte	.LFE6
+ 2475 0229 0100     		.2byte	0x1
+ 2476 022b 50       		.byte	0x50
+ 2477 022c 00000000 		.4byte	0
+ 2478 0230 00000000 		.4byte	0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 45
+
+
+ 2479              	.LLST10:
+ 2480 0234 AA000000 		.4byte	.LVL46
+ 2481 0238 B8000000 		.4byte	.LVL47
+ 2482 023c 0100     		.2byte	0x1
+ 2483 023e 50       		.byte	0x50
+ 2484 023f 00000000 		.4byte	0
+ 2485 0243 00000000 		.4byte	0
+ 2486              	.LLST11:
+ 2487 0247 30000000 		.4byte	.LVL32
+ 2488 024b 4E000000 		.4byte	.LVL33
+ 2489 024f 0100     		.2byte	0x1
+ 2490 0251 50       		.byte	0x50
+ 2491 0252 76000000 		.4byte	.LVL37
+ 2492 0256 90000000 		.4byte	.LVL39
+ 2493 025a 0100     		.2byte	0x1
+ 2494 025c 50       		.byte	0x50
+ 2495 025d 98000000 		.4byte	.LVL40
+ 2496 0261 AA000000 		.4byte	.LVL46
+ 2497 0265 0200     		.2byte	0x2
+ 2498 0267 31       		.byte	0x31
+ 2499 0268 9F       		.byte	0x9f
+ 2500 0269 AA000000 		.4byte	.LVL46
+ 2501 026d B8000000 		.4byte	.LVL47
+ 2502 0271 0200     		.2byte	0x2
+ 2503 0273 32       		.byte	0x32
+ 2504 0274 9F       		.byte	0x9f
+ 2505 0275 B8000000 		.4byte	.LVL47
+ 2506 0279 F2000000 		.4byte	.LVL56
+ 2507 027d 0100     		.2byte	0x1
+ 2508 027f 5A       		.byte	0x5a
+ 2509 0280 08010000 		.4byte	.LVL59
+ 2510 0284 28010000 		.4byte	.LVL60
+ 2511 0288 0100     		.2byte	0x1
+ 2512 028a 50       		.byte	0x50
+ 2513 028b 2E010000 		.4byte	.LVL61
+ 2514 028f 34010000 		.4byte	.LVL62
+ 2515 0293 0100     		.2byte	0x1
+ 2516 0295 5A       		.byte	0x5a
+ 2517 0296 4C010000 		.4byte	.LVL67
+ 2518 029a 4E010000 		.4byte	.LVL68
+ 2519 029e 0100     		.2byte	0x1
+ 2520 02a0 50       		.byte	0x50
+ 2521 02a1 5A010000 		.4byte	.LVL71
+ 2522 02a5 5C010000 		.4byte	.LVL72
+ 2523 02a9 0100     		.2byte	0x1
+ 2524 02ab 50       		.byte	0x50
+ 2525 02ac 76010000 		.4byte	.LVL77
+ 2526 02b0 84010000 		.4byte	.LVL81
+ 2527 02b4 0100     		.2byte	0x1
+ 2528 02b6 5A       		.byte	0x5a
+ 2529 02b7 84010000 		.4byte	.LVL81
+ 2530 02bb 86010000 		.4byte	.LVL82
+ 2531 02bf 0100     		.2byte	0x1
+ 2532 02c1 50       		.byte	0x50
+ 2533 02c2 98010000 		.4byte	.LVL85
+ 2534 02c6 CC010000 		.4byte	.LFE6
+ 2535 02ca 0100     		.2byte	0x1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 46
+
+
+ 2536 02cc 5A       		.byte	0x5a
+ 2537 02cd 00000000 		.4byte	0
+ 2538 02d1 00000000 		.4byte	0
+ 2539              	.LLST12:
+ 2540 02d5 0E000000 		.4byte	.LVL28
+ 2541 02d9 1A000000 		.4byte	.LVL29
+ 2542 02dd 0200     		.2byte	0x2
+ 2543 02df 31       		.byte	0x31
+ 2544 02e0 9F       		.byte	0x9f
+ 2545 02e1 4E000000 		.4byte	.LVL33
+ 2546 02e5 5A000000 		.4byte	.LVL34
+ 2547 02e9 0200     		.2byte	0x2
+ 2548 02eb 31       		.byte	0x31
+ 2549 02ec 9F       		.byte	0x9f
+ 2550 02ed 5A000000 		.4byte	.LVL34
+ 2551 02f1 98000000 		.4byte	.LVL40
+ 2552 02f5 0100     		.2byte	0x1
+ 2553 02f7 55       		.byte	0x55
+ 2554 02f8 E4000000 		.4byte	.LVL55
+ 2555 02fc F2000000 		.4byte	.LVL56
+ 2556 0300 0200     		.2byte	0x2
+ 2557 0302 31       		.byte	0x31
+ 2558 0303 9F       		.byte	0x9f
+ 2559 0304 5A010000 		.4byte	.LVL71
+ 2560 0308 68010000 		.4byte	.LVL75
+ 2561 030c 0100     		.2byte	0x1
+ 2562 030e 55       		.byte	0x55
+ 2563 030f 00000000 		.4byte	0
+ 2564 0313 00000000 		.4byte	0
+ 2565              	.LLST13:
+ 2566 0317 90000000 		.4byte	.LVL39
+ 2567 031b 98000000 		.4byte	.LVL40
+ 2568 031f 0200     		.2byte	0x2
+ 2569 0321 30       		.byte	0x30
+ 2570 0322 9F       		.byte	0x9f
+ 2571 0323 98000000 		.4byte	.LVL40
+ 2572 0327 2E010000 		.4byte	.LVL61
+ 2573 032b 0500     		.2byte	0x5
+ 2574 032d 32       		.byte	0x32
+ 2575 032e 79       		.byte	0x79
+ 2576 032f 00       		.sleb128 0
+ 2577 0330 1C       		.byte	0x1c
+ 2578 0331 9F       		.byte	0x9f
+ 2579 0332 2E010000 		.4byte	.LVL61
+ 2580 0336 34010000 		.4byte	.LVL62
+ 2581 033a 0500     		.2byte	0x5
+ 2582 033c 33       		.byte	0x33
+ 2583 033d 79       		.byte	0x79
+ 2584 033e 00       		.sleb128 0
+ 2585 033f 1C       		.byte	0x1c
+ 2586 0340 9F       		.byte	0x9f
+ 2587 0341 76010000 		.4byte	.LVL77
+ 2588 0345 98010000 		.4byte	.LVL85
+ 2589 0349 0500     		.2byte	0x5
+ 2590 034b 32       		.byte	0x32
+ 2591 034c 79       		.byte	0x79
+ 2592 034d 00       		.sleb128 0
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 47
+
+
+ 2593 034e 1C       		.byte	0x1c
+ 2594 034f 9F       		.byte	0x9f
+ 2595 0350 98010000 		.4byte	.LVL85
+ 2596 0354 9C010000 		.4byte	.LVL86
+ 2597 0358 0500     		.2byte	0x5
+ 2598 035a 33       		.byte	0x33
+ 2599 035b 79       		.byte	0x79
+ 2600 035c 00       		.sleb128 0
+ 2601 035d 1C       		.byte	0x1c
+ 2602 035e 9F       		.byte	0x9f
+ 2603 035f 00000000 		.4byte	0
+ 2604 0363 00000000 		.4byte	0
+ 2605              		.section	.debug_aranges,"",%progbits
+ 2606 0000 4C000000 		.4byte	0x4c
+ 2607 0004 0200     		.2byte	0x2
+ 2608 0006 00000000 		.4byte	.Ldebug_info0
+ 2609 000a 04       		.byte	0x4
+ 2610 000b 00       		.byte	0
+ 2611 000c 0000     		.2byte	0
+ 2612 000e 0000     		.2byte	0
+ 2613 0010 00000000 		.4byte	.LFB2
+ 2614 0014 14000000 		.4byte	.LFE2-.LFB2
+ 2615 0018 00000000 		.4byte	.LFB0
+ 2616 001c 40000000 		.4byte	.LFE0-.LFB0
+ 2617 0020 00000000 		.4byte	.LFB1
+ 2618 0024 48000000 		.4byte	.LFE1-.LFB1
+ 2619 0028 00000000 		.4byte	.LFB5
+ 2620 002c 28000000 		.4byte	.LFE5-.LFB5
+ 2621 0030 00000000 		.4byte	.LFB3
+ 2622 0034 24000000 		.4byte	.LFE3-.LFB3
+ 2623 0038 00000000 		.4byte	.LFB4
+ 2624 003c 38000000 		.4byte	.LFE4-.LFB4
+ 2625 0040 00000000 		.4byte	.LFB6
+ 2626 0044 CC010000 		.4byte	.LFE6-.LFB6
+ 2627 0048 00000000 		.4byte	0
+ 2628 004c 00000000 		.4byte	0
+ 2629              		.section	.debug_ranges,"",%progbits
+ 2630              	.Ldebug_ranges0:
+ 2631 0000 00000000 		.4byte	.LFB2
+ 2632 0004 14000000 		.4byte	.LFE2
+ 2633 0008 00000000 		.4byte	.LFB0
+ 2634 000c 40000000 		.4byte	.LFE0
+ 2635 0010 00000000 		.4byte	.LFB1
+ 2636 0014 48000000 		.4byte	.LFE1
+ 2637 0018 00000000 		.4byte	.LFB5
+ 2638 001c 28000000 		.4byte	.LFE5
+ 2639 0020 00000000 		.4byte	.LFB3
+ 2640 0024 24000000 		.4byte	.LFE3
+ 2641 0028 00000000 		.4byte	.LFB4
+ 2642 002c 38000000 		.4byte	.LFE4
+ 2643 0030 00000000 		.4byte	.LFB6
+ 2644 0034 CC010000 		.4byte	.LFE6
+ 2645 0038 00000000 		.4byte	0
+ 2646 003c 00000000 		.4byte	0
+ 2647              		.section	.debug_line,"",%progbits
+ 2648              	.Ldebug_line0:
+ 2649 0000 EC020000 		.section	.debug_str,"MS",%progbits,1
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 48
+
+
+ 2649      02007801 
+ 2649      00000201 
+ 2649      FB0E0D00 
+ 2649      01010101 
+ 2650              	.LASF49:
+ 2651 0000 7072696E 		.ascii	"printf\000"
+ 2651      746600
+ 2652              	.LASF27:
+ 2653 0007 73696768 		.ascii	"sighandler\000"
+ 2653      616E646C 
+ 2653      657200
+ 2654              	.LASF24:
+ 2655 0012 72657365 		.ascii	"reset\000"
+ 2655      7400
+ 2656              	.LASF47:
+ 2657 0018 73656C65 		.ascii	"select\000"
+ 2657      637400
+ 2658              	.LASF15:
+ 2659 001f 6F706171 		.ascii	"opaque\000"
+ 2659      756500
+ 2660              	.LASF7:
+ 2661 0026 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2661      206C6F6E 
+ 2661      6720756E 
+ 2661      7369676E 
+ 2661      65642069 
+ 2662              	.LASF55:
+ 2663 003d 68617264 		.ascii	"hard_test\000"
+ 2663      5F746573 
+ 2663      7400
+ 2664              	.LASF40:
+ 2665 0047 73656373 		.ascii	"secs\000"
+ 2665      00
+ 2666              	.LASF54:
+ 2667 004c 64656C74 		.ascii	"delta\000"
+ 2667      6100
+ 2668              	.LASF53:
+ 2669 0052 433A5C55 		.ascii	"C:\\Users\\jo\\Documents\\GitHub\\ChibiOS\\demos\\S"
+ 2669      73657273 
+ 2669      5C6A6F5C 
+ 2669      446F6375 
+ 2669      6D656E74 
+ 2670 007e 544D3332 		.ascii	"TM32\\RT-STM32F407-DISCOVERY-uHttp\000"
+ 2670      5C52542D 
+ 2670      53544D33 
+ 2670      32463430 
+ 2670      372D4449 
+ 2671              	.LASF6:
+ 2672 00a0 6C6F6E67 		.ascii	"long long int\000"
+ 2672      206C6F6E 
+ 2672      6720696E 
+ 2672      7400
+ 2673              	.LASF0:
+ 2674 00ae 7369676E 		.ascii	"signed char\000"
+ 2674      65642063 
+ 2674      68617200 
+ 2675              	.LASF30:
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 49
+
+
+ 2676 00ba 68697265 		.ascii	"hires\000"
+ 2676      7300
+ 2677              	.LASF29:
+ 2678 00c0 6D736563 		.ascii	"msec\000"
+ 2678      00
+ 2679              	.LASF4:
+ 2680 00c5 6C6F6E67 		.ascii	"long int\000"
+ 2680      20696E74 
+ 2680      00
+ 2681              	.LASF56:
+ 2682 00ce 616C6172 		.ascii	"alarmed\000"
+ 2682      6D656400 
+ 2683              	.LASF46:
+ 2684 00d6 616C6172 		.ascii	"alarm\000"
+ 2684      6D00
+ 2685              	.LASF57:
+ 2686 00dc 5F5F6275 		.ascii	"__builtin_puts\000"
+ 2686      696C7469 
+ 2686      6E5F7075 
+ 2686      747300
+ 2687              	.LASF59:
+ 2688 00eb 70757463 		.ascii	"putchar\000"
+ 2688      68617200 
+ 2689              	.LASF19:
+ 2690 00f3 5F68725F 		.ascii	"_hr_time\000"
+ 2690      74696D65 
+ 2690      00
+ 2691              	.LASF22:
+ 2692 00fc 6765745F 		.ascii	"get_timer\000"
+ 2692      74696D65 
+ 2692      7200
+ 2693              	.LASF52:
+ 2694 0106 2E2E2F2E 		.ascii	"../../../ext/mbedtls-1.3.11/library/timing.c\000"
+ 2694      2E2F2E2E 
+ 2694      2F657874 
+ 2694      2F6D6265 
+ 2694      64746C73 
+ 2695              	.LASF12:
+ 2696 0133 73757365 		.ascii	"suseconds_t\000"
+ 2696      636F6E64 
+ 2696      735F7400 
+ 2697              	.LASF8:
+ 2698 013f 756E7369 		.ascii	"unsigned int\000"
+ 2698      676E6564 
+ 2698      20696E74 
+ 2698      00
+ 2699              	.LASF33:
+ 2700 014c 6D5F736C 		.ascii	"m_sleep\000"
+ 2700      65657000 
+ 2701              	.LASF5:
+ 2702 0154 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2702      20756E73 
+ 2702      69676E65 
+ 2702      6420696E 
+ 2702      7400
+ 2703              	.LASF50:
+ 2704 0166 5F5F6275 		.ascii	"__builtin_putchar\000"
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 50
+
+
+ 2704      696C7469 
+ 2704      6E5F7075 
+ 2704      74636861 
+ 2704      7200
+ 2705              	.LASF23:
+ 2706 0178 7369676E 		.ascii	"signum\000"
+ 2706      756D00
+ 2707              	.LASF3:
+ 2708 017f 73686F72 		.ascii	"short unsigned int\000"
+ 2708      7420756E 
+ 2708      7369676E 
+ 2708      65642069 
+ 2708      6E7400
+ 2709              	.LASF18:
+ 2710 0192 5F736967 		.ascii	"_sig_func_ptr\000"
+ 2710      5F66756E 
+ 2710      635F7074 
+ 2710      7200
+ 2711              	.LASF45:
+ 2712 01a0 67657474 		.ascii	"gettimeofday\000"
+ 2712      696D656F 
+ 2712      66646179 
+ 2712      00
+ 2713              	.LASF13:
+ 2714 01ad 68725F74 		.ascii	"hr_time\000"
+ 2714      696D6500 
+ 2715              	.LASF14:
+ 2716 01b5 74696D65 		.ascii	"timeval\000"
+ 2716      76616C00 
+ 2717              	.LASF51:
+ 2718 01bd 474E5520 		.ascii	"GNU C 4.9.3 20141119 (release) [ARM/embedded-4_9-br"
+ 2718      4320342E 
+ 2718      392E3320 
+ 2718      32303134 
+ 2718      31313139 
+ 2719 01f0 616E6368 		.ascii	"anch revision 218278] -mcpu=cortex-m4 -mno-thumb-in"
+ 2719      20726576 
+ 2719      6973696F 
+ 2719      6E203231 
+ 2719      38323738 
+ 2720 0223 74657277 		.ascii	"terwork -mthumb -ggdb -O2 -fomit-frame-pointer -fal"
+ 2720      6F726B20 
+ 2720      2D6D7468 
+ 2720      756D6220 
+ 2720      2D676764 
+ 2721 0256 69676E2D 		.ascii	"ign-functions=16 -ffunction-sections -fdata-section"
+ 2721      66756E63 
+ 2721      74696F6E 
+ 2721      733D3136 
+ 2721      202D6666 
+ 2722 0289 73202D66 		.ascii	"s -fno-common\000"
+ 2722      6E6F2D63 
+ 2722      6F6D6D6F 
+ 2722      6E00
+ 2723              	.LASF58:
+ 2724 0297 70757473 		.ascii	"puts\000"
+ 2724      00
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 51
+
+
+ 2725              	.LASF9:
+ 2726 029c 73697A65 		.ascii	"sizetype\000"
+ 2726      74797065 
+ 2726      00
+ 2727              	.LASF43:
+ 2728 02a5 74765F69 		.ascii	"tv_init\000"
+ 2728      6E697400 
+ 2729              	.LASF16:
+ 2730 02ad 74765F73 		.ascii	"tv_sec\000"
+ 2730      656300
+ 2731              	.LASF25:
+ 2732 02b4 74765F63 		.ascii	"tv_cur\000"
+ 2732      757200
+ 2733              	.LASF11:
+ 2734 02bb 74696D65 		.ascii	"time_t\000"
+ 2734      5F7400
+ 2735              	.LASF31:
+ 2736 02c2 7365636F 		.ascii	"seconds\000"
+ 2736      6E647300 
+ 2737              	.LASF34:
+ 2738 02ca 6D696C6C 		.ascii	"milliseconds\000"
+ 2738      69736563 
+ 2738      6F6E6473 
+ 2738      00
+ 2739              	.LASF1:
+ 2740 02d7 756E7369 		.ascii	"unsigned char\000"
+ 2740      676E6564 
+ 2740      20636861 
+ 2740      7200
+ 2741              	.LASF2:
+ 2742 02e5 73686F72 		.ascii	"short int\000"
+ 2742      7420696E 
+ 2742      7400
+ 2743              	.LASF32:
+ 2744 02ef 7365745F 		.ascii	"set_alarm\000"
+ 2744      616C6172 
+ 2744      6D00
+ 2745              	.LASF37:
+ 2746 02f9 6379636C 		.ascii	"cycles\000"
+ 2746      657300
+ 2747              	.LASF28:
+ 2748 0300 62757379 		.ascii	"busy_msleep\000"
+ 2748      5F6D736C 
+ 2748      65657000 
+ 2749              	.LASF39:
+ 2750 030c 6D696C6C 		.ascii	"millisecs\000"
+ 2750      69736563 
+ 2750      7300
+ 2751              	.LASF17:
+ 2752 0316 74765F75 		.ascii	"tv_usec\000"
+ 2752      73656300 
+ 2753              	.LASF44:
+ 2754 031e 7369676E 		.ascii	"signal\000"
+ 2754      616C00
+ 2755              	.LASF10:
+ 2756 0325 63686172 		.ascii	"char\000"
+ 2756      00
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 52
+
+
+ 2757              	.LASF36:
+ 2758 032a 76657262 		.ascii	"verbose\000"
+ 2758      6F736500 
+ 2759              	.LASF38:
+ 2760 0332 72617469 		.ascii	"ratio\000"
+ 2760      6F00
+ 2761              	.LASF26:
+ 2762 0338 6F666673 		.ascii	"offset\000"
+ 2762      657400
+ 2763              	.LASF42:
+ 2764 033f 68617264 		.ascii	"hardclock_init\000"
+ 2764      636C6F63 
+ 2764      6B5F696E 
+ 2764      697400
+ 2765              	.LASF21:
+ 2766 034e 68617264 		.ascii	"hardclock\000"
+ 2766      636C6F63 
+ 2766      6B00
+ 2767              	.LASF41:
+ 2768 0358 68617264 		.ascii	"hardfail\000"
+ 2768      6661696C 
+ 2768      00
+ 2769              	.LASF35:
+ 2770 0361 74696D69 		.ascii	"timing_self_test\000"
+ 2770      6E675F73 
+ 2770      656C665F 
+ 2770      74657374 
+ 2770      00
+ 2771              	.LASF48:
+ 2772 0372 6E65745F 		.ascii	"net_usleep\000"
+ 2772      75736C65 
+ 2772      657000
+ 2773              	.LASF20:
+ 2774 037d 73746172 		.ascii	"start\000"
+ 2774      7400
+ 2775              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20141119 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\jo\AppData\Local\Temp\cciF2oBe.s 			page 53
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 timing.c
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:19     .text.sighandler:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:24     .text.sighandler:00000000 sighandler
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:46     .text.sighandler:0000000c $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:52     .text.hardclock:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:58     .text.hardclock:00000000 hardclock
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:110    .text.hardclock:00000034 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:117    .text.get_timer:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:123    .text.get_timer:00000000 get_timer
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:195    .text.get_timer:00000044 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:200    .text.busy_msleep:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:205    .text.busy_msleep:00000000 busy_msleep
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:257    .text.set_alarm:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:263    .text.set_alarm:00000000 set_alarm
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:304    .text.set_alarm:0000001c $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:310    .text.m_sleep:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:316    .text.m_sleep:00000000 m_sleep
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:366    .text.m_sleep:00000034 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:371    .text.timing_self_test:00000000 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:377    .text.timing_self_test:00000000 timing_self_test
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:704    .text.timing_self_test:000001a0 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:753    .bss.alarmed:00000000 alarmed
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:720    .bss.hardclock_init:00000000 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:724    .bss.hardclock_init:00000000 hardclock_init
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:727    .rodata.str1.4:00000000 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:749    .bss.alarmed:00000000 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:756    .bss.tv_init:00000000 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:760    .bss.tv_init:00000000 tv_init
+                     .debug_frame:00000010 $d
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:51     .text.sighandler:00000014 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:199    .text.get_timer:00000048 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:309    .text.set_alarm:00000024 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:370    .text.m_sleep:00000038 $t
+C:\Users\jo\AppData\Local\Temp\cciF2oBe.s:719    .text.timing_self_test:000001cc $t
+
+UNDEFINED SYMBOLS
+signal
+gettimeofday
+alarm
+select
+net_usleep
+puts
+printf
+putchar
